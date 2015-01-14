@@ -1,0 +1,2950 @@
+<?xml version="1.0" encoding="gbk"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>BuildYourOwnLisp</title>
+<meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+<meta name="title" content="BuildYourOwnLisp"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2015-01-14T13:42+0800"/>
+<meta name="author" content=""/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">BuildYourOwnLisp</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 简介(Introduction)</a>
+<ul>
+<li><a href="#sec-1-1">1.1 关于</a></li>
+<li><a href="#sec-1-2">1.2 适合谁</a></li>
+<li><a href="#sec-1-3">1.3 为何学C</a></li>
+<li><a href="#sec-1-4">1.4 如何学C</a></li>
+<li><a href="#sec-1-5">1.5 为何构建一个Lisp</a></li>
+<li><a href="#sec-1-6">1.6 自己的Lisp</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 安装(Installation)</a>
+<ul>
+<li><a href="#sec-2-1">2.1 配置环境</a></li>
+<li><a href="#sec-2-2">2.2 编辑器</a></li>
+<li><a href="#sec-2-3">2.3 编译器</a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1 测试编译器</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4 Hello World</a></li>
+<li><a href="#sec-2-5">2.5 编译</a></li>
+<li><a href="#sec-2-6">2.6 错误</a></li>
+<li><a href="#sec-2-7">2.7 文档</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 基础(Basics)</a>
+<ul>
+<li><a href="#sec-3-1">3.1 概述</a></li>
+<li><a href="#sec-3-2">3.2 程序</a></li>
+<li><a href="#sec-3-3">3.3 变量</a></li>
+<li><a href="#sec-3-4">3.4 函数声明</a></li>
+<li><a href="#sec-3-5">3.5 结构体定义</a></li>
+<li><a href="#sec-3-6">3.6 指针</a></li>
+<li><a href="#sec-3-7">3.7 字符串</a></li>
+<li><a href="#sec-3-8">3.8 条件</a></li>
+<li><a href="#sec-3-9">3.9 循环</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4 交互式提示符(An Interactive Prompt)</a>
+<ul>
+<li><a href="#sec-4-1">4.1 读取，求值，打印</a></li>
+<li><a href="#sec-4-2">4.2 交互式提示符</a></li>
+<li><a href="#sec-4-3">4.3 编译</a></li>
+<li><a href="#sec-4-4">4.4 编辑输入</a>
+<ul>
+<li><a href="#sec-4-4-1">4.4.1 使用Editline</a></li>
+<li><a href="#sec-4-4-2">4.4.2 与Editline一起编译</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-5">4.5 C预处理器</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5 语言(Languages)</a>
+<ul>
+<li><a href="#sec-5-1">5.1 编程语言是什么?</a></li>
+<li><a href="#sec-5-2">5.2 解析组合式</a></li>
+<li><a href="#sec-5-3">5.3 编码语法</a></li>
+<li><a href="#sec-5-4">5.4 自然语法</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6 语法分析(Parsing)</a>
+<ul>
+<li><a href="#sec-6-1">6.1 波兰表示法</a></li>
+<li><a href="#sec-6-2">6.2 正则表达式</a></li>
+<li><a href="#sec-6-3">6.3 安装mpc</a></li>
+<li><a href="#sec-6-4">6.4 波兰表示法语法</a></li>
+<li><a href="#sec-6-5">6.5 解析用户输入</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7 计算求值(Evaluation)</a>
+<ul>
+<li><a href="#sec-7-1">7.1 树</a></li>
+<li><a href="#sec-7-2">7.2 递归</a></li>
+<li><a href="#sec-7-3">7.3 求值</a></li>
+<li><a href="#sec-7-4">7.4 打印</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8 错误处理(Error Handling)</a>
+<ul>
+<li><a href="#sec-8-1">8.1 崩溃</a></li>
+<li><a href="#sec-8-2">8.2 Lisp值</a></li>
+<li><a href="#sec-8-3">8.3 枚举</a></li>
+<li><a href="#sec-8-4">8.4 Lisp值函数</a></li>
+<li><a href="#sec-8-5">8.5 求值错误</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9 S-表达式(S-Expressions)</a>
+<ul>
+<li><a href="#sec-9-1">9.1 列表与Lisp</a></li>
+<li><a href="#sec-9-2">9.2 指针</a></li>
+<li><a href="#sec-9-3">9.3 栈与堆</a>
+<ul>
+<li><a href="#sec-9-3-1">9.3.1 栈</a></li>
+<li><a href="#sec-9-3-2">9.3.2 堆</a></li>
+</ul>
+</li>
+<li><a href="#sec-9-4">9.4 解析表达式</a></li>
+<li><a href="#sec-9-5">9.5 表达式结构</a></li>
+<li><a href="#sec-9-6">9.6 构造与析构</a></li>
+<li><a href="#sec-9-7">9.7 读取表达式</a></li>
+<li><a href="#sec-9-8">9.8 打印表达式</a></li>
+<li><a href="#sec-9-9">9.9 计算表达式</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10 Q-表达式(Q-Expressions)</a></li>
+<li><a href="#sec-11">11 变量(Variables)</a></li>
+<li><a href="#sec-12">12 函数(Functions)</a></li>
+<li><a href="#sec-13">13 条件(Conditionals)</a></li>
+<li><a href="#sec-14">14 字符串(Strings)</a></li>
+<li><a href="#sec-15">15 标准库(Standard Library)</a></li>
+<li><a href="#sec-16">16 奖励项目(Bonus Projects)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 简介(Introduction)</h2>
+<div class="outline-text-2" id="text-1">
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 关于</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<p>
+在这本中，你将学会C语言和如何构建自己的编程语言，一个极小Lisp，1000行以下的代码
+量。我们将使用一个库来完成最初工作，所以我在代码量上撒了点谎，但其余的代码都是原
+创，最终你将会创建一个强大小巧的Lisp。
+</p>
+<p>
+这本书是受其它从头构建自己编程语言教程的启发。我编写这本书表明，这种有趣且创建性
+项目是学习一门编程语言极好的方法，不局限于抽象高级语言或老练的程序员。
+</p>
+<p>
+许多人想学习C，但不知从何开始。现在不需借口。如果你遵循这本书，我可以保证，最坏
+的情况，你将得到一个非常酷的新编程语言，同时也非常有希望成为一个有经历的C程序员。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 适合谁</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+<p>
+这本书适合任何想学习C或想知道如何构建他们自己编程语言的人，但不适合作为编程语言
+入门书箱。任何有一点编程经历的人，在任何语言上，应该在里面找到一些新奇有趣的东西。
+</p>
+<p>
+我试图让本书对初学者尽量友好。我非常欢迎初学者因为他们有非常多的发现。初学者也可
+能发现本书具有挑战性。我们将覆盖一些新概念，基本上同时学习两门新编程语言。
+</p>
+<p>
+如果你寻求帮助，你可能会发现人们对你没有耐心。你可能会发现，相比帮助，他们会花费
+更多的时间来表达他们对这个主题有多了解。有经历的程序员可能会告诉你你错了。他们语
+气的潜台词可能是你现在应该停止，不要给世界带来糟糕的代码。
+</p>
+<p>
+经过一些像这样的交流之后，你可能会确定自己不是一个程序员，或不是真正喜欢编程，或
+只是暂时没有明白。你可能认为你曾经喜欢在构建自己编程语言上的想法，但是现在你觉得
+这些太抽象，你不再在乎。你现在关心其它的爱好，任何有趣的，快乐的或感兴趣的看法可
+能已经变成成了障碍。
+</p>
+<p>
+对于这些我只能道歉。程序员可以是心怀敌意的，大男子主义的，傲慢的，好斗的。不需要
+为这些寻找理由。知道我是站在你这边。起初没有人明白。每个人都很努力，怀疑自己的能
+力。请不要放弃或让快乐从创性的经历中吸走。为你的创造感到骄傲，不管是什么。人们比
+如我不希望你放弃编程。我们想听到你的声音和你所说的话。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 为何学C</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<p>
+C是这个世界上最流行最具影响力的程序语言之一。它是在Linux上开发的首选语言，已经在
+OSX和MS上很普通。它也在微机上使用。你的冰箱或汽车上也可能在运行它。在现代软件开
+发中，可能避开C的使用，但历史证明，任何一个想成为职业软件开发的人都应该学习C。
+</p>
+<p>
+C与软件开发和职业无关，C是自由的。它在技术和自由上获取名望。它在计算机上体现了人
+身自由理念。希望你能控制影响自己生活的技术。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 如何学C</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+<p>
+没有办法，C是一个困难的语言。它有许多生疏的概念。它没有试图帮助一个新手。在本书
+中我没有覆盖语言的语法明细和如何编写循环和条件语句。
+</p>
+<p>
+我将从另一方面展示如何用C构建一个现实世界中程序。这种方式对阅读者来言总是更困难，
+但它更有希望地教会你一些传统方式不能教会的许多隐藏事情。我不能保证这本书能让你成
+一个有信心的C使用者。我能承诺的是，那包裹在内容中的1000行代码，你将学会一些有价
+值的事。
+</p>
+<p>
+本书包含了16章节。如何完成本书取决于你。可能一个周末快速浏览一遍历或每晚慢慢地完
+成1到2章。它不会花费很长的时间来完成，将希望你够更进一步的开发自己的语言。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> 为何构建一个Lisp</h3>
+<div class="outline-text-3" id="text-1-5">
+
+
+<p>
+我们在本书中将要构建的语言是一个Lisp。在这个语言家庭中事实特征是它们所有的计算都
+是由列表(list)表示的。这可能听起来可怕，事实上Lisp是非常简单，与众不同，强大的语言。
+</p>
+<p>
+构建一个Lisp是一个非常好的项目，原因很多。它把你放进语言设计的世界，让你欣赏语言
+整个过程，从语言一直到机器。它都会你函数式编程，新的计算方式。最终你获得的产品为
+未来的想法和开发提供了模板，给你一个尝试新事物的开始。不能根本地理解编程和计算机
+科学的创建和智慧，除非你探索语言本身。
+</p>
+<p>
+我们将构造的Lisp类型是我为本书发明之一。我把它设计的非常极简，简单，清晰，我已经
+非常喜欢它。我希望你将也喜欢它。在概念上，语法上，在实现中，这个Lisp与其它Lisp主
+要分支有所不同。以至于我从Lisp程序员得到邮件告诉我说它不是Lisp因为它看起来不像。
+</p>
+<p>
+我不是让这个Lisp的不同来迷惑初学者，我创建差异是因为差异是好的。
+</p>
+<p>
+如果你想了解传统Lsip的语义和行为，如何使用它们编程，这本书可能不适合你。相反，本
+书提供的是新鲜独特的概念，自我表达，创建力和乐趣。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> 自己的Lisp</h3>
+<div class="outline-text-3" id="text-1-6">
+
+
+<p>
+遵循这本书最好的方式，如标题所言，编写自己的Lisp。你的Lisp应该适合你和你自己的哲
+学。整本书我将会提供描述和观察，大量的代码。
+</p>
+<p>
+自己输入每块示例代码，这称为The Hard Way。不是因为它在技术上困难，而是因为它需要
+训练。通过The Hard Way完成事情你将明白输入代码背后的原理。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 安装(Installation)</h2>
+<div class="outline-text-2" id="text-2">
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 配置环境</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+在我们开始使用C编程之前，我们需要安装一些软件和设置环境。因为C是一个通
+用语言且相当简单。我们至少需要安装两个主要基本软件：编辑器和编辑器。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 编辑器</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+编辑器允许你使用一种适合编程的方式来编辑文本文件。
+</p>
+<p>
+在Linux上我推荐使用gedit。如果你是一个Vim或Emacs用户，这些也可以使用。
+请不要使用任何IDE。这个小项目不需要IDE，并且对于理解原理没有帮助。
+</p>
+<p>
+在Mac上可以使用TextWrangler。请不要使用XCode。
+</p>
+<p>
+在Windows上可以选择Notepad++。请不要使用Visual Studio。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 编译器</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+<p>
+编译器可以将C源码转换成电脑能运行的程序。编译器的安装过程取决于操作系
+统。
+</p>
+<p>
+在Linux上可以通过下载一些包来安装编译器。如果你运行Ubuntu或Debian，你
+可以使用命令 <b>sudo apt-get install build-essential</b> 。如果你运行Fedora
+或类似Linux变体，你可以使用命令 <b>su -c yum 'groupinstall development-tools`</b> 。
+</p>
+<p>
+在Mac上可你可以通过下载和安装最新版的XCode来安装编译器。
+</p>
+<p>
+在Windows上你可以通过下载和安装MinGW来安装编译器。
+</p>
+
+</div>
+
+<div id="outline-container-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> 测试编译器</h4>
+<div class="outline-text-4" id="text-2-3-1">
+
+
+<p>
+你可以使用如下命令来测试你的C编译器是否已安装：
+<b>cc &ndash;version</b>
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Hello World</h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+<p>
+你的环境设置后，启动你的编辑器，输入如下代码。保存文件为hello_world.c。
+</p>
+
+
+
+<pre class="example">#include &lt;stdio.h&gt;
+
+int main(int argc, char **argv) {
+    puts("Hello, world!");
+    return 0;
+}
+</pre>
+
+
+<p>
+我将尝试一步一步来解释这个程序。
+</p>
+<p>
+第一次我们包含(include)头文件(header)。这个声明允许我们使用 <b>stdio.h</b>
+中的函数。这个头文件包含了C的标准输入和输出函数库。后面我们在程序中看
+到的函数 <b>puts</b> 就是这个库中的函数之一。
+</p>
+<p>
+接下来我们声明的函数是 <b>main</b> 。这个函数的返回值类型是 <b>int</b> ,使
+用 <b>int</b> 类型的 <b>argc</b> 和 <b>char **</b> 类型的 <b>argv</b> 作为参数。
+</p>
+<p>
+在 <b>main</b> 函数内部， <b>puts</b> 函数被调用，它将Hello, world!输出到命令行
+。 <b>puts</b> 函数是 <b>put string</b> 的简写。函数中的第二条语句是 <b>return 0;</b> 。 它告诉 <b>main</b> 函数结束并且返回0。当一个C程序返回0表明运行这个函
+数没有错误。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 编译</h3>
+<div class="outline-text-3" id="text-2-5">
+
+
+<p>
+在运行这个程序之前我们需要编译它。它将产生一个实际可在电脑上执行的程序。
+在命令行上我们可以输入如下命令：
+</p>
+
+
+
+<pre class="example">cc -std=c99 -Wall hello_world.c -o hello_world
+</pre>
+
+
+<p>
+这个命令编译hello_world.c中的代码，报告任何警告，并产生一个hello_world
+文件。我们使用 <b>-std=c99</b> 标志告诉编译器我们使用哪个标准C版本。这让编
+译器确保我们的代码是标准的，这样不同的操作系统或编译器将可以使用我们的代
+码。
+</p>
+<p>
+如果编译成功，我们将看到目录中产生的hello_world文件。输
+入 <b>./hello_world</b> 来运行这个程序。如果一切都正确我们最终会看
+到 <b>Hello, world!</b> 消息出现。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 错误</h3>
+<div class="outline-text-3" id="text-2-6">
+
+
+<p>
+如果你的C程序有问题，在编译过程中可能会失败。这个问题原因范围可能从简
+单的语法错误到难懂的复杂问题。
+</p>
+<p>
+有时来自编译器的错误信息将变得有意义，如果你难以理解它可以尝试在网上搜
+索相关信息。你应该先看看你是否能找出错误信息的意思和如何改正它。
+</p>
+<p>
+有时多个编译错误可能源于相同处。
+</p>
+<p>
+有时编译器能编译程序，但在运行时崩溃。这种情况下调试C程序非常困难。
+</p>
+<p>
+如果你是一个初学者，调试崩溃的程序可以通过打印一些信息来定位出错的范围，
+这是一个有效的调试技术。
+</p>
+<p>
+可以使用 <b>gdb</b> 来调试你的C程序，使用它可能会很困难和难懂，但它非常强大，
+能够给你非常有价值的信息以及生产错误信息和位置。
+</p>
+<p>
+在Mac可以使用 <b>lldb*</b> 来代替 <b>gdb</b> 完成同样的任务。
+</p>
+<p>
+在Linux或Mac上 <b>valgrind</b> 可以用来检测内存溢出和其它的严重错误。
+Valgrind能够节约你调试的时间。不需要太精通它，所以强烈推荐。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 文档</h3>
+<div class="outline-text-3" id="text-2-7">
+
+
+<p>
+这本书的实例中你可能会遇到不认识的函数，你可以查看标准库文档来了解它可以做
+什么，以及如何使用它们。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 基础(Basics)</h2>
+<div class="outline-text-2" id="text-3">
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 概述</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+<p>
+这一章我们将快速浏览C的基本特征。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 程序</h3>
+<div class="outline-text-3" id="text-3-2">
+
+
+<p>
+C程序是由函数定义和结构体定义组成的。
+</p>
+<p>
+因此一个源文件是函数和类型的列表。函数可以调用其它（或本身）函数，可以
+使用任意已经定义或内置的数据类型。
+</p>
+<p>
+可以调用其它库中的函数或使用库中的数据类型。
+</p>
+<p>
+如前章所见，C程序的执行从 <b>main</b> 函数开始， <b>main</b> 内部调用其它更多的
+函数来完成所需的行为。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 变量</h3>
+<div class="outline-text-3" id="text-3-3">
+
+
+<p>
+C中每个变量都有一个明确的类型。这些类型由我们定义或语言中内置。
+</p>
+
+
+
+<pre class="example">type variable[=value];
+</pre>
+
+
+
+<pre class="example">int count;
+char ch = 'A';
+</pre>
+
+
+<p>
+内置类型如下：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">void</td><td class="left">空类型</td></tr>
+<tr><td class="left">char</td><td class="left">字符</td></tr>
+<tr><td class="left">int</td><td class="left">整型</td></tr>
+<tr><td class="left">long</td><td class="left">长整型</td></tr>
+<tr><td class="left">float</td><td class="left">单精度浮点类型</td></tr>
+<tr><td class="left">double</td><td class="left">双精度浮点类型</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 函数声明</h3>
+<div class="outline-text-3" id="text-3-4">
+
+
+<p>
+函数是操作变量的计算过程，可以改变程序的状态。它接收多个变量为输入，返
+回单变量作为输出。
+</p>
+
+
+
+<pre class="example">//声明函数
+return_type function_name(args...);
+
+//定义函数
+return_type function_name(args...)
+{
+      //function body...
+}
+
+//调用函数
+function_name(...);
+</pre>
+
+
+
+<pre class="example">int add(int x, int y);
+
+int add(int x, int y) {
+      int rs = x + y;
+
+      return rs;
+}
+
+int rs = add(10, 11);
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 结构体定义</h3>
+<div class="outline-text-3" id="text-3-5">
+
+
+<p>
+结构体用于声明新类型。结构体将几个变量捆绑成一个包。
+</p>
+<p>
+我们可以使用结构体来表示更复杂的数据类型。
+</p>
+
+
+
+<pre class="example">//定义结构体
+struct name {
+    type1 variable1;
+    type2 variable2;
+    //...
+};
+
+//使用结构体声明变量
+struct name variable;
+</pre>
+
+
+
+<pre class="example">struct point {
+    float x;
+    float y;
+};
+
+struct point p;
+p.x = 0.1;
+p.y = 10.0;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> 指针</h3>
+<div class="outline-text-3" id="text-3-6">
+
+
+<p>
+指针是一般类型的变种，在类型后面加上星号后缀。例如，定义整型指
+针 <b>int *</b> 。我们已经看到过 <span style="text-decoration:underline;">char** argv</span> ， 这是一个指向指针的指针，
+用于 <b>main</b> 函数的输入。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> 字符串</h3>
+<div class="outline-text-3" id="text-3-7">
+
+
+<p>
+在C中字符串使用指针 <b>char*</b> 来表示。底层存储是的一个字符列表，最后一个
+字符是空终止符(<i>null terminator</i>)。
+</p>
+<p>
+字符串也可以使用双引号定义，将字符文本放置在双引号之内。如"Hello, world!"。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3-8" class="outline-3">
+<h3 id="sec-3-8"><span class="section-number-3">3.8</span> 条件</h3>
+<div class="outline-text-3" id="text-3-8">
+
+
+<p>
+条件语言是让程序在只能在满足某个条件时才执行。
+</p>
+<p>
+为了在某个条件下执行代码我们使用 <b>if</b> 语句。 <b>else if</b> 和 <b>else</b> 都是
+可选的。
+</p>
+
+
+
+<pre class="example">if (condition) {
+    //statements...
+} else if (condition) {
+    //statements...
+} else {
+    //statements...
+}
+</pre>
+
+
+
+<pre class="example">if (x &gt; 10 &amp;&amp; x &lt; 100) {
+    puts("x is greater than 10 and less than 100!");
+} else {
+    puts("x is less than 11 or greater than 99!");
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3-9" class="outline-3">
+<h3 id="sec-3-9"><span class="section-number-3">3.9</span> 循环</h3>
+<div class="outline-text-3" id="text-3-9">
+
+
+<p>
+循环是允许代码能够重复执行直到某个条件变成假或计数器结束。
+</p>
+<p>
+C中主要两种循环。一个是 <b>while</b> 循环， 这个循环重复执行代码块直到条件
+变成假。
+</p>
+
+
+
+<pre class="example">while (condition) {
+     //statements...
+}
+</pre>
+
+
+<p>
+第二种类型是 <b>for</b> 循环。
+</p>
+
+
+
+<pre class="example">for (initialiser; condition; incrementer) {
+     //statements...
+}
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 交互式提示符(An Interactive Prompt)</h2>
+<div class="outline-text-2" id="text-4">
+
+
+</div>
+
+<div id="outline-container-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 读取，求值，打印</h3>
+<div class="outline-text-3" id="text-4-1">
+
+
+<p>
+当我们构建我们的编程语言时，我们需要某一些方法来与它交互。C可以修改代
+码，重新编译后运行。更好的方法我们能动态地与语言进行交互。我们能够在许
+多条件下测试它的条件都很迅速。为了达到这个目的，我们构建一个称为交互式
+提示符(<i>interactive prompt</i>)的东西。
+</p>
+<p>
+这个程序提示用户输入，并且反馈一些信息。使用它我们可以很容易的测试我们
+的编程语言和了解它如何工作。这个系统叫REPL，是read-evaluate-print-loop
+的缩写。这是一种常见与编程语言交互的方式，如Python。
+</p>
+<p>
+在构建一个完整的REPL之前我们将从一些简单着手。我们将做一个系统，这个系
+统提示用户输入，并且直接回显输入。之后我们可以将其扩展，使之能够解析用
+户输入，计算它，就像它是一个真实的Lisp程序一样。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 交互式提示符</h3>
+<div class="outline-text-3" id="text-4-2">
+
+
+<p>
+第一步我们想编写一个循环，这个循环重复输出一个消息，然后等待用户输入。
+为了获取用户输入我们可以使用函数 <b>fgets</b> ，它读取用户输入直到一个换行
+符。我们需要一些地方来存储用户输入。我们可声明一个连续大小的输入缓冲区。
+</p>
+<p>
+一旦我们存储了用户输入，我们可以将其打印，使用函数 <b>printf</b> 。
+</p>
+
+
+
+<pre class="example">#include &lt;stdio.h&gt;
+
+/* Declare a buffer for user input of size 2048 */
+static char input[2048];
+
+int main(int argc, char** argv) {
+
+  /* Print Version and Exit Information */
+  puts("Lispy Version 0.0.0.0.1");
+  puts("Press Ctrl+c to Exit\n");
+
+  /* In a never ending loop */
+  while (1) {
+
+    /* Output our prompt */
+    fputs("lispy&gt; ", stdout);
+
+    /* Read a line of user input of maximum size 2048 */
+    fgets(input, 2048, stdin);
+
+    /* Echo input back to user */
+    printf("No you're a %s", input);
+  }
+
+  return 0;
+}
+</pre>
+
+
+<p>
+用/* */包裹的信息是注释，它们被编译器忽略，用于方便人阅读程序了解其意
+图。
+</p>
+<p>
+<b>static char input[ 2048 ];</b> 代码行声明了一个包含了2048个字符的全局数
+组。 这个预留的数据块我们可以在程序的任何位置访问它。这里我们用它来存
+储从命令行的用户输入。关键字 <b>static</b> 使变量局限于这个文本。
+</p>
+<p>
+我们编写了一个无限循环 <b>while(1)</b> 。在条件块中 <b>1</b> 表示永远为真。所以
+在循环内部的命令将永远运行下去。
+</p>
+<p>
+我们使用函数 <b>fputs</b> 来输入我们的提示符。它与 <b>puts</b> 有一个轻微的不同
+是它不会添加换行符。我们使用 <b>fgets</b> 函数获取用户输入。两个函数都是需
+要某个文件来写入或读取。为了这个我们提供了两个特殊的变量 <b>stdin</b>
+和 <b>stdout</b> 。它们都在&lt;stdio.h&gt;中声明，代表了输入和输出。 <b>fgets</b> 函数
+等待用户输入一行文本，然后它将文本存储到 <b>input</b> 缓冲区中，包含了换行
+符。为了避免 <b>fgets</b> 读取过多的数据，我们提示了缓冲区的大小 <b>2048</b> 。
+</p>
+<p>
+我们使用函数 <b>printf</b> 将消息回显给用户。这个函数提供了一种打印包含了多个
+元素的消息的方法。它将参数与给定的字符串进行匹配。比如，我们看到 <b>%s</b>
+，这意味着它将被接下来作为字符串的参数所取代。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> 编译</h3>
+<div class="outline-text-3" id="text-4-3">
+
+
+<p>
+我们可以用如下命令来编译该代码：
+</p>
+
+
+
+<pre class="example">cc -std=c99 -Wall prompt.c -o prompt
+</pre>
+
+
+<p>
+编译后我们可尝试运行它。你可以使用 <b>Ctrl+c</b> 来退出程序。如果一切都正确
+你的程序应该如这样运行：
+</p>
+
+
+
+<pre class="example">Lispy Version 0.0.0.0.1
+Press Ctrl+c to Exit
+
+lispy&gt; hello
+No You're a hello
+lispy&gt; my name is Dan
+No You're a my name is Dan
+lispy&gt; Stop being so rude!
+No You're a Stop being so rude!
+lispy&gt;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 编辑输入</h3>
+<div class="outline-text-3" id="text-4-4">
+
+
+<p>
+如果你在Linux或Mac上工作，你将注意当你使用方向箭头r按键来编辑你的输入时产生
+一些奇怪的行为。
+</p>
+
+
+
+<pre class="example">Lispy Version 0.0.0.0.3
+Press Ctrl+c to Exit
+
+lispy&gt; hel^[[D^[[C
+</pre>
+
+
+<p>
+使用箭头按键会生产一些奇怪的字符 <b><sup>[[D</sup></b> 或 <b><sup>[[C</sup></b> ，而不是移动光标。我
+们真正想要是能够在行上移动光标，删除和编辑我们的输入。
+</p>
+<p>
+在Windows这些行为是默认的。在Linux和Mac需要库 <b>editline</b> 提供。在
+Linux和Mac上我们需要用库函数调用来替换 <b>fputs</b> 和 <b>fgets</b> 调用。
+</p>
+
+</div>
+
+<div id="outline-container-4-4-1" class="outline-4">
+<h4 id="sec-4-4-1"><span class="section-number-4">4.4.1</span> 使用Editline</h4>
+<div class="outline-text-4" id="text-4-4-1">
+
+
+<p>
+<b>editline</b> 提供了两个函数供我们将来使用 <b>readline</b> 和 <b>add_history</b>
+。 <b>readline</b> 函数用于从某提示读取输入，同时允许对输入进行编辑。
+<b>add_history</b> 函数记录输入的历史以便我们能够通过上下方向键来重新获取之
+前的输入。
+</p>
+
+
+
+<pre class="example">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#include &lt;readline/readline.h&gt;
+#include &lt;readline/history.h&gt;
+
+int main(int argc, char** argv) {
+
+  /* Print Version and Exit Information */
+  puts("Lispy Version 0.0.0.0.1");
+  puts("Press Ctrl+c to Exit\n");
+
+  /* In a never ending loop */
+  while (1) {
+
+    /* Output our prompt and get input */
+    char* input = readline("lispy&gt; ");
+
+    /* Add input to history */
+    add_history(input);
+
+    /* Echo input back to user */    
+    printf("No you're a %s\n", input);
+
+    /* Free retrieved input */
+    free(input);
+
+  }
+
+  return 0;
+}
+</pre>
+
+
+<p>
+我们包含了几个新头文件， <b>#include &lt;stdlib.h&gt;</b> 用于访问 <b>free</b> 函数。
+<b>#include &lt;readline/readline.h&gt;</b> 和 <b>#include &lt;readline/history.h&gt;</b> 用
+于访问 <b>readline</b> 和 <b>add_history</b> 函数。
+</p>
+<p>
+不像 <b>fgets</b> ， <b>readline</b> 函数去掉了输入尾部的换行符，所以我们需要
+在 <b>printf</b> 函数加上换行符。我们需要删除 <b>readline</b> 函数返回的input，
+当 <b>readline</b> 函数被调用时，它分配了新内存。在不需要这个内存的时候通过
+函数 <b>free</b> 释放这个内存。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-4-4-2" class="outline-4">
+<h4 id="sec-4-4-2"><span class="section-number-4">4.4.2</span> 与Editline一起编译</h4>
+<div class="outline-text-4" id="text-4-4-2">
+
+
+<p>
+如果按上次命令来编译可能会得到一个错误。这是因为你需要安装 <b>editline</b>
+库。
+</p>
+
+
+
+<pre class="example">fatal error: readline/readline.h: No such file or directory #include &lt;readline/readline.h&gt;
+</pre>
+
+
+<p>
+在Linux上，可以通过命令 <b>sudo apt-get install libedit-devel</b> 或 <b>su -c `yum install libedit-devel`</b>  来安装
+editline库。
+</p>
+<p>
+一旦你已经安装了editline库并尝试再次编译，你会等到另外一个不同的错误。
+</p>
+
+
+
+<pre class="example">undefined reference to `readline'
+undefined reference to `add_history'
+</pre>
+
+
+<p>
+这意味着你的程序没有链接到 <b>editline</b> 。 链接过程允许编译器直接
+将 <b>editline</b> 嵌入到你的程序中。你可通过添加 <b>-ledit</b> 标志到你的编译命
+令中来完成链接。
+</p>
+
+
+
+<pre class="example">CC -std=c99 -Wall prompt.c -ledit -o prompt
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> C预处理器</h3>
+<div class="outline-text-3" id="text-4-5">
+
+
+<p>
+不在同的操作或编译器上都能编译和运行，这叫可移植性(<i>portability</i>)。在C
+存在这个问题，并不总是有一个简单或正确的解决方案。
+</p>
+<p>
+但是C提供了一个有用的机器，叫预处理器(<i>preprocessor</i>)。
+</p>
+<p>
+预处理器是一个在编译器之前运行的程序。它有很多用途，而且我们已经实际地
+在不知情的情况下使用了它。任何以#开头的行都是一个预处理命令。我们已经
+使用它包含头文件(<i>include</i>)，使我们能够访问标准或其它库的函数。
+</p>
+<p>
+预处理器另外一个用法就是判断操作系统的类型来编译不同的代码。
+</p>
+<p>
+这正是我们要使用它的方式。如果我们在Windows上编译和运行代码，我们需要
+准备伪造一些像 <b>readline</b> 和 <b>add<sub>history</sub></b> 的函数。否则我们包
+含 <b>editline</b> 的头文件。
+</p>
+<p>
+为了声明哪些代码编译器应该编译，我们用 <b>#ifndef</b> , <b>#else</b> , <b>endif</b>
+预处理语句将它们包含。
+</p>
+
+
+
+<pre class="example">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+/* If we are compiling on Windows compile these functions */
+#ifdef _WIN32
+#include &lt;string.h&gt;
+
+static char buffer[2048];
+
+/* Fake readline function */
+char* readline(char* prompt) {
+  fputs(prompt, stdout);
+  fgets(buffer, 2048, stdin);
+  char* cpy = malloc(strlen(buffer)+1);
+  strcpy(cpy, buffer);
+  cpy[strlen(cpy)-1] = '\0';
+  return cpy;
+}
+
+/* Fake add_history function */
+void add_history(char* unused) {}
+
+/* Otherwise include the editline headers */
+#else
+#include &lt;readline/readline.h&gt;
+#include &lt;readline/history.h&gt;
+#endif
+
+int main(int argc, char** argv) {
+
+  puts("Lispy Version 0.0.0.0.1");
+  puts("Press Ctrl+c to Exit\n");
+
+  while (1) {
+
+    /* Now in either case readline will be correctly defined */
+    char* input = readline("lispy&gt; ");
+    add_history(input);
+
+    printf("No you're a %s\n", input);
+    free(input);
+
+  }
+
+  return 0;
+}
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 语言(Languages)</h2>
+<div class="outline-text-2" id="text-5">
+
+
+</div>
+
+<div id="outline-container-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 编程语言是什么?</h3>
+<div class="outline-text-3" id="text-5-1">
+
+
+<p>
+编程语言与现实语言非常类似。背后有结构，规则。当我们阅读和书写自然语言，
+我们在不知不觉中学习那些规则，编程语言也是如此。我们利用这些规则来理解
+他人，产生自己的言语或代码。
+</p>
+<p>
+1950年语言学家Noam Chomsky正规化了语言的一些重要观点。这些见解形成我们
+理解语言的基础。最重要的观点之一就是自然语言是建立在递归和重复子结构之
+上。
+</p>
+<p>
+例如：
+</p>
+
+
+<pre class="example">The cat walked on the carpet.
+</pre>
+
+
+<p>
+使用英语规则，名词cat能够使用两个用and分隔的名词替换。
+</p>
+
+
+<pre class="example">The cat and dog walked on the carpet.
+</pre>
+
+
+<p>
+每个新名词又能依次被替换。我们可以与之前相同的规则，将cat替换成用and连
+接的两个新名词。或者我们可以使用另一个不同规则，用形容词和名词来替换每
+个名词。
+</p>
+
+
+<pre class="example">The cat and mouse and dog walked on the carpet.
+</pre>
+
+
+
+<pre class="example">The white cat and black dog walked on the carpet.
+</pre>
+
+
+<p>
+这里仅仅只有两个例子，但英语有许多不同的规则来规定了哪些单词类型能够被改变，操作，和
+替换。
+</p>
+<p>
+我们注意这些行为在编程语言也存在，包括C。在C中， <b>if</b> 语句的主体是一组语句。
+而每个语句可以是其它的 <b>if</b> 语句。那些重复结构和替换在语言的所有地方体
+现出来。
+</p>
+
+
+
+<pre class="example">if (x &gt; 5) { return x; }
+</pre>
+
+
+<pre class="example">if (x &gt; 5) { if (x &gt; 10) { return x; } }
+</pre>
+
+
+<p>
+Chomsky的这个观点的结果非常重要。它意味着虽然在一个特定的语言中可以说
+或写无穷多个不同事情，但仍然有可能用有限的规则来处理和明白它们。这些规
+则被称为语法(<i>grammar</i>)。
+</p>
+<p>
+为了编写一门编程语言如Lisp我们将需要理解语法。为了读取用户输入我们需要
+编写语法来描述输入。然后我们用语法来检测输入的有效性。我们也可以使用它
+建议一个结构化的内部表示形式，能更容易地理解，计算和执行。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 解析组合式</h3>
+<div class="outline-text-3" id="text-5-2">
+
+
+<p>
+<b>mpc</b> 是我编写的一个解析组合式库。这个库能允许我们构建理解和处理特定语
+言的程序。称为解析器(<i>parser</i>)。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 编码语法</h3>
+<div class="outline-text-3" id="text-5-3">
+
+
+<p>
+像语法的代码看起来像什么？让我们看一下 <b>mpc</b> ，尝试用它编写识别Shiba
+Inu语言（更通俗的称法是Doge）的语法。这个语言我们定义如下：
+</p><ul>
+<li>形容词，如"wow", "many", "so", "such"
+</li>
+<li>名词，如"lisp", "language", "c", "book", "build"
+</li>
+<li>短语，形容词+名词
+</li>
+<li>Doge就是0或多个短语
+</li>
+</ul>
+
+
+<p>
+我们可以从尝试定义形容词和名词开始。我们创建两个新解析器，
+用 <b>mpc_parser_t*</b> 来表示。我们把它们存储在两个变量 <b>Adjective</b>
+和 <b>Noun</b> 中。
+</p>
+
+
+
+<pre class="example">/* Build a parser 'Adjective' to recognize descriptions */
+mpc_parser_t* Adjective = mpc_or(4, 
+  mpc_sym("wow"), mpc_sym("many"),
+  mpc_sym("so"),  mpc_sym("such")
+);
+
+/* Build a parser 'Noun' to recognize things */
+mpc_parser_t* Noun = mpc_or(5,
+  mpc_sym("lisp"), mpc_sym("language"),
+  mpc_sym("book"),mpc_sym("build"), 
+  mpc_sym("c")
+);
+</pre>
+
+
+<p>
+为了定义 <b>Phrase</b> ，我们需要使用函数 <b>mpc_and</b> ，我们向它传
+递 <b>Ajdective</b> 和 <b>Noun</b> 作为输入。这个函数还需要两个参
+数 <b>mpcf_strfold</b> 和 <b>free</b> 。
+</p>
+
+
+
+<pre class="example">mpc_parser_t* Phrase = mpc_and(2, mpcf_strfold, 
+  Adjective, Noun, free);
+</pre>
+
+
+<p>
+为了定义Doge我们必须指定0或多个必需的解析器。我们需要使用函
+数 <b>mpc_many</b> 。该函数需要指定变量 <b>mpcf_strfold</b> 。
+</p>
+
+
+
+<pre class="example">mpc_parser_t* Doge = mpc_many(mpcf_strfold, Phrase);
+</pre>
+
+
+<p>
+我们的Doge解析器可以接收任意长度的输入。这意味着它的语言是不穷的。
+</p>
+<p>
+如果我们使用更多 <b>mpc</b> 函数，我们可以慢慢构建解析器来解析出越来越复杂
+的语言。 我们代码读起来像一个语法，但随着复杂度会变得越来越混乱。因此，
+采取这样的方式并不总是一件容易的任务。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 自然语法</h3>
+<div class="outline-text-3" id="text-5-4">
+
+
+<p>
+<b>mpc</b> 可以让我们像更自然的形式来编写语法。相比使用看起不像语法的C函数，
+我们可以使用一个长字符串来指定所有事情。
+</p>
+
+
+
+<pre class="example">mpc_parser_t* Adjective = mpc_new("adjective");
+mpc_parser_t* Noun      = mpc_new("noun");
+mpc_parser_t* Phrase    = mpc_new("phrase");
+mpc_parser_t* Doge      = mpc_new("doge");
+
+mpca_lang(MPCA_LANG_DEFAULT,
+  "                                           \
+    adjective : \"wow\" | \"many\"            \
+              |  \"so\" | \"such\";           \
+    noun      : \"lisp\" | \"language\"       \
+              | \"book\" | \"build\" | \"c\"; \
+    phrase    : &lt;adjective&gt; &lt;noun&gt;;           \
+    doge      : &lt;phrase&gt;*;                    \
+  ",
+  Adjective, Noun, Phrase, Doge);
+
+/* Do some parsing here... */
+
+mpc_cleanup(4, Adjective, Noun, Phrase, Doge);
+</pre>
+
+
+<p>
+用于定义规则的特殊符号作用如下：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">"ab"</td><td class="left">字符串ab是必需的</td></tr>
+<tr><td class="left">'a'</td><td class="left">字符a是必需的</td></tr>
+<tr><td class="left">'a' 'b'</td><td class="left">'a'先是必需的，然后'b'是必需的</td></tr>
+<tr><td class="left">'a' &#124; 'b'</td><td class="left">'a'或'b'是必需的</td></tr>
+<tr><td class="left">'a'*</td><td class="left">0个或多个'a'是必需的</td></tr>
+<tr><td class="left">'a'+</td><td class="left">一个或多个'a'是必需的</td></tr>
+<tr><td class="left">&lt;abba&gt;</td><td class="left">称为abba的规则是必需的</td></tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 语法分析(Parsing)</h2>
+<div class="outline-text-2" id="text-6">
+
+
+</div>
+
+<div id="outline-container-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 波兰表示法</h3>
+<div class="outline-text-3" id="text-6-1">
+
+
+<p>
+为了试用 <b>mpc</b> 我们将实现一个简单的语法，类似我们Lisp的一个数学子集。
+它将波兰表示法(<i>Polish Notation</i>)，这种表示法用来表示操作符在操作数之
+前的算术运算。
+</p>
+<p>
+例如：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">1+2+6</td><td class="left">+ 1 2 6</td></tr>
+<tr><td class="left">6+(2*9)</td><td class="left">+ 6 (* 2 9)</td></tr>
+<tr><td class="left">(10*2)/(4 + 2)</td><td class="left">/ (* 10 2) (+ 4 2)</td></tr>
+</tbody>
+</table>
+
+
+<p>
+我们需要制定出用来描述这种表示法的语法。
+</p>
+<p>
+我们观察到在波兰表示法中，操作符总是表示式中的第一位，接下来是数字或者
+其它在括号中的表达式。这意味我们可以说“一个程序是一个操作符后面跟着一
+个或多个表达式，表达式既可以是一个数字，或者是在括号中的一个操作符跟着
+一个或多个表达式”。
+</p>
+<p>
+更正规：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">程序</td><td class="left">输入开始，操作符，一个或多个表达式，输入结束</td></tr>
+<tr><td class="left">表达式</td><td class="left">数字或(一个操作符，一个或多个表达式)</td></tr>
+<tr><td class="left">操作符</td><td class="left">+， -，*，/</td></tr>
+<tr><td class="left">数字</td><td class="left">可选的'-'，一个或多个0到9之间字符</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 正则表达式</h3>
+<div class="outline-text-3" id="text-6-2">
+
+
+<p>
+我应该能够使用我们已知的知识来对上面规则进行编码，但 <b>数字</b> 和 <b>程序</b>
+可能会造成一些麻烦。它们包含了几个我们仍不知道如何表示的结构。我们不知
+道如何表示输入的开始和结构，可选字符，或字符区间。
+</p>
+<p>
+它们可以表示，但它们需要一个称为正则表达式(<i>Regular Expression</i>)的东西。
+正则表达式是一种为一小段文本如单词或数字编写语法的方式。用正则表达式编
+写语法不是由多个规则组合，而是它们能够给出精确和简洁的控制哪些能匹配哪
+些不能匹配。这里有编写正则表达式的基础规则：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">.</td><td class="left">任意一个字符</td></tr>
+<tr><td class="left">a</td><td class="left">字符a</td></tr>
+<tr><td class="left">[abcdef]</td><td class="left">任意一个在集合abcdef中的字符</td></tr>
+<tr><td class="left">[a-f]</td><td class="left">任意一个在范围a到f之间的字符</td></tr>
+<tr><td class="left">a?</td><td class="left">字符a是可选的</td></tr>
+<tr><td class="left">a*</td><td class="left">0个或多个a字符</td></tr>
+<tr><td class="left">a+</td><td class="left">1个或多个a字符</td></tr>
+<tr><td class="left">^</td><td class="left">输入的开始</td></tr>
+<tr><td class="left">$</td><td class="left">输入的结束</td></tr>
+</tbody>
+</table>
+
+
+<p>
+这些是我们现在需要的所有正则表达式规则。
+</p>
+<p>
+在 <b>mpc</b> 语法中，我们将正则表达式放在两个/之间。使用上面的指南，我们的
+数字规则可以用正则表达式/-?[0-9]+/的字符串来表达。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 安装mpc</h3>
+<div class="outline-text-3" id="text-6-3">
+
+
+<p>
+在我们编写语法之间首先要包含 <b>mpc</b> 头文件然后链接到 <b>mpc</b> 库。 我们下
+载 <b>mpc.c</b> 和 <b>mpc.h</b> 。把它们放到与源文件的同一个目录下。
+</p>
+<p>
+为了包含 <b>mpc</b> ，将 #include "mpc.h" 放到文件的顶部。 为了链接到 <b>mpc</b>
+将 <b>mpc.c</b> 直到放到编译命令中。在Linux上，我们需要添加 <b>-lm</b> 标志来链
+接到数学库。
+</p>
+<p>
+在Linux和Mac上
+</p>
+
+
+
+<pre class="example">cc -std=c99 -Wall parsing.c mpc.c -ledit -lm -o parsing
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6-4" class="outline-3">
+<h3 id="sec-6-4"><span class="section-number-3">6.4</span> 波兰表示法语法</h3>
+<div class="outline-text-3" id="text-6-4">
+
+
+<p>
+对上面的规则进一步正规化。使用正则表达式，我们可以为波兰表示法编写出如
+下的最终语法。
+</p>
+
+
+
+<pre class="example">/* Create Some Parsers */
+mpc_parser_t* Number   = mpc_new("number");
+mpc_parser_t* Operator = mpc_new("operator");
+mpc_parser_t* Expr     = mpc_new("expr");
+mpc_parser_t* Lispy    = mpc_new("lispy");
+
+/* Define them with the following Language */
+mpca_lang(MPC_LANG_DEFAULT,
+  "                                                     \
+    number   : /-?[0-9]+/ ;                             \
+    operator : '+' | '-' | '*' | '/' ;                  \
+    expr     : &lt;number&gt; | '(' &lt;operator&gt; &lt;expr&gt;+ ')' ;  \
+    lispy    : /^/ &lt;operator&gt; &lt;expr&gt;+ /$/ ;             \
+  ",
+  Number, Operator, Expr, Lispy);
+</pre>
+
+
+<p>
+我们将让面的代码添加到第4章的交互式提示符代码中。把这个代码添加
+在 <b>main</b> 函数中，放在打印Version和Exit信息之前。在 <b>main</b> 尾部需要添
+加删除解析器的清理函数。
+</p>
+
+
+
+<pre class="example">/* Undefine and Delete our Parsers */
+mpc_cleanup(4, Number, Operator, Expr, Lispy);
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-6-5" class="outline-3">
+<h3 id="sec-6-5"><span class="section-number-3">6.5</span> 解析用户输入</h3>
+<div class="outline-text-3" id="text-6-5">
+
+
+<p>
+我们为波兰表示法语言创建一个 <b>mpc</b> 解析器，我们需要将其作用用户输入上。
+我们需要修改 <b>while</b> 循环。将 <b>printf</b> 打印代码替换成下面的 <b>mpc</b> 代码。
+</p>
+
+
+
+<pre class="example">/* Attempt to Parse the user Input */
+mpc_result_t r;
+if (mpc_parse("&lt;stdin&gt;", input, Lispy, &amp;r)) {
+  /* On Success Print the AST */
+  mpc_ast_print(r.output);
+  mpc_ast_delete(r.output);
+} else {
+  /* Otherwise Print the Error */
+  mpc_err_print(r.error);
+  mpc_err_delete(r.error);
+}
+</pre>
+
+
+<p>
+这段代码调用了 <b>mpc_parse</b> 函数，该函数使用 <b>Lispy</b> 解析器和 <b>input</b>
+输入字符串。它将解析的结果复制到 <b>r</b> 中，如果成功返回1，否则返回0。
+</p>
+<p>
+如果成功，一个内部结构体复制到 <b>r</b> 的 <b>output</b> 中。我们可以使
+用 <b>mpc_ast_print</b> 来打印这个结构体，使用 <b>mpc_ast_delete</b> 来删除结构
+体。
+</p>
+
+
+
+<pre class="example">Lispy Version 0.0.0.0.2
+Press Ctrl+c to Exit
+
+lispy&gt; + 5 (* 2 2)
+&gt;
+  regex
+  operator|char:1:1 '+'
+  expr|number|regex:1:3 '5'
+  expr|&gt;
+    char:1:5 '('
+    operator|char:1:6 '*'
+    expr|number|regex:1:8 '2'
+    expr|number|regex:1:10 '2'
+    char:1:11 ')'
+  regex
+lispy&gt; hello
+&lt;stdin&gt;:1:1: error: expected whitespace, '+', '-', '*' or '/' at 'h'
+lispy&gt; / 1dog
+&lt;stdin&gt;:1:4: error: expected one of '0123456789', whitespace, '-', one or more of one of '0123456789', '(' or end of input at 'd'
+lispy&gt;
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 计算求值(Evaluation)</h2>
+<div class="outline-text-2" id="text-7">
+
+
+</div>
+
+<div id="outline-container-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> 树</h3>
+<div class="outline-text-3" id="text-7-1">
+
+
+<p>
+现在我们能够读取输入，获取内部结构，但仍然不能对其求值。在这章中我们将
+现在如何求值。
+</p>
+<p>
+上一章我们看到打印来的内部结构体。它被称为抽象语法树(<i>Abstract Syntax Tree</i>)，它表示了基于用户输入的结构体。树的每个叶子都是数和操作符（实现
+被处理的数据）。树的分支就是用于产生树的这部分的规则（基于对树如何遍历和求
+值的信息）。
+</p>
+<p>
+在考虑如何做遍历之前，我们先看下定义在内部的结构体。在 <b>mpc.h</b> 找到结
+构体 <b>mpc_ast_t</b> 的定义。
+</p>
+
+
+
+<pre class="example">typedef struct mpc_ast_t {
+  char* tag;
+  char* contents;
+  mpc_state_t state;
+  int children_num;
+  struct mpc_ast_t** children;
+} mpc_ast_t;
+</pre>
+
+
+<p>
+<b>tag</b> - 包含了一个规则列表的字符串，如expr|number|regex。该字段可以让
+我们看到哪些解析规则可用于节点。
+</p>
+<p>
+<b>contents</b> - 包含了节点的实际内容，如'*','('或'5'。分支中这个段是空，
+叶子上操作符或数字。
+</p>
+<p>
+<b>state</b> - 包含了节点的状态信息，如行列编号。
+</p>
+<p>
+<b>children_num</b> - 节点拥有孩子的个数。
+</p>
+<p>
+<b>children</b> - 数组指针。
+</p>
+
+
+
+<pre class="example">/* Load AST from output */
+mpc_ast_t* a = r.output;
+printf("Tag: %s\n", a-&gt;tag);
+printf("Contents: %s\n", a-&gt;contents);
+printf("Number of children: %i\n", a-&gt;children_num);
+
+/* Get First Child */
+mpc_ast_t* c0 = a-&gt;children[0];
+printf("First Child Tag: %s\n", c0-&gt;tag);
+printf("First Child Contents: %s\n", c0-&gt;contents);
+printf("First Child Number of children: %i\n",
+  c0-&gt;children_num);
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> 递归</h3>
+<div class="outline-text-3" id="text-7-2">
+
+
+<p>
+这个树的结构体有点奇怪。它引用自身。树的每个孩子都是树，孩子的孩子同样
+也是树。
+</p>
+<p>
+明确的是如果我们想让一个函数工作于任何树，我们不同只能几个节点，我们必
+须将其定义成为在任何深度的树都可以工作。
+</p>
+<p>
+幸运地是我们能够做这点，通过结构体的重复性质，使用一种称为递归
+(<i>recursion</i>)的技术。
+</p>
+<p>
+递归函数作为其计算的一部分调用自身。
+</p>
+
+
+
+<pre class="example">int number_of_nodes(mpc_ast_t* t) {
+  if (t-&gt;children_num == 0) { return 1; }
+  if (t-&gt;children_num &gt;= 1) {
+    int total = 1;
+    for (int i = 0; i &lt; t-&gt;children_num; i++) {
+      total = total + number_of_nodes(t-&gt;children[i]);
+    }
+    return total;
+  }
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> 求值</h3>
+<div class="outline-text-3" id="text-7-3">
+
+
+<p>
+为了计算语法树我们将编写一个递归函数。在开始让我们看看从用户输入获取树
+的结构体。
+</p>
+
+
+<pre class="example">lispy&gt; * 10 (+ 1 51)
+&gt;
+  regex
+  operator|char:1:1 '*'
+  expr|number|regex:1:3 '10'
+  expr|&gt;
+    char:1:6 '('
+    operator|char:1:7 '+'
+    expr|number|regex:1:9 '1'
+    expr|number|regex:1:11 '51'
+    char:1:13 ')'
+  regex
+</pre>
+
+
+<p>
+如果节点被标记为 <b>number</b> ，则它没有孩子，我们可以仅仅将内容转换成整型。
+</p>
+<p>
+如果节点被标记为 <b>expr</b> ，而非 <b>number</b> ，我们需要查看它的第二个孩子
+（第一个孩子通常是'('）是什么操作符。然后我们将这个操作符应用于剩余
+孩子的计算，除了最后一个孩子通常是')'。
+</p>
+<p>
+当我们对树求值，就是对节点计数，我们需要累积结果。为了表示结果我们将使
+用C类型长整型 <b>long</b> 。
+</p>
+<p>
+为了检测节点的标签或得到节点的数字，我们需要使用 <b>tag</b> 和 <b>contents</b>
+字段。这个字段是字符串类型，所以我们先学习几个字符串函数：
+</p><table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">atoi</td><td class="left">将 char* 转换成long</td></tr>
+<tr><td class="left">strcmp</td><td class="left">比较两个 char*，如果相等返回0</td></tr>
+<tr><td class="left">strstr</td><td class="left">字符串查找，返回第二个字符串在第一个字符串中的位置。如果没有找到，返回0</td></tr>
+</tbody>
+</table>
+
+
+<p>
+我们可以使用 <b>strcmp</b> 来检测使用操作符，使用 <b>strstr</b> 来检测标签包含某
+个子串。我们的递归求值函数看起来如下：
+</p>
+
+
+<pre class="example">long eval(mpc_ast_t* t) {
+
+  /* If tagged as number return it directly. */ 
+  if (strstr(t-&gt;tag, "number")) {
+    return atoi(t-&gt;contents);
+  }
+
+  /* The operator is always second child. */
+  char* op = t-&gt;children[1]-&gt;contents;
+
+  /* We store the third child in `x` */
+  long x = eval(t-&gt;children[2]);
+
+  /* Iterate the remaining children and combining. */
+  int i = 3;
+  while (strstr(t-&gt;children[i]-&gt;tag, "expr")) {
+    x = eval_op(x, op, eval(t-&gt;children[i]));
+    i++;
+  }
+
+  return x;  
+}
+</pre>
+
+
+<p>
+我们定义 <b>eval_op</b> 函数如下。
+</p>
+
+
+<pre class="example">/* Use operator string to see which operation to perform */
+long eval_op(long x, char* op, long y) {
+  if (strcmp(op, "+") == 0) { return x + y; }
+  if (strcmp(op, "-") == 0) { return x - y; }
+  if (strcmp(op, "*") == 0) { return x * y; }
+  if (strcmp(op, "/") == 0) { return x / y; }
+  return 0;
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> 打印</h3>
+<div class="outline-text-3" id="text-7-4">
+
+
+<p>
+现在我们想要打印计算结果。因此我们需要将树转递给 <b>eval</b> 函数，然后使
+用 <b>printf</b> 和指定 <b>%li</b> 来打印我们得到的结果。
+</p>
+
+
+<pre class="example">long result = eval(r.output);
+printf("%li\n", result);
+mpc_ast_delete(r.output);
+</pre>
+
+
+
+<pre class="example">Lispy Version 0.0.0.0.3
+Press Ctrl+c to Exit
+
+lispy&gt; + 5 6
+11
+lispy&gt; - (* 10 10) (+ 1 1 1)
+97
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 错误处理(Error Handling)</h2>
+<div class="outline-text-2" id="text-8">
+
+
+</div>
+
+<div id="outline-container-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> 崩溃</h3>
+<div class="outline-text-3" id="text-8-1">
+
+
+<p>
+你可以已经注意到上一章程序存在一些问题，尝试输入如下看看会发生什么。
+</p>
+
+
+<pre class="example">Lispy Version 0.0.0.0.3
+Press Ctrl+c to Exit
+
+lispy&gt; / 10 0
+</pre>
+
+
+<p>
+当试图除以0时程序崩溃。在开发之间如果程序崩溃没有关系，但我们最终程序
+希望不再崩溃，应该总是向用户解释出了什么错误。
+</p>
+<p>
+目前我们程序可以产生语法错误，但仍然不能在对表达式求值时报告错误。我们
+需要构建某种错误处理。这在C中很棘手，但如果我们进入正轨，当我们系统越
+来越复杂时将会得到好结果。
+</p>
+<p>
+C程序崩溃是无法改变的。如果有什么错误，操作系统就会把它们杀掉。程序可
+能有因为很多原因，以各种方式崩溃。
+</p>
+<p>
+学会使用 <b>gdb</b> 和 <b>valgrind</b> ，可以在排错中节约大量的时间和减少痛苦。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> Lisp值</h3>
+<div class="outline-text-3" id="text-8-2">
+
+
+<p>
+在C中存在几种方式来处理错误。在Lispy中，一个表达式的计算结果不
+是 <b>number</b> 就是 <b>error</b> 。
+</p>
+<p>
+我们定义一结构体来表示计算结果。我们将定义一个 <b>lval</b> 结构体代表Lisp值。
+</p>
+
+
+<pre class="example">/* Declare New lval Struct */
+typedef struct {
+  int type;
+  long num;
+  int err;
+} lval;
+</pre>
+
+
+<p>
+<b>type</b> - 告诉我们应该访问哪个字段。
+<b>number</b> - 在不出错的情况计算结果。
+<b>err</b> - 出错时返回的错误编码。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-8-3" class="outline-3">
+<h3 id="sec-8-3"><span class="section-number-3">8.3</span> 枚举</h3>
+<div class="outline-text-3" id="text-8-3">
+
+
+<p>
+你将注意到 <b>type</b> 和 <b>err</b> 字段都是 <b>int</b> 类型，这意味着它们需要使用使
+用整型数字来表示。
+</p>
+<p>
+我们选择 <b>int</b> 的理由是因为我们将为每个整型值赋予意义，根据我们需要进
+行编码。例如，我们制定规则，如果 <b>type</b> 为0，表示结构体是一个 <b>Number</b>
+，如果为1，表示结构体是一个 <b>Error</b> 。
+</p>
+<p>
+相比直接使用0或1，我们可以使用常量，这样更容易阅读和理解代码。
+</p>
+<p>
+在C中，使用 <b>enum</b> 来定义常量。
+</p>
+
+
+<pre class="example">enum { LVAL_NUM, LVAL_ERR };
+</pre>
+
+
+<p>
+一个 <b>enum</b> 定义了一组常量，这些常量会被系统自动赋值。
+</p>
+<p>
+我们也可以为 <i>error</i> 定义为枚举。
+</p>
+
+
+<pre class="example">/* Create Enumeration of Possible Error Types */
+enum { LERR_DIV_ZERO, LERR_BAD_OP, LERR_BAD_NUM };
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-8-4" class="outline-3">
+<h3 id="sec-8-4"><span class="section-number-3">8.4</span> Lisp值函数</h3>
+<div class="outline-text-3" id="text-8-4">
+
+
+<p>
+我们定义 <i>error</i> 类型和 <i>number</i> 类型的 <b>lval</b> 构造函数。
+</p>
+
+
+
+<pre class="example">/* Create a new number type lval */
+lval lval_num(long x) {
+  lval v;
+  v.type = LVAL_NUM;
+  v.num = x;
+  return v;
+}
+
+/* Create a new error type lval */
+lval lval_err(int x) {
+  lval v;
+  v.type = LVAL_ERR;
+  v.err = x;
+  return v;
+}
+
+/* Print an "lval" */
+void lval_print(lval v) {
+  switch (v.type) {
+    /* In the case the type is a number print it */
+    /* Then 'break' out of the switch. */
+    case LVAL_NUM: printf("%li", v.num); break;
+
+    /* In the case the type is an error */
+    case LVAL_ERR:
+      /* Check what type of error it is and print it */
+      if (v.err == LERR_DIV_ZERO) {
+        printf("Error: Division By Zero!");
+      }
+      if (v.err == LERR_BAD_OP)   {
+        printf("Error: Invalid Operator!");
+      }
+      if (v.err == LERR_BAD_NUM)  {
+        printf("Error: Invalid Number!");
+      }
+    break;
+  }
+}
+
+/* Print an "lval" followed by a newline */
+void lval_println(lval v) { lval_print(v); putchar('\n'); }
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-8-5" class="outline-3">
+<h3 id="sec-8-5"><span class="section-number-3">8.5</span> 求值错误</h3>
+<div class="outline-text-3" id="text-8-5">
+
+
+<p>
+现在我们已经知道如何操作 <b>lval</b> 类型了，我们需要改变求值函数 <b>eval_op</b> 。
+</p>
+<p>
+在我们 <b>eval_op</b> 函数中，如果我们遇到错误我们应该立即返回，仅仅只对两
+个参数都是数字做计算。我们应该修改我们代码在除以0时返回错误，这样可以
+解决这一章开头的崩溃问题。
+</p>
+
+
+
+<pre class="example">lval eval_op(lval x, char* op, lval y) {
+
+  /* If either value is an error return it */
+  if (x.type == LVAL_ERR) { return x; }
+  if (y.type == LVAL_ERR) { return y; }
+
+  /* Otherwise do maths on the number values */
+  if (strcmp(op, "+") == 0) { return lval_num(x.num + y.num); }
+  if (strcmp(op, "-") == 0) { return lval_num(x.num - y.num); }
+  if (strcmp(op, "*") == 0) { return lval_num(x.num * y.num); }
+  if (strcmp(op, "/") == 0) {
+    /* If second operand is zero return error */
+    return y.num == 0 
+      ? lval_err(LERR_DIV_ZERO) 
+      : lval_num(x.num / y.num);
+  }
+
+  return lval_err(LERR_BAD_OP);
+}
+</pre>
+
+
+<p>
+我们使用 <b>strtol</b> 函数将 <b>string</b> 转换成 <b>long</b> 。它允许我们去检测特殊
+变量 <b>errno</b> 来确定转换是否成功。这个方法比 <b>atoi</b> 更健壮。
+</p>
+
+
+
+<pre class="example">lval eval(mpc_ast_t* t) {
+
+  if (strstr(t-&gt;tag, "number")) {
+    /* Check if there is some error in conversion */
+    errno = 0;
+    long x = strtol(t-&gt;contents, NULL, 10);
+    return errno != ERANGE ? lval_num(x) : lval_err(LERR_BAD_NUM);
+  }
+
+  char* op = t-&gt;children[1]-&gt;contents;  
+  lval x = eval(t-&gt;children[2]);
+
+  int i = 3;
+  while (strstr(t-&gt;children[i]-&gt;tag, "expr")) {
+    x = eval_op(x, op, eval(t-&gt;children[i]));
+    i++;
+  }
+
+  return x;  
+}
+</pre>
+
+
+<p>
+最后一步就是打印我们计算结果。
+</p>
+
+
+
+<pre class="example">lval result = eval(r.output);
+lval_println(result);
+mpc_ast_delete(r.output);
+</pre>
+
+
+<p>
+我们做完了，重新运行程序，确定在除以0时不会崩溃。
+</p>
+
+
+<pre class="example">lispy&gt; / 10 0
+Error: Division By Zero!
+lispy&gt; / 10 2
+5
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> S-表达式(S-Expressions)</h2>
+<div class="outline-text-2" id="text-9">
+
+
+</div>
+
+<div id="outline-container-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> 列表与Lisp</h3>
+<div class="outline-text-3" id="text-9-1">
+
+
+<p>
+Lisp出名的其中原因之一就是它用相同的结构表示数据和代码。它能做很多其它
+语言不能做的事。如果你想要我们语言具备这种能力，我们需要将读取输入的处
+理和对输入求值分离开来。
+</p>
+<p>
+这章最后的结果与上一章只有细小的区别。这是因为我们将花时间修改内部工作
+方式。这称为重构，它会让我们的生活更容易。像准备一顿饭，我们没有将食物
+放在盘子里并不是意味着我们在浪费时间。
+</p>
+<p>
+我们将创建一个内部列表结构体，用于建立数字，符号和其它列表的递归。在
+Lisp中，这个结构通常称为S-Expression，我们将扩展 <b>lval</b> 结构体来表示它。
+S-Expression的求值计算是Lisp的行为。为了计算S-Expression，我们看下列表
+的第一项，它是一个操作符。然后我们再看下列表的剩余其它项，它们是操作数。
+</p>
+<p>
+通过介绍S-Expression，我们将最终进入Lisp的世界。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> 指针</h3>
+<div class="outline-text-3" id="text-9-2">
+
+
+<p>
+我们需要指定是因为函数调用的工作方式。当我们调用一个函数时，参数总是传
+值。这意味着参数的副本传递给了调用的函数。大多时间它非常好，但偶尔也会
+引起麻烦。
+</p>
+<p>
+一个常见问题是当我们有一个包含了许多其它子结构的大结构体，我们希望将其
+传递传递给函数。当我们每次调用函数时我们必须对结构体进行复制。仅仅调用
+一个函数而复制大量的数据将会引起大量的资源消耗。
+</p>
+<p>
+为了解决C的开发问题想出了一个聪明的主意。他们假想计算机内存是一个巨大
+的字节列表。列表中的每个字节都是对应的索引或位置。有点像门牌号。第一个
+字节的索引是0，第二个1，依此类推。
+</p>
+<p>
+在这种情况下，计算机中所有的数据，包括当前程序使用的结构体和变量，在这
+个巨大列表中从某个索引为起始。如果我们不是将一个函数复制数据，而是复制
+数据起始索引，调用函数时就可以向其传递它想要的任意数量的数据了。
+</p>
+<p>
+通过使用地址而不是真实数据，我们可以允许函数访问和修改内存中的一些位置
+而不需要任何的数据复制。
+</p>
+<p>
+指针只是一个数字。这个数字表示数据在内存中的起始位位置。指针的类型提示
+我们和编译器，对应位置的能够访问的数据是什么类型。
+</p>
+<p>
+我们可以通过类型和 * 后缀来声明一个指针。我们已经看到了一些实例如
+mpc_parser_t *, mpc_ast_t*, 或 char*。
+</p>
+<p>
+为了创建某数据的指针，我们需要取该数据的地址或索引。为了获取数据的地址
+我们使用地址操作符 &amp;。
+</p>
+<p>
+最后获取某个地址上的数据，称为非关联化(<i>dereferencing</i>)，我们在变量的
+左边使用*操作符。为了获取结构体指针中成员的数据，我们使用箭头 <code>-&gt;</code> 。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-9-3" class="outline-3">
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> 栈与堆</h3>
+<div class="outline-text-3" id="text-9-3">
+
+
+<p>
+我说过内存就像一个长的字节列表。实际最好把它想像成两个部分。这两部分分
+别为栈(<i>Stack</i>)和堆(<i>Heap</i>)。
+</p>
+<p>
+你们某些人可能听过一些关于这个神秘位置的故事，比如“栈是向下增长，堆是
+向上增长”，或“可以有许多栈，但只能有一个堆”。在C中处理栈和堆可能很
+复杂，但它们不是一个迷。本质上，它们分为内存两部分用于不同的任务。
+</p>
+
+</div>
+
+<div id="outline-container-9-3-1" class="outline-4">
+<h4 id="sec-9-3-1"><span class="section-number-4">9.3.1</span> 栈</h4>
+<div class="outline-text-4" id="text-9-3-1">
+
+
+<p>
+栈是程序居住的地方。所有你维护和编辑的临时变量和数据结构体都在这里。每
+次调用函数时栈的一个新区域以备使用。这个区域放置了本地变量，参数副本以
+及调用者记录和完成后做什么。当函数完成后，使用的区域被释放，以备再次被
+其它程序使用。
+</p>
+<p>
+我喜欢把栈比作建筑工地。每次我们需要做一些新事情时，我们需要为我们的工
+作，材料准备足够的空间。一旦我们完成工作，我们将清理我们之前创建的空间。
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-9-3-2" class="outline-4">
+<h4 id="sec-9-3-2"><span class="section-number-4">9.3.2</span> 堆</h4>
+<div class="outline-text-4" id="text-9-3-2">
+
+
+<p>
+堆用于存储对象，这些对象拥有更长的生命周期。堆必需手动申请和释放。为了
+申请新内存我们使用 <b>malloc</b> 函数。这个函数接收一个字节大小作为输入，并
+且返回一个指向新内存块的指针。当完成该内存块的使用后，使用 <b>free</b> 函数
+将该内存块释放。
+</p>
+<p>
+使用堆比较栈更棘手是因为它要求程序员记住正确地调用 <b>free</b> 函数。如果忘
+记了调用 <b>free</b> ，越来越多的内存持续分配。这称为内存泄漏(<i>memory leak</i>)。避免这个问题的一个简单规则就是确保每个malloc都对应一个free。
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-9-4" class="outline-3">
+<h3 id="sec-9-4"><span class="section-number-3">9.4</span> 解析表达式</h3>
+<div class="outline-text-3" id="text-9-4">
+
+
+<p>
+因为我们现在思考S-Expression而非波兰表达示，所以我们需要修改我们解析器。
+S-Expression的语法是简单的。这只是若干在括号的表达式，表达式可以是
+Number, Operator,或其它的S-Expression。
+</p>
+
+
+
+<pre class="example">mpc_parser_t* Number = mpc_new("number");
+mpc_parser_t* Symbol = mpc_new("symbol");
+mpc_parser_t* Sexpr  = mpc_new("sexpr");
+mpc_parser_t* Expr   = mpc_new("expr");
+mpc_parser_t* Lispy  = mpc_new("lispy");
+
+mpca_lang(MPCA_LANG_DEFAULT,
+  "                                          \
+    number : /-?[0-9]+/ ;                    \
+    symbol : '+' | '-' | '*' | '/' ;         \
+    sexpr  : '(' &lt;expr&gt;* ')' ;               \
+    expr   : &lt;number&gt; | &lt;symbol&gt; | &lt;sexpr&gt; ; \
+    lispy  : /^/ &lt;expr&gt;* /$/ ;               \
+  ",
+  Number, Symbol, Sexpr, Expr, Lispy);
+</pre>
+
+
+<p>
+我们应该记住退出之前清理这些规则。
+</p>
+
+
+
+<pre class="example">mpc_cleanup(5, Number, Symbol, Sexpr, Expr, Lispy);
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9-5" class="outline-3">
+<h3 id="sec-9-5"><span class="section-number-3">9.5</span> 表达式结构</h3>
+<div class="outline-text-3" id="text-9-5">
+
+
+<p>
+我们需要一种存储S-Expression为 <b>lval</b> 的方式。这意味着我们需要存储
+<i>Symbols</i> 和 <i>Numbers</i> 。我们将在 <b>enum</b> 中添加两个新成员。 <b>LVAL_SYM</b>
+用于表示操作符，如+。 <b>LVAL_SEXPR</b> 用于表示S-Expression。
+</p>
+
+
+
+<pre class="example">enum { LVAL_ERR, LVAL_NUM, LVAL_SYM, LVAL_SEXPR };
+</pre>
+
+
+<p>
+S<sub>Expression是一个可变长列表。我们将创建一个指针成员，指向</sub> <b>lval*</b> 列
+表。
+</p>
+
+
+
+<pre class="example">typedef struct lval {
+  int type;
+  long num;
+  /* Error and Symbol types have some string data */
+  char* err;
+  char* sym;
+  /* Count and Pointer to a list of "lval*" */
+  int count;
+  struct lval** cell;
+} lval;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9-6" class="outline-3">
+<h3 id="sec-9-6"><span class="section-number-3">9.6</span> 构造与析构</h3>
+<div class="outline-text-3" id="text-9-6">
+
+
+<p>
+我们可以修改我们的 <b>lval</b> 构造函数使其返回指向 <b>lval</b> 的指针。
+</p>
+
+
+
+<pre class="example">/* Construct a pointer to a new Number lval */ 
+lval* lval_num(long x) {
+  lval* v = malloc(sizeof(lval));
+  v-&gt;type = LVAL_NUM;
+  v-&gt;num = x;
+  return v;
+}
+
+
+/* Construct a pointer to a new Error lval */ 
+lval* lval_err(char* m) {
+  lval* v = malloc(sizeof(lval));
+  v-&gt;type = LVAL_ERR;
+  v-&gt;err = malloc(strlen(m) + 1);
+  strcpy(v-&gt;err, m);
+  return v;
+}
+
+
+/* Construct a pointer to a new Symbol lval */ 
+lval* lval_sym(char* s) {
+  lval* v = malloc(sizeof(lval));
+  v-&gt;type = LVAL_SYM;
+  v-&gt;sym = malloc(strlen(s) + 1);
+  strcpy(v-&gt;sym, s);
+  return v;
+}
+
+
+/* A pointer to a new empty Sexpr lval */
+lval* lval_sexpr(void) {
+  lval* v = malloc(sizeof(lval));
+  v-&gt;type = LVAL_SEXPR;
+  v-&gt;count = 0;
+  v-&gt;cell = NULL;
+  return v;
+}
+
+</pre>
+
+
+<p>
+我们需在需要一个特殊函数用来删除 <b>lval*</b> 。它应该调用 <b>free</b> 来释
+放从 <b>malloc</b> 获取到的内存。更重要地是我们应该检测 <b>lval</b> ，释放任何由
+其指针字段指向的内存，确保不会内存泄漏。  
+</p>
+
+
+
+<pre class="example">void lval_del(lval* v) {
+
+  switch (v-&gt;type) {
+    /* Do nothing special for number type */
+    case LVAL_NUM: break;
+
+    /* For Err or Sym free the string data */
+    case LVAL_ERR: free(v-&gt;err); break;
+    case LVAL_SYM: free(v-&gt;sym); break;
+
+    /* If Sexpr then delete all elements inside */
+    case LVAL_SEXPR:
+      for (int i = 0; i &lt; v-&gt;count; i++) {
+        lval_del(v-&gt;cell[i]);
+      }
+      /* Also free the memory allocated to contain the pointers */
+      free(v-&gt;cell);
+    break;
+  }
+
+  /* Free the memory allocated for the "lval" struct itself */
+  free(v);
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9-7" class="outline-3">
+<h3 id="sec-9-7"><span class="section-number-3">9.7</span> 读取表达式</h3>
+<div class="outline-text-3" id="text-9-7">
+
+
+<p>
+首先我们在程序读取用户输入并构建 <b>lval*</b> 来表示它。然后我们对 <b>lval*</b>
+求值并获取结果。第一步将抽象语法树转换成S-Expression，第二步使用我们
+Lisp规则来对S-Expression求值。
+</p>
+<p>
+为了完成第一步，我们需要递归遍历树中的每个节点，根据 节点的 <b>tag</b>
+和 <b>contents</b> 字段构建不同 <b>lval*</b> 类型。
+</p>
+<p>
+如果所给的节点的标签是 <b>number</b> 或 <b>symbol</b> ，我们使用我们的构造函数并
+直接返回 <b>lval*</b> 。 如果所给的节点是 <b>root</b> 或 <b>sexpr</b> 。我们创建一个
+空的S-Expression <b>lval</b> ，然后将树中每一个有效的子表达式添加其中。
+</p>
+<p>
+为了向一个S-Expression添加一个元素，我们创建一个 <b>lval_add</b> 函数。这个
+函数给表达式列表的数量加1。我们使用 <b>realloc</b> 函数重新分配 <b>v-&gt;cell</b> 所
+需要的空间。新空间用于存储额外的 <b>lval*</b> 。
+</p>
+
+
+
+<pre class="example">lval* lval_read_num(mpc_ast_t* t) {
+  errno = 0;
+  long x = strtol(t-&gt;contents, NULL, 10);
+  return errno != ERANGE ?
+    lval_num(x) : lval_err("invalid number");
+}
+
+lval* lval_read(mpc_ast_t* t) {
+
+  /* If Symbol or Number return conversion to that type */
+  if (strstr(t-&gt;tag, "number")) { return lval_read_num(t); }
+  if (strstr(t-&gt;tag, "symbol")) { return lval_sym(t-&gt;contents); }
+
+  /* If root (&gt;) or sexpr then create empty list */
+  lval* x = NULL;
+  if (strcmp(t-&gt;tag, "&gt;") == 0) { x = lval_sexpr(); } 
+  if (strstr(t-&gt;tag, "sexpr"))  { x = lval_sexpr(); }
+
+  /* Fill this list with any valid expression contained within */
+  for (int i = 0; i &lt; t-&gt;children_num; i++) {
+    if (strcmp(t-&gt;children[i]-&gt;contents, "(") == 0) { continue; }
+    if (strcmp(t-&gt;children[i]-&gt;contents, ")") == 0) { continue; }
+    if (strcmp(t-&gt;children[i]-&gt;contents, "}") == 0) { continue; }
+    if (strcmp(t-&gt;children[i]-&gt;contents, "{") == 0) { continue; }
+    if (strcmp(t-&gt;children[i]-&gt;tag,  "regex") == 0) { continue; }
+    x = lval_add(x, lval_read(t-&gt;children[i]));
+  }
+
+  return x;
+}
+
+lval* lval_add(lval* v, lval* x) {
+  v-&gt;count++;
+  v-&gt;cell = realloc(v-&gt;cell, sizeof(lval*) * v-&gt;count);
+  v-&gt;cell[v-&gt;count-1] = x;
+  return v;
+}
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9-8" class="outline-3">
+<h3 id="sec-9-8"><span class="section-number-3">9.8</span> 打印表达式</h3>
+<div class="outline-text-3" id="text-9-8">
+
+
+<p>
+我们需要修改我们打印函数，以便能打印S-Expression。
+</p>
+
+
+
+<pre class="example">void lval_expr_print(lval* v, char open, char close) {
+  putchar(open);
+  for (int i = 0; i &lt; v-&gt;count; i++) {
+
+    /* Print Value contained within */
+    lval_print(v-&gt;cell[i]);
+
+    /* Don't print trailing space if last element */
+    if (i != (v-&gt;count-1)) {
+      putchar(' ');
+    }
+  }
+  putchar(close);
+}
+
+
+void lval_print(lval* v) {
+  switch (v-&gt;type) {
+    case LVAL_NUM:   printf("%li", v-&gt;num); break;
+    case LVAL_ERR:   printf("Error: %s", v-&gt;err); break;
+    case LVAL_SYM:   printf("%s", v-&gt;sym); break;
+    case LVAL_SEXPR: lval_expr_print(v, '(', ')'); break;
+  }
+}
+
+void lval_println(lval* v) { lval_print(v); putchar('\n'); }
+</pre>
+
+
+<p>
+在我们主循环中，我们可以打印结果，最后将 <b>lval*</b> 结构移除。
+</p>
+
+
+<pre class="example">lval* x = lval_read(r.output);
+lval_println(x);
+lval_del(x);
+</pre>
+
+
+<p>
+如果成功，运行程序，你可以看到如下所示。
+</p>
+
+
+<pre class="example">lispy&gt; + 2 2
+(+ 2 2)
+lispy&gt; + 2 (* 7 6) (* 2 5)
+(+ 2 (* 7 6) (* 2 5))
+lispy&gt; *     55     101  (+ 0 0 0)
+(* 55 101 (+ 0 0 0))
+lispy&gt;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-9-9" class="outline-3">
+<h3 id="sec-9-9"><span class="section-number-3">9.9</span> 计算表达式</h3>
+<div class="outline-text-3" id="text-9-9">
+
+
+<p>
+我们的求值函数在很大程度上与以前相同。我们需要将其修改能够处理 <b>lval*</b>
+和构成表达式的结构体。我们可以将我们的求值函数想象成一个转换器。它将某
+个 <b>lval*</b> 转换成另一个新的 <b>lval*</b> 。如果我们返回一个新的 <b>lval*</b> ，
+我们必须总是记得删除作为输入的 <b>lval*</b> 。
+</p>
+<p>
+首先我们计算S-Expression的所有孩子。如果任何一个孩子出错，我们将使
+用 <b>lval<sub>take</sub></b> 返回我们遇到的第一个错误。
+</p>
+<p>
+如果S-Expression没有孩子，我们只需直接返回。对于空表达式，用 <b>()</b> 表示。
+我们也要检查单个表达式。这些表达式仅有一个孩子，如 <b>(5)</b> 。这种情况下
+我们在括号的表达式。
+</p>
+
+
+
+<pre class="example">lval* lval_eval_sexpr(lval* v) {
+
+  /* Evaluate Children */
+  for (int i = 0; i &lt; v-&gt;count; i++) {
+    v-&gt;cell[i] = lval_eval(v-&gt;cell[i]);
+  }
+
+  /* Error Checking */
+  for (int i = 0; i &lt; v-&gt;count; i++) {
+    if (v-&gt;cell[i]-&gt;type == LVAL_ERR) { return lval_take(v, i); }
+  }
+
+  /* Empty Expression */
+  if (v-&gt;count == 0) { return v; }
+
+  /* Single Expression */
+  if (v-&gt;count == 1) { return lval_take(v, 0); }
+
+  /* Ensure First Element is Symbol */
+  lval* f = lval_pop(v, 0);
+  if (f-&gt;type != LVAL_SYM) {
+    lval_del(f); lval_del(v);
+    return lval_err("S-expression Does not start with symbol!");
+  }
+
+  /* Call builtin with operator */
+  lval* result = builtin_op(v, f-&gt;sym);
+  lval_del(f);
+  return result;
+}
+
+lval* lval_eval(lval* v) {
+  /* Evaluate Sexpressions */
+  if (v-&gt;type == LVAL_SEXPR) { return lval_eval_sexpr(v); }
+  /* All other lval types remain the same */
+  return v;
+}
+
+lval* lval_pop(lval* v, int i) {
+  /* Find the item at "i" */
+  lval* x = v-&gt;cell[i];
+
+  /* Shift memory after the item at "i" over the top */
+  memmove(&amp;v-&gt;cell[i], &amp;v-&gt;cell[i+1],
+    sizeof(lval*) * (v-&gt;count-i-1));
+
+  /* Decrease the count of items in the list */
+  v-&gt;count--;
+
+  /* Reallocate the memory used */
+  v-&gt;cell = realloc(v-&gt;cell, sizeof(lval*) * v-&gt;count);
+  return x;
+}
+
+lval* lval_take(lval* v, int i) {
+  lval* x = lval_pop(v, i);
+  lval_del(v);
+  return x;
+}
+</pre>
+
+
+<p>
+<b>lval_pop</b> 函数从S-Expression中提取索引为i的单个元素，向回移动剩余的
+列表元素，这样列表中就不再包含那个被提取的元素。然后它返回提取的值。记
+住它并没有删除输入列表。它就像把元素从列表中弹出，留下剩余的元素。
+</p>
+<p>
+<b>lval_take</b> 函数与 <b>lval_pop</b> 类似，只不过删除了列表。这就像把元素从
+列表中取出然后删除其余的元素。
+</p>
+<p>
+我们也需要定义一个求值函数 <b>builtin_op</b> 。
+</p>
+
+
+
+<pre class="example">lval* builtin_op(lval* a, char* op) {
+
+  /* Ensure all arguments are numbers */
+  for (int i = 0; i &lt; a-&gt;count; i++) {
+    if (a-&gt;cell[i]-&gt;type != LVAL_NUM) {
+      lval_del(a);
+      return lval_err("Cannot operate on non-number!");
+    }
+  }
+
+  /* Pop the first element */
+  lval* x = lval_pop(a, 0);
+
+  /* If no arguments and sub then perform unary negation */
+  if ((strcmp(op, "-") == 0) &amp;&amp; a-&gt;count == 0) {
+    x-&gt;num = -x-&gt;num;
+  }
+
+  /* While there are still elements remaining */
+  while (a-&gt;count &gt; 0) {
+
+    /* Pop the next element */
+    lval* y = lval_pop(a, 0);
+
+    if (strcmp(op, "+") == 0) { x-&gt;num += y-&gt;num; }
+    if (strcmp(op, "-") == 0) { x-&gt;num -= y-&gt;num; }
+    if (strcmp(op, "*") == 0) { x-&gt;num *= y-&gt;num; }
+    if (strcmp(op, "/") == 0) {
+      if (y-&gt;num == 0) {
+        lval_del(x); lval_del(y);
+        x = lval_err("Division By Zero!"); break;
+      }
+      x-&gt;num /= y-&gt;num;
+    }
+
+    lval_del(y);
+  }
+
+  lval_del(a); return x;
+}
+</pre>
+
+
+<p>
+完成求值函数后，我们只需要修改 <b>main</b> 函数。
+</p>
+
+
+<pre class="example">lval* x = lval_eval(lval_read(r.output));
+lval_println(x);
+lval_del(x);
+</pre>
+
+
+<p>
+现在你应该能够像上一章一样正确地对表达式求值了。
+</p>
+
+
+
+<pre class="example">LISPY&gt; + 1 (* 7 5) 3
+39
+LISPY&gt; (- 100)
+-100
+LISPY&gt;
+()
+LISPY&gt; /
+/
+LISPY&gt; (/ ())
+Error: Cannot operate on non-number!
+LISPY&gt;
+</pre>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Q-表达式(Q-Expressions)</h2>
+<div class="outline-text-2" id="text-10">
+
+</div>
+
+</div>
+
+<div id="outline-container-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> 变量(Variables)</h2>
+<div class="outline-text-2" id="text-11">
+
+</div>
+
+</div>
+
+<div id="outline-container-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> 函数(Functions)</h2>
+<div class="outline-text-2" id="text-12">
+
+</div>
+
+</div>
+
+<div id="outline-container-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> 条件(Conditionals)</h2>
+<div class="outline-text-2" id="text-13">
+
+</div>
+
+</div>
+
+<div id="outline-container-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> 字符串(Strings)</h2>
+<div class="outline-text-2" id="text-14">
+
+</div>
+
+</div>
+
+<div id="outline-container-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> 标准库(Standard Library)</h2>
+<div class="outline-text-2" id="text-15">
+
+</div>
+
+</div>
+
+<div id="outline-container-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> 奖励项目(Bonus Projects)</h2>
+<div class="outline-text-2" id="text-16">
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2015-01-14T13:42+0800</p>
+<p class="author">Author: </p>
+<p class="creator"><a href="http://orgmode.org">Org</a> version 7.9.3f with <a href="http://www.gnu.org/software/emacs/">Emacs</a> version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>
