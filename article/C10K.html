@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf8"?>
+﻿<?xml version="1.0" encoding="utf8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>C10K����</title>
+<title>C10K问题</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf8"/>
-<meta name="title" content="C10K����"/>
+<meta name="title" content="C10K问题"/>
 <meta name="generator" content="Org-mode"/>
 <meta name="generated" content="2015-07-08T11:52+0800"/>
 <meta name="author" content=""/>
@@ -115,23 +115,23 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="content">
-<h1 class="title">C10K����</h1>
+<h1 class="title">C10K问题</h1>
 
 
 <p><br/>
-��ʱ����web������ͬʱ����1w���ͻ����ˣ��ѵ������𣿱Ͼ�������web��һ���ܴ�ĵط���<br/>
+是时候让web服务器同时处理1w个客户端了，难道不是吗？毕竟，现在web是一个很大的地方。<br/>
 </p>
 <p><br/>
-���ڼ����Ҳ��ǿ������Ի�$1200����һ��1000MHz��2G��RAM��1000Mbit/sec�����Ļ����������ǿ���--20000�ͻ��ˣ�ÿ���ͻ�����50KHz,100Kbytes,50Kbits/sec��û��ʲô��ÿ����2w�ͻ�����ÿ1���ͻ��˷��ʹ����ϵ�4K�ֽڵ������и�������Դ���ˡ�����Ӳ��������ƿ����<br/>
+现在计算机也很强大。你可以花$1200购买一个1000MHz、2G的RAM、1000Mbit/sec网卡的机器。让我们看看--20000客户端，每个客户端是50KHz,100Kbytes,50Kbits/sec。没有什么比每秒向2w客户端中每1个客户端发送磁盘上的4K字节到网络中更消耗资源的了。所以硬件不再是瓶颈。<br/>
 </p>
 <p><br/>
-1999��һ���æ��ftp��վ��cdrom.com����Ȼͨ��1G��������ܹ�ͬʱ����1w���ͻ��ˡ�2001�꣬ͬ�����ٶȱ�����ISP�ṩ��<br/>
+1999年一个最繁忙的ftp网站，cdrom.com，竟然通过1G网络宽带能够同时处理1w个客户端。2001年，同样的速度被几家ISP提供。<br/>
 </p>
 <p><br/>
-�ݿͻ���ģ���ƺ��ֻ�����--��ʱ�ڻ����ϵķ�����Ϊ��ǧ���ͻ��˷���<br/>
+瘦客户端模型似乎又回来了--这时在互联上的服务器为数千个客户端服务。<br/>
 </p>
 <p><br/>
-���ǵ���Щ��������һЩ����������ò���ϵͳ�ͱ�д����֧����ǧ�ͻ��˵ıʼǡ����ǵ�������Χ��Unix-like����ϵͳ��<br/>
+考虑到这些，这里有一些关于如何配置操作系统和编写代码支持数千客户端的笔记。我们的讨论是围绕Unix-like操作系统。<br/>
 </p>
 <p><br/>
 </p>
@@ -139,64 +139,64 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1 �����վ</a></li>
-<li><a href="#sec-2">2 �����Ķ����鼮</a></li>
-<li><a href="#sec-3">3 I/O���</a></li>
-<li><a href="#sec-4">4 I/O����</a>
+<li><a href="#sec-1">1 相关网站</a></li>
+<li><a href="#sec-2">2 首先阅读的书籍</a></li>
+<li><a href="#sec-3">3 I/O框架</a></li>
+<li><a href="#sec-4">4 I/O策略</a>
 <ul>
-<li><a href="#sec-4-1">4.1 һ���̷߳������ͻ��ˣ�ʹ�÷�����I/O��ˮƽ��������֪ͨ</a></li>
-<li><a href="#sec-4-2">4.2 һ���̷߳������ͻ��ˣ�ʹ�÷�����I/O�;����仯֪ͨ�����ش�����</a></li>
-<li><a href="#sec-4-3">4.3 һ���������̷߳������ͻ��ˣ�ʹ���첽I/O</a></li>
-<li><a href="#sec-4-4">4.4 һ���������̷߳���һ���ͻ���</a>
+<li><a href="#sec-4-1">4.1 一个线程服务多个客户端，使用非阻塞I/O和水平触发就绪通知</a></li>
+<li><a href="#sec-4-2">4.2 一个线程服务多个客户端，使用非阻塞I/O和就绪变化通知（边沿触发）</a></li>
+<li><a href="#sec-4-3">4.3 一个服务器线程服务多个客户端，使用异步I/O</a></li>
+<li><a href="#sec-4-4">4.4 一个服务器线程服务一个客户端</a>
 <ul>
 <li><a href="#sec-4-4-1">4.4.1 LinuxThreads</a></li>
-<li><a href="#sec-4-4-2">4.4.2 NGPT��Next Generation Posix Threads for Linux</a></li>
-<li><a href="#sec-4-4-3">4.4.3 NPTL��Native Posix Thread Library for Linux</a></li>
-<li><a href="#sec-4-4-4">4.4.4 FreeBSD�߳�֧��</a></li>
-<li><a href="#sec-4-4-5">4.4.5 NetBSD�߳�֧��</a></li>
-<li><a href="#sec-4-4-6">4.4.6 Solaris�߳�֧��</a></li>
-<li><a href="#sec-4-4-7">4.4.7 JDK1.3.x�͸���Java�߳�֧��</a></li>
-<li><a href="#sec-4-4-8">4.4.8 ע�⣺1:1�߳���M:N�̶߳Ա�</a></li>
+<li><a href="#sec-4-4-2">4.4.2 NGPT：Next Generation Posix Threads for Linux</a></li>
+<li><a href="#sec-4-4-3">4.4.3 NPTL：Native Posix Thread Library for Linux</a></li>
+<li><a href="#sec-4-4-4">4.4.4 FreeBSD线程支持</a></li>
+<li><a href="#sec-4-4-5">4.4.5 NetBSD线程支持</a></li>
+<li><a href="#sec-4-4-6">4.4.6 Solaris线程支持</a></li>
+<li><a href="#sec-4-4-7">4.4.7 JDK1.3.x和更早Java线程支持</a></li>
+<li><a href="#sec-4-4-8">4.4.8 注解：1:1线程与M:N线程对比</a></li>
 </ul>
 </li>
-<li><a href="#sec-4-5">4.5 ���ں��й�������������</a></li>
+<li><a href="#sec-4-5">4.5 在内核中构建服务器代码</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5 ��TCPջ�����û��ռ�</a></li>
-<li><a href="#sec-6">6 ����</a></li>
-<li><a href="#sec-7">7 ���ļ�����ϵ�����</a></li>
-<li><a href="#sec-8">8 �߳��ϵ�����</a></li>
-<li><a href="#sec-9">9 Java����</a></li>
-<li><a href="#sec-10">10 ��������</a></li>
-<li><a href="#sec-11">11 ��������</a></li>
-<li><a href="#sec-12">12 �ں�����</a></li>
-<li><a href="#sec-13">13 ��������������</a></li>
-<li><a href="#sec-14">14 ʾ��</a>
+<li><a href="#sec-5">5 将TCP栈带入用户空间</a></li>
+<li><a href="#sec-6">6 评论</a></li>
+<li><a href="#sec-7">7 打开文件句柄上的限制</a></li>
+<li><a href="#sec-8">8 线程上的限制</a></li>
+<li><a href="#sec-9">9 Java争论</a></li>
+<li><a href="#sec-10">10 其他技巧</a></li>
+<li><a href="#sec-11">11 其它限制</a></li>
+<li><a href="#sec-12">12 内核争论</a></li>
+<li><a href="#sec-13">13 测量服务器性能</a></li>
+<li><a href="#sec-14">14 示例</a>
 <ul>
-<li><a href="#sec-14-1">14.1 ����select()��servers</a></li>
-<li><a href="#sec-14-2">14.2 ����/dev/poll��servers</a></li>
-<li><a href="#sec-14-3">14.3 ����epoll��servers</a></li>
-<li><a href="#sec-14-4">14.4 ����kqueue��servers</a></li>
-<li><a href="#sec-14-5">14.5 ����ʵʱ�źŵ�servers</a></li>
-<li><a href="#sec-14-6">14.6 �����̵߳�servers</a></li>
-<li><a href="#sec-14-7">14.7 ���ں��е�servers</a></li>
+<li><a href="#sec-14-1">14.1 基于select()的servers</a></li>
+<li><a href="#sec-14-2">14.2 基于/dev/poll的servers</a></li>
+<li><a href="#sec-14-3">14.3 基于epoll的servers</a></li>
+<li><a href="#sec-14-4">14.4 基于kqueue的servers</a></li>
+<li><a href="#sec-14-5">14.5 基于实时信号的servers</a></li>
+<li><a href="#sec-14-6">14.6 基于线程的servers</a></li>
+<li><a href="#sec-14-7">14.7 在内核中的servers</a></li>
 </ul>
 </li>
-<li><a href="#sec-15">15 ������Ȥ������</a></li>
+<li><a href="#sec-15">15 其它有趣的链接</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> �����վ</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> 相关网站</h2>
 <div class="outline-text-2" id="text-1">
 
 
 <p><br/>
-��ſ�һ��Nick Black����������<a href="http://dank.qemfd.net/dankwiki/index.php/Network_servers">Fast UNIX Server</a>��<br/>
+大概看一下Nick Black的优秀论文<a href="http://dank.qemfd.net/dankwiki/index.php/Network_servers">Fast UNIX Server</a>。<br/>
 </p>
 <p><br/>
-2003��ʮ�£�Felix von Leitner������һ���������ҳ�������˹������������ԣ���������ϵͳ���úͲ���ϵͳ֮������ܶԱȡ�������һ��������Linux2.6�ں��Ѿ������2.4�ںˡ�<br/>
+2003年十月，Felix von Leitner构建了一个优秀的网页，描述了关于网络伸缩性，包括网络系统调用和操作系统之间的性能对比。他其中一个结论是Linux2.6内核已经打败了2.4内核。<br/>
 </p>
 <p><br/>
 </p></div>
@@ -204,15 +204,15 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> �����Ķ����鼮</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> 首先阅读的书籍</h2>
 <div class="outline-text-2" id="text-2">
 
 
 <p><br/>
-����㻹δ�Ķ���W. Richard Stevens��д��<a href="http://www.amazon.com/exec/obidos/ASIN/013490012X/">Unix Network Programming</a>���Ͻ�ȥ��ȡ�Ȿ�顣������������I/O���Ժ��йر�д�����ܷ����������塣�����������ˡ���Ⱥ�����⡣ͬʱ��Ҳ�����Ķ�<a href="http://pl.atyp.us/content/tech/servers.html">Jeff Darcy���ڸ����ܷ�������Ƶıʼ�</a>��<br/>
+如果你还未阅读过W. Richard Stevens编写的<a href="http://www.amazon.com/exec/obidos/ASIN/013490012X/">Unix Network Programming</a>，赶紧去获取这本书。它描述了许多I/O策略和有关编写高性能服务器的陷阱。它甚至讨论了“惊群”问题。同时你也可以阅读<a href="http://pl.atyp.us/content/tech/servers.html">Jeff Darcy关于高性能服务器设计的笔记</a>。<br/>
 </p>
 <p><br/>
-�������鼮���ܶ���Щ*ʹ��*������*��д*web���������˸��а�����Cal Henderson��д��Building Scalable Web Sites)<br/>
+（其它书籍可能对那些*使用*而不是*编写*web服务器的人更有帮助，Cal Henderson编写的Building Scalable Web Sites)<br/>
 </p>
 <p><br/>
 </p></div>
@@ -220,33 +220,33 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> I/O���</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> I/O框架</h2>
 <div class="outline-text-2" id="text-3">
 
 
 <p><br/>
-�����װ�õĿ⣬���һЩ�����ĳ�����ʹ��Ĵ��������ϵͳ���룬���и��õ���ֲ�ԡ�<br/>
+下面封装好的库，提出一些技术的抽象概念，使你的代码与操作系统隔离，具有更好的移植性。<br/>
 </p>
 <p><br/>
 </p><ul>
-<li><a href="http://www.cs.wustl.edu/~schmidt/ACE.html">ACE</a>�� һ��������C++ I/O��ܣ�������һЩI/O���Ժ��������ö�������������ʵ�֡��ر��ǣ�����Reactor��һ�ִ���������I/O��OO��ʽ��Proactor��һ�ִ����첽I/O��OO��ʽ��<br/>
+<li><a href="http://www.cs.wustl.edu/~schmidt/ACE.html">ACE</a>， 一个重量级C++ I/O框架，包含了一些I/O策略和其它有用东西的面向对象的实现。特别是，它的Reactor是一种处理非阻塞I/O的OO方式，Proactor是一种处理异步I/O的OO方式。<br/>
 </li>
-<li><a href="http://asio.sf.net/">ASIO</a>�� һ��C++ I/O��ܣ�����Boost���һ���֡�<br/>
+<li><a href="http://asio.sf.net/">ASIO</a>， 一个C++ I/O框架，它是Boost库的一部分。<br/>
 </li>
-<li><a href="http://monkey.org/~provos/libevent">libevent</a>�� ��һ����Niels Provos��д��������C I/O��ܣ���֧��kqueue��select���ܿ콫֧��poll��epoll��������ֻ��ˮƽ����������кõ�һ��Ҳ�л���һ�档Niels����һ�Ŵ���ÿ���¼�ʱ������ӵĹ�ϵͼ������ʾ��kqueue��epoll�����Ե�Ӯ�ҡ�<br/>
+<li><a href="http://monkey.org/~provos/libevent">libevent</a>， 是一个由Niels Provos编写的轻量级C I/O框架，它支持kqueue，select，很快将支持poll和epoll。我想它只能水平触发，这既有好的一面也有坏的一面。Niels画了一张处理每个事件时间和连接的关系图。它显示了kqueue和epoll是明显的赢家。<br/>
 </li>
-<li>���Լ����Ա�д����������ܣ���ϧ����û�б��ָ��£���<br/>
+<li>我自己尝试编写的轻量级框架（可惜它们没有保持更新）：<br/>
 <ul>
-<li>Poller��һ����������C++ I/O��ܣ�ʹ�õײ�API��poll,select,/dev/poll,kqueue,sigio)ʵ����һ��ˮƽ����API��<br/>
+<li>Poller是一个轻量级的C++ I/O框架，使用底层API（poll,select,/dev/poll,kqueue,sigio)实现了一个水平触发API。<br/>
 </li>
-<li>rn��һ��������C I/O��ܡ�<br/>
+<li>rn是一个轻量级C I/O框架。<br/>
 </li>
 </ul>
 
 </li>
-<li>Matt Welsh��2000��4�±�д�˹��ڹ���������������ʱ���ƽ�⹤���߳����¼�����������ʹ�õ����ġ���������������Sandstorm I/O���һ���֡�<br/>
+<li>Matt Welsh在2000年4月编写了关于构建可伸缩服务器时如何平衡工作线程与事件驱动技术的使用的论文。论文描述了他的Sandstorm I/O框架一部分。<br/>
 </li>
-<li>Cory Nelson��Scale!�⣬һ��windows���첽socket,file,��pipe��I/O�⡣<br/>
+<li>Cory Nelson的Scale!库，一个windows的异步socket,file,和pipe的I/O库。<br/>
 </li>
 </ul>
 
@@ -257,61 +257,61 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> I/O����</h2>
+<h2 id="sec-4"><span class="section-number-2">4</span> I/O策略</h2>
 <div class="outline-text-2" id="text-4">
 
 
 <p><br/>
-��������������кܶ�ѡ��������һЩ��<br/>
+网络软件设计者有很多选择，这里有一些：<br/>
 </p><ul>
-<li>��һ�����߳����Ƿ��Լ����ִ�ж��I/O����<br/>
+<li>在一个单线程中是否以及如何执行多个I/O调用<br/>
 <ul>
-<li>ʼ�ղ�Ҫʹ������/ͬ�����ã�����ʹ�ö��̻߳����ʵ�ֲ���<br/>
+<li>始终不要使用阻塞/同步调用，可以使用多线程或进程实现并发<br/>
 </li>
-<li>ʹ�÷���������(�罫write()��socket����O_NONBLOCK)������I/O��������ɺ󷢳�����֪ͨ����poll()��/dev/poll)��������һ�ε�I/O��ͨ��ֻ������I/O���ã����ڴ���I/Oû�á�<br/>
+<li>使用非阻塞调用(如将write()的socket设置O_NONBLOCK)来启动I/O，当它完成后发出就绪通知（如poll()或/dev/poll)，启动下一次的I/O。通常只在网络I/O有用，而在磁盘I/O没用。<br/>
 </li>
-<li>ʹ���첽����(��aio_write())������I/O����I/O�����󷢳����֪ͨ�����źŻ�completion ports��������������ʹ���I/O��<br/>
+<li>使用异步调用(如aio_write())来启动I/O，当I/O结束后发出完成通知（如信号或completion ports），适用于网络和磁盘I/O。<br/>
 </li>
 </ul>
 
 </li>
-<li>��ο��ƴ���Ϊÿ���ͻ��˷���<br/>
+<li>如何控制代码为每个客户端服务<br/>
 <ul>
-<li>һ���ͻ��˶�Ӧһ������<br/>
+<li>一个客户端对应一个进程<br/>
 </li>
-<li>һ��OS������̴߳�������ͻ��ˣ�ÿ���ͻ��������¿��ƣ�<br/>
+<li>一个OS级别的线程处理多个客户端，每个客户端由如下控制：<br/>
 <ul>
-<li>һ���û������߳�(��GNU״̬�̣߳�<br/>
+<li>一个用户级别线程(如GNU状态线程）<br/>
 </li>
-<li>һ��״̬��<br/>
+<li>一个状态机<br/>
 </li>
-<li>һ��continuation<br/>
-</li>
-</ul>
-
-</li>
-<li>һ��OS�����̶߳�Ӧһ���ͻ���<br/>
-</li>
-<li>һ��OS�����̶߳�Ӧһ����Ծ�Ŀͻ���<br/>
+<li>一个continuation<br/>
 </li>
 </ul>
 
 </li>
-<li>�Ƿ�ʹ�ñ�׼OS���񣬻��һЩ����ŵ��ں��У����Զ����������ں�ģ�飬VxD)<br/>
+<li>一个OS级别线程对应一个客户端<br/>
+</li>
+<li>一个OS级别线程对应一个活跃的客户端<br/>
 </li>
 </ul>
 
-<p>����5����Ͽ���ȥ�Ƚ����У�<br/>
+</li>
+<li>是否使用标准OS服务，或把一些代码放到内核中（如自定义驱动，内核模块，VxD)<br/>
+</li>
+</ul>
+
+<p>以下5个组合看上去比较流行：<br/>
 </p><ol>
-<li>һ���̷߳������ͻ��ˣ�ʹ�÷�����I/O��ˮƽ��������֪ͨ<br/>
+<li>一个线程服务多个客户端，使用非阻塞I/O和水平触发就绪通知<br/>
 </li>
-<li>һ���̷߳������ͻ��ˣ�ʹ�÷�����I/O�;����仯֪ͨ<br/>
+<li>一个线程服务多个客户端，使用非阻塞I/O和就绪变化通知<br/>
 </li>
-<li>һ���������̷߳������ͻ��ˣ�ʹ���첽I/O<br/>
+<li>一个服务器线程服务多个客户端，使用异步I/O<br/>
 </li>
-<li>һ���������̷߳���һ���ͻ��ˣ�ʹ������I/O<br/>
+<li>一个服务器线程服务一个客户端，使用阻塞I/O<br/>
 </li>
-<li>���ں��й�������������<br/>
+<li>在内核中构建服务器代码<br/>
 </li>
 </ol>
 
@@ -321,40 +321,40 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> һ���̷߳������ͻ��ˣ�ʹ�÷�����I/O��ˮƽ��������֪ͨ</h3>
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 一个线程服务多个客户端，使用非阻塞I/O和水平触发就绪通知</h3>
 <div class="outline-text-3" id="text-4-1">
 
 
 <p><br/>
-...�����е�����������Ϊ������ģ�ͣ�ʹ��select()��poll()��֮�ĸ��������Ѿ��������ڵȴ���������ʹ������������ں˸�����һ���ļ��������Ƿ�׼���ã��ļ��������Ƿ��б�����������'ˮƽ����'�����������ڼ����Ӳ����ƣ���'���ش���'�ķ���ʣ���<br/>
+...将所有的网络句柄设置为非阻塞模型，使用select()和poll()告之哪个网络句柄已经有数据在等待被处理。使用这个方案，内核告诉你一个文件描述符是否准备好，文件描述符是否有被处理过。（'水平触发'的名称来自于计算机硬件设计；是'边沿触发'的反义词）。<br/>
 </p>
 <p><br/>
-ע�⣺�ر��Ҫ��ס�����ں˵ľ���֪ͨ����ֻ��һ����ʾ��������ͼ��ȡ�ļ�������ʱ��������û��׼���á������Ϊʲô��ʹ�þ���֪ͨʱ��ʹ�÷�����ģ���Ƿǳ���Ҫ�ġ�<br/>
+注意：特别地要记住来自内核的就绪通知仅仅只是一个提示；当你试图读取文件描述符时，它可能没有准备好。这就是为什么当使用就绪通知时而使用非阻塞模型是非常重要的。<br/>
 </p>
 <p><br/>
-�����������һ����Ҫ��ƿ���ǴӴ���read()��sendfile()�ᱻ���������ҳ�浱ʱû�����ں��У�����һ�������ļ�����ķ�����ģ��û�����á�ͬ�����¼�Ҳ�ᷢ����memory-mapped�����ļ��ϡ���һ�η�������Ҫ����I/O�����Ĵ����������������пͻ��˱���ȴ���ԭ�����߳����ܻᱻ�˷ѡ�������첽I/O�����Ĺ������������ϵͳ��ȱ��AIO�������̻߳����Ҳ�����ڴ�������I/Oʱ�������ƿ����һ�ַ�����ʹ��memory-mapped�ļ������mincore()ָʾ��ҪI/O������һ��������������I/O���̳д�������ͨ�š��ƺ�mincore()�ڻ���BSD Unixes��FreeBSD��Solaris����Ч��������Single Unix Specification��һ���֡�����Linux2.3.51�ں�����Ч��<br/>
+在这个方法中一个重要的瓶颈是从磁盘read()或sendfile()会被阻塞，如果页面当时没有在内核中；基于一个磁盘文件句柄的非阻塞模型没有作用。同样的事件也会发生在memory-mapped磁盘文件上。第一次服务器需要磁盘I/O，它的处理过程阻塞，所有客户端必须等待，原生非线程性能会被浪费。这就是异步I/O所做的工作。但在如果系统上缺乏AIO，工作线程或进程也可以在处理磁盘I/O时避免这个瓶颈。一种方法是使用memory-mapped文件，如果mincore()指示需要I/O，请求一个工作者来处理I/O，继承处理网络通信。似乎mincore()在基于BSD Unixes像FreeBSD和Solaris上有效，而不是Single Unix Specification的一部分。它在Linux2.3.51内核上有效。<br/>
 </p>
 <p><br/>
-������2003��11��Vivek Pei���˱���������ƿ������һ��ƿ����mincore����һ����sendfile�ڷ��ʴ���ʱ�������������޸�sendfile()�������ܣ�ʹsendfile()�ڵ�����ҳ�治���ں�ʱ������EWOULDBLOCK�Ľ����<br/>
+但是在2003年11月Vivek Pei等人报道了两个瓶颈，第一个瓶颈是mincore，另一个是sendfile在访问磁盘时会阻塞。他们修改sendfile()提升性能，使sendfile()在当磁盘页面不在内核时返回像EWOULDBLOCK的结果。<br/>
 </p>
 <p><br/>
-�м��ַ����������߳��и�����Щ������sockets��I/O�Ѿ�׼���ã�<br/>
+有几种方法用来单线程中告诉哪些非阻塞sockets的I/O已经准备好：<br/>
 </p><ul>
-<li>��ͳ��select()<br/>
-  �ź����ǣ�select()������FD_SETSIZE����������Ѿ�������˱�׼����û��ĳ���<br/>
+<li>传统的select()<br/>
+  遗憾的是，select()受限于FD_SETSIZE。这个限制已经编译进了标准库和用户的程序。<br/>
 </li>
-<li>��ͳ��poll()<br/>
-  û��Ӳ������poll()�ܹ������ļ��������ĸ��������ļ��������м�ǧ��ʱ��poll()���������Ϊ���κ�ʱ�������ļ��������ǿ��еģ�ɨ���ǧ���ļ��������˷�ʱ�䡣<br/>
+<li>传统的poll()<br/>
+  没有硬性限制poll()能够处理文件描述符的个数，但文件描述符有几千个时，poll()会变慢。因为在任何时间大多数文件描述符是空闲的，扫描成千个文件描述符浪费时间。<br/>
 </li>
 <li>/dev/poll<br/>
-  ��Solaris�ϱ��Ƽ�����poll()��<br/>
-  /dev/poll�����˼�������þ���ʹ����ͬ�Ĳ�����ε���poll()����ʵ��ʹ��/dev/poll ����õ�һ����/dev/poll��صĿ��ž����ֻҪһ��ͨ��д��������OS�����Ȥ���ļ���֮��������Ӿ���ж�ȡ��ǰ�Ѿ�׼���õ�һ���ļ���������<br/>
-  �����ĵس�����Solaris 7�У����״ι�������Solaris8������Sun��750���ͻ��˵Ĳ��Խ���������ĵ���Դֻ��poll()��10%��<br/>
-  /dev/poll�ĸ���ʵ�ֶ���Linux�ڶ����Թ���������û��һ����epoll���ֵĺá�/dev/poll��Linux�ϲ��Ƽ�ʹ�á�<br/>
+  在Solaris上被推荐代替poll()。<br/>
+  /dev/poll背后的思想是利用经常使用相同的参数多次调用poll()的事实。使用/dev/poll ，你得到一个与/dev/poll相关的开放句柄，只要一次通过写入句柄告诉OS你感兴趣的文件。之后，你仅仅从句柄中读取当前已经准备好的一组文件描述符。<br/>
+  它悄悄地出现在Solaris 7中，但首次公布是在Solaris8；根据Sun在750个客户端的测试结果，它消耗的资源只有poll()的10%。<br/>
+  /dev/poll的各种实现都在Linux在都尝试过，但它们没有一个比epoll表现的好。/dev/poll在Linux上不推荐使用。<br/>
 </li>
 <li>kqueue()<br/>
-  ��FreeBSD���Ƽ�����poll()��<br/>
-  �����棬kqueue()����ָ����ˮƽ�������Ǳ��ش�����<br/>
+  在FreeBSD上推荐代替poll()。<br/>
+  见下面，kqueue()可以指定是水平触发还是边沿触发。<br/>
 </li>
 </ul>
 
@@ -365,73 +365,73 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> һ���̷߳������ͻ��ˣ�ʹ�÷�����I/O�;����仯֪ͨ�����ش�����</h3>
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 一个线程服务多个客户端，使用非阻塞I/O和就绪变化通知（边沿触发）</h3>
 <div class="outline-text-3" id="text-4-2">
 
 
 <p><br/>
-�����仯֪ͨ�����߱��ش�������֪ͨ����ζ��������ں�һ���ļ���������֮�󣬵��ļ���������δ׼���õ�׼����ʱ���ں˻�֪ͨ�㡣Ȼ���ں˼�����֪���ļ������Ѿ�׼���ã�����Ϊ����ļ������������κξ���ֱ֪ͨ��������һЩ�¼������ļ�������������׼���õ�(ֱ������һ��send,recv��accept���ã���һ��send��recv����������ֽ��������յ�EWOULDBLOCK����)��<br/>
+就绪变化通知（或者边沿触发就绪通知）意味着你给予内核一个文件描述符，之后，当文件描述符从未准备好到准备好时，内核会通知你。然后内核假设你知道文件描述已经准备好，不会为这个文件描述符发送任何就绪通知直到你做了一些事件引起文件描述符不再是准备好的(直到你在一个send,recv或accept调用，或一次send或recv传输比请求字节数少上收到EWOULDBLOCK错误)。<br/>
 </p>
 <p><br/>
-����ʹ�þ����仯֪ͨ�������׼���ô�������¼�����Ϊһ��������ʵ���ǵ������κ����ݰ�ʱ�ͷ���֪ͨ����������ļ��������Ƿ��Ѿ�׼���á�<br/>
+当你使用就绪变化通知，你必须准备好处理虚假事件，因为一个常见的实现是当接收任何数据包时就发送通知，不管这个文件描述符是否已经准备好。<br/>
 </p>
 <p><br/>
-��֮�෴����"ˮƽ����"����֪ͨ�����ش����Ա�̴�����ϸ���Ϊ������������һ���¼�������¼������ӿ��ܱ���Զ��ס��<br/>
+与之相反的是"水平触发"就绪通知。边沿触发对编程错误更严格。因为如果你仅仅错过一个事件，这个事件的连接可能被永远卡住。<br/>
 </p>
 <p><br/>
-�м���APIs��Ӧ�ó����ȡ�ļ���������ɾ�����֪ͨ��<br/>
+有几个APIs让应用程序获取文件描述符变成就绪的通知：<br/>
 </p><ul>
 <li>kqueue()<br/>
-  ��FreeBSD�ϱ��Ƽ�������ش���poll��<br/>
-  FreeBSD4.3֮��֧��ʹ��kqueue()/kevent()�滻poll()��kqueue()ͬʱ֧�ֱ��ش�����ˮƽ������<br/>
-  ��/dev/poll�������һ��������������ļ�/dev/poll��ͬ�������kqueue()����һ����Ϊ�˸ı������ڼ������¼����ȡ��ǰ�¼��б�������kqueue()���ص��������ϵ���kevent()���������ܹ�����socket����״̬�����ܼ�����ͨ�ļ�����״̬���źţ�����I/O����¼���<br/>
-  ע�⣺2000��ʮ�£���FreeBSD�ϵ��߳̿ⲻ����kqueue()�ܺõ��໥���ã����Եأ���kqueue()����ʱ�����������̻߳����������������̶���������<br/>
-  ʹ��kqueue()��ʵ���Ϳ⣺<br/>
+  在FreeBSD上被推荐代替边沿触发poll。<br/>
+  FreeBSD4.3之后，支持使用kqueue()/kevent()替换poll()。kqueue()同时支持边沿触发和水平触发。<br/>
+  像/dev/poll，你分配一个监听对象。与打开文件/dev/poll不同，你调用kqueue()分配一个。为了改变你正在监听的事件或获取当前事件列表，你在kqueue()返回的描述符上调用kevent()。它不仅能够监听socket就绪状态，还能监听普通文件就绪状态，信号，甚至I/O完成事件。<br/>
+  注意：2000年十月，在FreeBSD上的线程库不能与kqueue()很好的相互作用；明显地，当kqueue()阻塞时，不仅仅是线程会阻塞，而整个进程都会阻塞。<br/>
+  使用kqueue()的实例和库：<br/>
 <ul>
-<li><a href="http://people.freebsd.org/~dwhite/PyKQueue/">PyKQueue</a> -- ��Python�󶨵�kqueue()<br/>
+<li><a href="http://people.freebsd.org/~dwhite/PyKQueue/">PyKQueue</a> -- 将Python绑定到kqueue()<br/>
 </li>
-<li>Ronald F. Guilmette��<a href="http://www.monkeys.com/kqueue/echo.c">echo������ʾ��</a><br/>
+<li>Ronald F. Guilmette的<a href="http://www.monkeys.com/kqueue/echo.c">echo服务器示例</a><br/>
 </li>
 </ul>
 
 </li>
 <li>epoll<br/>
-  ��Linux2.6�ں˱��Ƽ�������ش���poll��<br/>
-  2001��7��11�գ�Davide Libenzi�������һ��ʵʱ�źţ����Ĳ�������������˵��/dev/epoll��������ֻ��������ʵʱ�źž���֪ͨ�������ϲ��������¼���ӵ��һ������Ч���¼�����������<br/>
-  Epoll�ϲ���2.5�ں����У�2.5.46�����Ľӿڴ�һ��/dev�������ļ��ı��һ��ϵͳ���ã�sys_epoll��2.4�ں���epollҲ����Ч�ġ�<br/>
-  ��2002��ʥ��ǰ����linux-kernel�ʼ��б�����һ������ͳһepoll,aio,�������¼�Դ�ĳ־����ۡ������ܻᷢ��������Ҫ���¼���Davideרע����epoll���ȶ���<br/>
+  在Linux2.6内核被推荐代替边沿触发poll。<br/>
+  2001年7月11日，Davide Libenzi提出了另一种实时信号；他的补丁就是现在所说的/dev/epoll。它仅仅只看起来像实时信号就绪通知，但它合并了冗余事件，拥有一个更高效的事件检索方法。<br/>
+  Epoll合并进2.5内核树中，2.5.46后它的接口从一个/dev下特殊文件改变成一个系统调用，sys_epoll。2.4内核中epoll也是有效的。<br/>
+  在2002万圣节前后，在linux-kernel邮件列表上有一个关于统一epoll,aio,和其它事件源的持久讨论。它可能会发生，但首要的事件是Davide专注于让epoll更稳定。<br/>
 </li>
-<li>Polyakov��kevent��Linux2.6+��<br/>
-  2006��2��9�գ�Evgeniy Polyakov�������ƺ�ͳһepoll��aio�Ĳ���������Ŀ����֧������AIO���ο���<br/>
+<li>Polyakov的kevent（Linux2.6+）<br/>
+  2006年2月9日，Evgeniy Polyakov发布了似乎统一epoll和aio的补丁，他的目标是支持网络AIO。参考：<br/>
 <ul>
-<li><a href="http://lwn.net/Articles/172844/">LWN����kevent������</a><br/>
+<li><a href="http://lwn.net/Articles/172844/">LWN关于kevent的文章</a><br/>
 </li>
-<li><a href="http://lkml.org/lkml/2006/7/9/82">����7�¹���</a><br/>
+<li><a href="http://lkml.org/lkml/2006/7/9/82">他的7月公告</a><br/>
 </li>
-<li><a href="http://tservice.net.ru/~s0mbre/old/?section=projects&amp;item=kevent">����keventҳ��</a><br/>
+<li><a href="http://tservice.net.ru/~s0mbre/old/?section=projects&amp;item=kevent">他的kevent页面</a><br/>
 </li>
-<li><a href="http://tservice.net.ru/~s0mbre/old/?section=projects&amp;item=kevent">����naioҳ��</a><br/>
+<li><a href="http://tservice.net.ru/~s0mbre/old/?section=projects&amp;item=kevent">他的naio页面</a><br/>
 </li>
-<li><a href="http://thread.gmane.org/gmane.linux.network/37595/focus=37673">�����һЩ����</a><br/>
+<li><a href="http://thread.gmane.org/gmane.linux.network/37595/focus=37673">最近的一些讨论</a><br/>
 </li>
 </ul>
 
 </li>
-<li>Drepper��New Network Interface(Linux2.6+���᰸)<br/>
-  2006�꣬Ulrich Drepper���һ���µĸ����첽����API���ο�<br/>
+<li>Drepper的New Network Interface(Linux2.6+的提案)<br/>
+  2006年，Ulrich Drepper提出一个新的高速异步网络API，参考<br/>
 <ul>
-<li>�������ģ�"The Need for Asynchronous, Zero-Copy Network I/O"<br/>
+<li>他的论文，"The Need for Asynchronous, Zero-Copy Network I/O"<br/>
 </li>
-<li>���Ļõ�Ƭ<br/>
+<li>他的幻灯片<br/>
 </li>
-<li>LWN����<br/>
+<li>LWN文章<br/>
 </li>
 </ul>
 
 </li>
-<li>ʵʱ�ź�<br/>
-  Linux�ں�2.4�Ƽ�������ش���poll��<br/>
-  Linux2.4�ں�ͨ��һ�������ʵʱ�źŷ���socket�����¼�����������ο��������Ϊ��<br/>
+<li>实时信号<br/>
+  Linux内核2.4推荐代替边沿触发poll。<br/>
+  Linux2.4内核通过一个特殊的实时信号发出socket就绪事件。这里是如何开启这个行为：<br/>
 </li>
 </ul>
 
@@ -450,12 +450,12 @@ flags |= O_NONBLOCK|O_ASYNC;
 fcntl(fd, F_SETFL, flags);
 </pre>
 
-  ����׼I/O������read()��write()���ʱ�������������źš�Ϊ��ʹ�����������ѭ����дһ����׼poll()����ѭ�����棬���㴦������poll()��ע��fd����ѭ������sigwaitinfo()��<br/>
-  ���sigwaitinfo��sigtimedwait�������ʵʱ�źţ�siginfo.si_fd��siginfo.si_band��pollfd.fd��pollfd.revents��������Ϣ���һ���������㴦��I/O�����Ҽ�������sigwaitinfo()��<br/>
-  ���sigwaitinfo����һ����ͳ��SIGIO�źţ��źŶ��������������ͨ����ʱ�޸��źž��ΪSIG_DFL��ˢ���źŶ��У������ص����poll()ѭ����<br/>
+  当标准I/O函数像read()或write()完成时，发送那样的信号。为了使用它，在外层循环编写一个标准poll()，在循环里面，当你处理所有poll()关注的fd后，你循环调用sigwaitinfo()。<br/>
+  如果sigwaitinfo或sigtimedwait返回你的实时信号，siginfo.si_fd和siginfo.si_band与pollfd.fd和pollfd.revents所给的信息差不多一样。所以你处理I/O，并且继续调用sigwaitinfo()。<br/>
+  如果sigwaitinfo返回一个传统的SIGIO信号，信号队列溢出，所以你通过暂时修改信号句柄为SIG_DFL来刷新信号队列，跳出回到外层poll()循环。<br/>
 </p><ul>
 <li>Signal-per-fd<br/>
-  Chandra��Mosberger�����һ���޸�ʵʱ�źŵķ�������Ϊ"signal-per-fd"����ͨ���ϲ������¼������ٻ�����ʵʱ�źŵ���������ǣ�����û��epoll���ܺá�<br/>
+  Chandra和Mosberger提出了一个修改实时信号的方法，称为"signal-per-fd"，它通过合并冗余事件来减少或消除实时信号的溢出。但是，它并没有epoll性能好。<br/>
 </li>
 </ul>
 
@@ -464,53 +464,53 @@ fcntl(fd, F_SETFL, flags);
 </div>
 
 <div id="outline-container-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> һ���������̷߳������ͻ��ˣ�ʹ���첽I/O</h3>
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> 一个服务器线程服务多个客户端，使用异步I/O</h3>
 <div class="outline-text-3" id="text-4-3">
 
-<p>�����ʽ��Unix�ϻ������У�����������ٵĲ���ϵͳ֧���첽I/O�����߿�������Ϊ�����������I/O����Ҫ����ȥ˼�����Ӧ�á��ڱ�׼��Unix�£��첽I/Oͨ��aio�ӿ��ṩ����ÿ��I/O��������һ���źź�ֵ��ÿ���źź����ǵ�ֵ����Ч���ŶӺͷַ����û����̡��첽I/O����POSIX 1003.1bʵʱ��չ��ͬʱҲ��Single Unix Specification��version 2�С�<br/>
+<p>这个方式在Unix上还不流行，可能是因很少的操作系统支持异步I/O，或者可能是因为它（像非阻塞I/O）需要重新去思考你的应用。在标准的Unix下，异步I/O通过aio接口提供，将每个I/O操作关联一个信号和值。每个信号和它们的值被高效地排队和分发给用户进程。异步I/O来自POSIX 1003.1b实时扩展，同时也在Single Unix Specification，version 2中。<br/>
 </p>
 <p><br/>
-AIO��ͨ��ʹ�ñ��ش������֪ͨ��Ҳ���ǵ��������ʱһ���źű�������С���Ҳ����ͨ������aio_suspend()ʹ��ˮƽ�������֪ͨ����Ȼ�һ��ɺ�������ô������<br/>
+AIO是通常使用边沿触发完成通知。也就是当操作完成时一个信号被排入队列。（也可以通过调用aio_suspend()使用水平触发完成通知，虽然我怀疑很少人这么做）。<br/>
 </p>
 <p><br/>
-glibc 2.1�汾֮���ṩ���ϱ�׼��һ��ͨ��ʵ�֣������ܲ��á�<br/>
+glibc 2.1版本之后提供符合标准的一个通用实现，但性能不好。<br/>
 </p>
 <p><br/>
-Ben LaHaise��Linux AIOʵ�ֱ��ϲ�����Linux�ں�2.5.32�С���û��ʹ���ں��̣߳�ӵ��һ���ǳ���Ч�ײ��API�������ݲ�֧��sockets��������Ϣ��<br/>
+Ben LaHaise的Linux AIO实现被合并到了Linux内核2.5.32中。它没有使用内核线程，拥有一个非常高效底层的API，但是暂不支持sockets。更多信息：<br/>
 </p><ul>
-<li>"<a href="http://lse.sourceforge.net/io/aio.html">Kernel Asynchronous I/O (AIO) Support for Linux</a>"������ͼչʾ2.6�ں���AIO��ʵ��ȫ����Ϣ<br/>
+<li>"<a href="http://lse.sourceforge.net/io/aio.html">Kernel Asynchronous I/O (AIO) Support for Linux</a>"论文试图展示2.6内核中AIO的实现全部信息<br/>
 </li>
-<li>Benjamin C.R. LaHaise��д��"<a href="http://www.linuxsymposium.org/2002/view_txt.php?text=abstract&amp;talk=11">Round3:aio vs /dev/epoll</a>"<br/>
+<li>Benjamin C.R. LaHaise编写的"<a href="http://www.linuxsymposium.org/2002/view_txt.php?text=abstract&amp;talk=11">Round3:aio vs /dev/epoll</a>"<br/>
 </li>
-<li>Bhattacharya, Pratt, Phattacharya��д��"<a href="http://archive.linuxsymposium.org/ols2003/Proceedings/All-Reprints/Reprint-Pulavarty-OLS2003.pdf">Design Notes on Asynchronous I/O(aio) for Linux</a>"<br/>
+<li>Bhattacharya, Pratt, Phattacharya编写的"<a href="http://archive.linuxsymposium.org/ols2003/Proceedings/All-Reprints/Reprint-Pulavarty-OLS2003.pdf">Design Notes on Asynchronous I/O(aio) for Linux</a>"<br/>
 </li>
-<li>Linux AIO��<a href="http://www.kvack.org/~blah/aio/">��ҳ</a><br/>
+<li>Linux AIO的<a href="http://www.kvack.org/~blah/aio/">主页</a><br/>
 </li>
-<li>linux-aio<a href="http://marc.theaimsgroup.com/?l=linux-aio">�ʼ��б�</a><br/>
+<li>linux-aio<a href="http://marc.theaimsgroup.com/?l=linux-aio">邮件列表</a><br/>
 </li>
-<li><a href="http://www.ocfs.org/aio/">libaio-oracle</a> - ��libaio֮��ʵ�ֵı�׼Posix AIO�Ŀ⡣<br/>
+<li><a href="http://www.ocfs.org/aio/">libaio-oracle</a> - 在libaio之上实现的标准Posix AIO的库。<br/>
 </li>
 </ul>
 
-<p>Suparna�����鿴һ�½ӽ�AIO��DAFS��<a href="http://www.dafscollaborative.org/tools/dafs_api.pdf">API</a><br/>
+<p>Suparna还建议看一下接近AIO的DAFS的<a href="http://www.dafscollaborative.org/tools/dafs_api.pdf">API</a><br/>
 </p>
 <p><br/>
-Red Hat AS��Suse SLES���ṩ��һ������2.4�ں˵ĸ�����ʵ�֣�����2.6�ں�ʵ����أ�������ȫ��ͬ��<br/>
+Red Hat AS和Suse SLES都提供了一个基于2.4内核的高性能实现；它与2.6内核实现相关，但不完全相同。<br/>
 </p>
 <p><br/>
-2006��2�£�����Ϊ�ṩ����AIO����һ���³��ԣ��ο�<a href="http://www.kegel.com/c10k.html#kevent">����Evgeniy Polyakov�Ļ����¼���AIO�ıʼ�</a>��<br/>
+2006年2月，正在为提供网络AIO进行一次新尝试；参考<a href="http://www.kegel.com/c10k.html#kevent">关于Evgeniy Polyakov的基于事件的AIO的笔记</a>。<br/>
 </p>
 <p><br/>
-1999�꣬SGIΪLinuxʵ�ָ���AIO��1.1�汾˵���ܹ��ڴ���I/O��sockets�ϺܺõĹ��������ƺ�ʹ�����ں��̡߳�<br/>
+1999年，SGI为Linux实现高速AIO。1.1版本说是能够在磁盘I/O和sockets上很好的工作。它似乎使用了内核线程。<br/>
 </p>
 <p><br/>
-O'Redilly��POSIX4:Programming for the Real World�����˹���aio�ĺܺý��ܡ�<br/>
+O'Redilly书POSIX4:Programming for the Real World包含了关于aio的很好介绍。<br/>
 </p>
 <p><br/>
-ע��AIOû���ṩ���Է������Ĵ���I/O��ʽ���ļ��������������򿪴����ļ�������˯�ߣ�Linus��������һ����ͬ���߳�����open()����������������һ��aio_open()ϵͳ���á�<br/>
+注意AIO没有提供了以非阻塞的磁盘I/O方式打开文件；如果你在意因打开磁盘文件而引起睡眠，Linus建议你在一个不同的线程中做open()操作，而不是盼望一个aio_open()系统调用。<br/>
 </p>
 <p><br/>
-��Windows��,�첽I/O������"�ص�I/O"��IOCP��"I/Ocompletion ports"������ء�Microsoft��IOCP������첽I/O����aio_write)���������֪ͨ(����aio_writeһ��ʹ��aio_sigevent�ֶ�ʱ)�ļ�����<br/>
+在Windows下,异步I/O与术语"重叠I/O"和IOCP或"I/Ocompletion ports"密切相关。Microsoft的IOCP组合了异步I/O（像aio_write)和排列完成通知(像当与aio_write一起使用aio_sigevent字段时)的技术。<br/>
 </p>
 <p><br/>
 </p></div>
@@ -518,18 +518,18 @@ O'Redilly��POSIX4:Programming for the Real World�����˹���aio�ĺܺý��ܡ�<br/>
 </div>
 
 <div id="outline-container-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> һ���������̷߳���һ���ͻ���</h3>
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 一个服务器线程服务一个客户端</h3>
 <div class="outline-text-3" id="text-4-4">
 
 
 <p><br/>
-...��read()��write()����������ȱ����Ϊÿ���ͻ��˱���һ��������ջ���ǳ��˷��ڴ档�������ϵͳ���ܶ��޷������ϰٸ��̡߳����ÿ���߳�ӵ��2MBջ����һ��ӵ��1GB�û��ɷ��ʵ������ڴ��32λ����������512���̣߳��㽫�ľ����������ڴ档�����ͨ����ÿ���̷߳���Сһ��Ķ�ջ�����������⣬���󲿷��߳�һ�������̺߳����������̶߳�ջ������ζ���������ĳ���ʱ��С����ջ��ʹ�á���Ҳ���Խ�����������64λ�����������������⡣<br/>
+...让read()和write()阻塞，它的缺点是为每个客户端保持一个完整堆栈，非常浪费内存。许多操作系统可能都无法操作上百个线程。如果每个线程拥有2MB栈，在一个拥有1GB用户可访问的虚拟内存的32位机器上运行512个线程，你将耗尽所有虚拟内存。你可以通过给每个线程分配小一点的堆栈来解决这个问题，但大部分线程一旦创建线程后不允许增长线程堆栈，这意味着在设计你的程序时最小化堆栈的使用。你也可以将程序移至到64位处理器来解决这个问题。<br/>
 </p>
 <p><br/>
-Linux,FreeBSD,Solais�ϵ��߳�֧�ֲ����ڸ��ƣ������������û�64λ�Ĵ��������ں�ͷ��������Զ��������Щ��ϲ��ʹ��һ���̷߳���һ���ͻ��˵����ܹ�Ϊ10000�ͻ���ʹ�������ʽ��������Ŀǰ�������ȷʵ��֧������ͻ��ˣ�����ʹ��������ʽ���á�<br/>
+Linux,FreeBSD,Solais上的线程支持不断在改善，甚至于主流用户64位的处理器还在后头。或许不远将来，那些更喜欢使用一个线程服务一个客户端的人能够为10000客户端使用这个范式。但是在目前，如果你确实想支持许多客户端，可能使用其它范式更好。<br/>
 </p>
 <p><br/>
-һ�����������޳��̵߳Ĺ۵㣬�뿴��von Behren, Condit, Brewer, UCB��д��<a href="http://www.usenix.org/events/hotos03/tech/vonbehren.html">Why Events Are A Bad Idea (for High-concurrency Servers)</a>����û�з����߳���Ӫ������������������أ�<br/>
+一个毫不掩饰赞成线程的观点，请看由von Behren, Condit, Brewer, UCB编写的<a href="http://www.usenix.org/events/hotos03/tech/vonbehren.html">Why Events Are A Bad Idea (for High-concurrency Servers)</a>，有没有反对线程阵营的人来反驳这个文章呢？<br/>
 </p>
 <p><br/>
 </p>
@@ -541,7 +541,7 @@ Linux,FreeBSD,Solais�ϵ��߳�֧�ֲ����ڸ��ƣ������������û�64λ�Ĵ��������ں�ͷ��
 
 
 <p><br/>
-<a href="http://pauillac.inria.fr/~xleroy/linuxthreads/">LinuxThreads</a> �Ǳ�׼Linux�߳̿�����ơ���glibc2.0��ʼ�����ɵ�glibc�У�������Posix���ݣ����ﲻ�����������ܺ��ź�֧�֡�<br/>
+<a href="http://pauillac.inria.fr/~xleroy/linuxthreads/">LinuxThreads</a> 是标准Linux线程库的名称。从glibc2.0开始被集成到glibc中，几乎与Posix兼容，但达不到主流的性能和信号支持。<br/>
 </p>
 <p><br/>
 </p></div>
@@ -549,13 +549,13 @@ Linux,FreeBSD,Solais�ϵ��߳�֧�ֲ����ڸ��ƣ������������û�64λ�Ĵ��������ں�ͷ��
 </div>
 
 <div id="outline-container-4-4-2" class="outline-4">
-<h4 id="sec-4-4-2"><span class="section-number-4">4.4.2</span> NGPT��Next Generation Posix Threads for Linux</h4>
+<h4 id="sec-4-4-2"><span class="section-number-4">4.4.2</span> NGPT：Next Generation Posix Threads for Linux</h4>
 <div class="outline-text-4" id="text-4-4-2">
 
 
 <p><br/>
-<a href="http://www-124.ibm.com/pthreads/">NGPT</a> ��һ����IBM������һ����Ŀ�����ڴ�����Linux�õ�Posix�����߳�֧�֡������ѵ�2.2�ȶ��汾���������кܺ�...����NGPT�Ŷ��Ѿ�����<br/>
-��NGPT����������Ϊsupport-onlyģʽ����Ϊ���Ǿ�������֧���������ڷ�չ����÷�ʽ��NGPT�Ŷӽ�����Ŭ������Linux�߳�֧�֣�������רע�ڸĽ�NPTL��<br/>
+<a href="http://www-124.ibm.com/pthreads/">NGPT</a> 是一个由IBM启动的一个项目，用于带来对Linux好的Posix兼容线程支持。现在已到2.2稳定版本，并且运行很好...但是NGPT团队已经宣布<br/>
+把NGPT基础代理改为support-only模式，因为他们觉得这是支持社区长期发展的最好方式。NGPT团队将继续努力改善Linux线程支持，但现在专注于改进NPTL。<br/>
 </p>
 <p><br/>
 </p></div>
@@ -563,61 +563,61 @@ Linux,FreeBSD,Solais�ϵ��߳�֧�ֲ����ڸ��ƣ������������û�64λ�Ĵ��������ں�ͷ��
 </div>
 
 <div id="outline-container-4-4-3" class="outline-4">
-<h4 id="sec-4-4-3"><span class="section-number-4">4.4.3</span> NPTL��Native Posix Thread Library for Linux</h4>
+<h4 id="sec-4-4-3"><span class="section-number-4">4.4.3</span> NPTL：Native Posix Thread Library for Linux</h4>
 <div class="outline-text-4" id="text-4-4-3">
 
 
 <p><br/>
-<a href="http://people.redhat.com/drepper/nptl/">NPTL</a> ����<a href="http://people.redhat.com/drepper/">Ulrich Drepper</a>��<a href="http://people.redhat.com/mingo/">Ingo Molnar</a>�������Ŀ���������缶��Posix Linux�߳�֧�֡�<br/>
+<a href="http://people.redhat.com/drepper/nptl/">NPTL</a> 是由<a href="http://people.redhat.com/drepper/">Ulrich Drepper</a>和<a href="http://people.redhat.com/mingo/">Ingo Molnar</a>发起的项目，带来世界级的Posix Linux线程支持。<br/>
 </p>
 <p><br/>
-2003��ʮ��5�գ�NPTL��Ϊһ������Ŀ¼�ϲ���glibc cvs���У����Լ����϶�����������glibc��һ�汾һ�𷢲���<br/>
+2003年十月5日，NPTL作为一个附加目录合并进glibc cvs树中，所以几乎肯定它将会随着glibc下一版本一起发布。<br/>
 </p>
 <p><br/>
-NPTL���ӣ�<br/>
+NPTL链接：<br/>
 </p><ul>
-<li><a href="http://https//listman.redhat.com/mailman/listinfo/phil-list">����NPTL���ʼ��б�</a><br/>
+<li><a href="http://https//listman.redhat.com/mailman/listinfo/phil-list">讨论NPTL的邮件列表</a><br/>
 </li>
-<li><a href="http://people.redhat.com/drepper/nptl/">NPTLԴ����</a><br/>
+<li><a href="http://people.redhat.com/drepper/nptl/">NPTL源代码</a><br/>
 </li>
-<li><a href="http://lwn.net/Articles/10465/">NPTL��ʼ����</a><br/>
+<li><a href="http://lwn.net/Articles/10465/">NPTL初始声明</a><br/>
 </li>
-<li><a href="http://people.redhat.com/drepper/glibcthreads.html">����NPTLĿ���ԭʼ��Ƥ��</a><br/>
+<li><a href="http://people.redhat.com/drepper/glibcthreads.html">描述NPTL目标的原始白皮书</a><br/>
 </li>
-<li><a href="http://people.redhat.com/drepper/nptl-design.pdf">����NPTL������Ƶ��޶���Ƥ��</a><br/>
+<li><a href="http://people.redhat.com/drepper/nptl-design.pdf">描述NPTL最终设计的修订白皮书</a><br/>
 </li>
-<li><a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=103230439008204&amp;w=2">Ingo Molnar</a>�ĵ�һ�����ܲ�����ʾ���ܹ�����10^6���߳�<br/>
+<li><a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=103230439008204&amp;w=2">Ingo Molnar</a>的第一个性能测试显示它能够处理10^6个线程<br/>
 </li>
-<li><a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=103269598000900&amp;w=2">Ulrich�����ܲ���</a> �Ƚ�Linux�߳�,NPTL,IBM��NGPT�����ܡ����ƺ���ʾ��NPTL��NGPT��Ķࡣ<br/>
+<li><a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=103269598000900&amp;w=2">Ulrich的性能测试</a> 比较Linux线程,NPTL,IBM的NGPT的性能。它似乎显示了NPTL比NGPT快的多。<br/>
 </li>
 </ul>
 
-<p>�����ҳ�������NPTL����ʷ���ο�<a href="http://www.onlamp.com/pub/a/onlamp/2002/11/07/linux_threads.html">Jerry Cooperstein������</a>����<br/>
+<p>这是我尝试描述NPTL的历史（参考<a href="http://www.onlamp.com/pub/a/onlamp/2002/11/07/linux_threads.html">Jerry Cooperstein的文章</a>）：<br/>
 </p>
 <p><br/>
-2002��3�£�NGPT�Ŷӵ�Bill Abt��glibcά����Ulrich Drepper���������˿����ҳ���δ���Linux�̡߳����дӻ��������һ���뷨�ǸĽ��������ܣ�Rusty Russell�������ʵ����<a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=102196625921110&amp;w=2">�����û��ռ以��</a>(futexes)�������ڱ�NGPT��NPTLʹ�á��󲿷����Աָ��NGPTӦ�úϲ���glibc�С�<br/>
+2002年3月，NGPT团队的Bill Abt，glibc维护人Ulrich Drepper，和其它人开会找出如何处理Linux线程。其中从会议提出的一个想法是改进互斥性能；Rusty Russell等人随后实现了<a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=102196625921110&amp;w=2">快速用户空间互斥</a>(futexes)，它现在被NGPT和NPTL使用。大部分与会员指出NGPT应该合并到glibc中。<br/>
 </p>
 <p><br/>
-Ulrich Drepper��Ȼ��ϲ��NGPT������ָ�����������ĸ��á�������֮��Ulrich Drepper��Ingo Molnar������������glibc���ں˵���һ���д��ΪNative Posix Threads Library(NPTL)���߳̿⡣NPTLʹ������ΪNGPT�ں���ǿ��ƣ�ʹ�����ٲ�������ơ�Ingo Molnar�����ں���ǿ���£�<br/>
-��NPTLʹ��������NGPT�������ں˹��ܣ�getpid()����PID��CLONE_THREAD��futexes��NPTLҲʹ���ˣ��������������ں˹��ܡ�<br/>
+Ulrich Drepper虽然不喜欢NGPT，并且指出他可以做的更好。几个月之后，Ulrich Drepper，Ingo Molnar，和其他贡献glibc和内核的人一起编写名为Native Posix Threads Library(NPTL)的线程库。NPTL使用所有为NGPT内核增强设计，使用了少部分新设计。Ingo Molnar描述内核增强如下：<br/>
+当NPTL使用三个由NGPT引进的内核功能：getpid()返回PID，CLONE_THREAD和futexes；NPTL也使用了（依赖）许多新内核功能。<br/>
 </p>
 <p><br/>
-NGPTһ�����������ں�2.5.8����ʱ���޸ģ���������չ�������߳��鴦��(CLONE_THREAD)��<br/>
+NGPT一部功能引入内核2.5.8左右时被修改，清理和扩展，例如线程组处理(CLONE_THREAD)。<br/>
 </p>
 <p><br/>
-NPTL������ʹ�õ��ں˹�����<a href="http:// http//people.redhat.com/drepper/nptl-design.pdf">��ư�Ƥ��</a> ��������<br/>
+NPTL开发和使用的内核功能在<a href="http:// http//people.redhat.com/drepper/nptl-design.pdf">设计白皮书</a> 被描述。<br/>
 </p>
 <p><br/>
-<i>����б���TLS֧�֣�����clone��չ(CLONE_SETTLS,CLONE_SETTID,CLONE_CLEARTID)��POSIX�߳��źŴ�����sys_exit()��չ��sys_exit_group()ϵͳ���ã�sys_execve()��ǿ��֧�ֶ����߳�</i><br/>
+<i>简短列表：TLS支持，各种clone扩展(CLONE_SETTLS,CLONE_SETTID,CLONE_CLEARTID)，POSIX线程信号处理，sys_exit()扩展，sys_exit_group()系统调用，sys_execve()增强，支持独立线程</i><br/>
 </p>
 <p><br/>
-<i>����չPID�ռ�Ҳ���˺ܶ๤��--���磬procfs��Ϊ����64K PID��������max_pid��pid����������Թ�����ͬʱһЩ�����Ż�Ҳ���úܺ�</i><br/>
+<i>在扩展PID空间也做了很多工作--例如，procfs因为假设64K PID而崩溃，max_pid和pid分配可伸缩性工作。同时一些性能优化也做得很好</i><br/>
 </p>
 <p><br/>
-<i>�������¹��ܲ�����Ϊ��1:1�̵߳���Э�鷽��--�ں����ھ����ܸ����̣߳�ͬ�����Ǿ�ȷ����С�����Ϊÿ�������߳�ԭ����һЩ�������л���ϵͳ���á�</i><br/>
+<i>本质上新功能并非是为了1:1线程的妥协议方法--内核现在尽可能改善线程，同进我们精确地最小层度上为每个基本线程原语做一些上下文切换和系统调用。</i><br/>
 </p>
 <p><br/>
-<i>��������һ����ͬ����NPTL��һ��1:1�߳�ģ�ͣ���NGPT��һ��M:N�߳�ģ�͡�������ˣ�Ulrich�ĳ�ʼ���ܲ��Լ�����ʾ��NPTLȷʵ��NGPT��öࡣ</i><br/>
+<i>两者最大的一个不同点是NPTL是一个1:1线程模型，而NGPT是一个M:N线程模型。尽管如此，Ulrich的初始性能测试几乎显示出NPTL确实与NGPT快得多。</i><br/>
 </p>
 <p><br/>
 </p></div>
@@ -625,80 +625,80 @@ NPTL������ʹ�õ��ں˹�����<a href="http:// http//people.redhat.com/drepper/nptl-
 </div>
 
 <div id="outline-container-4-4-4" class="outline-4">
-<h4 id="sec-4-4-4"><span class="section-number-4">4.4.4</span> FreeBSD�߳�֧��</h4>
+<h4 id="sec-4-4-4"><span class="section-number-4">4.4.4</span> FreeBSD线程支持</h4>
 <div class="outline-text-4" id="text-4-4-4">
 
 
 <p><br/>
-FreeBSDͬʱ֧��Linux�̺߳�һ���û��ռ��߳̿⡣���ң�һ����ΪKSE��M:Nʵ����FreeBSD5.0�б����롣�ο�www.unobvious.com/bsd/freebsd-threads.html.<br/>
+FreeBSD同时支持Linux线程和一个用户空间线程库。并且，一个称为KSE的M:N实现在FreeBSD5.0中被引入。参考www.unobvious.com/bsd/freebsd-threads.html.<br/>
 </p>
 <p> <br/>
-2003��3��25��,Jeff Roberson��freebsd-arch����:<br/>
-...��л��Julian, David Xu, Mini, Da Eischen,�ṩ�Ļ�����ÿһλ�����ο�KSE��libpthread�������ˡ�Mini�����Ѿ�������һ��1:1�߳�ʵ�֡���������ܹ���KSE���У����Ҳ������κη�ʽ�ƻ�����<br/>
+2003年3月25日,Jeff Roberson在freebsd-arch发布:<br/>
+...感谢由Julian, David Xu, Mini, Da Eischen,提供的基金会和每一位曾经参考KSE和libpthread开发的人。Mini和我已经开发了一个1:1线程实现。这个代码能够和KSE并行，而且不会以任何方式破坏它。<br/>
 </p>
 <p><br/>
-2006��7�£�Robert Watson����1:1�߳�ʵ�ֳ�ΪFreeBSD7.x��Ĭ����ʽ��<br/>
+2006年7月，Robert Watson提议1:1线程实现成为FreeBSD7.x的默认形式：<br/>
 ...<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-4-4-5" class="outline-4">
-<h4 id="sec-4-4-5"><span class="section-number-4">4.4.5</span> NetBSD�߳�֧��</h4>
+<h4 id="sec-4-4-5"><span class="section-number-4">4.4.5</span> NetBSD线程支持</h4>
 <div class="outline-text-4" id="text-4-4-5">
 
 
 <p><br/>
-���ݴ���Noriyuki Soda��һƪ��־��<br/>
-<i>�ں�֧�ֻ���Scheduler Activationsģ�͵�M:N�߳̿���2003-1-18�ϲ���NetBSD-current�С�</i><br/>
+根据从自Noriyuki Soda的一篇日志：<br/>
+<i>内核支持基于Scheduler Activations模型的M:N线程库在2003-1-18合并到NetBSD-current中。</i><br/>
 </p>
 <p><br/>
-�������飬�ο���Nathan J. Williams,Wasabi System��д��<a href="http://web.mit.edu/nathanw/www/usenix/freenix-sa/">An Implementation of Scheduler Activations on the NetBSD Operating System</a>��<br/>
+更多详情，参考由Nathan J. Williams,Wasabi System编写的<a href="http://web.mit.edu/nathanw/www/usenix/freenix-sa/">An Implementation of Scheduler Activations on the NetBSD Operating System</a>。<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-4-4-6" class="outline-4">
-<h4 id="sec-4-4-6"><span class="section-number-4">4.4.6</span> Solaris�߳�֧��</h4>
+<h4 id="sec-4-4-6"><span class="section-number-4">4.4.6</span> Solaris线程支持</h4>
 <div class="outline-text-4" id="text-4-4-6">
 
 
 <p><br/>
-Solaris���̵߳�֧�ִ�Solaris2��Solaris8�ڲ��ϵط�չ��Ĭ���߳̿�ʹ����һ��M:Nģ�ͣ�����Solaris9Ĭ����1:1ģ���߳�֧�֡��鿴<a href="http://docs.sun.com/db/doc/805-5080">Sun's multithreaded programming guide</a> ��<a href="http://java.sun.com/docs/hotspot/threads/threads.html">Sun's note about Java and Solaris threading</a>.<br/>
+Solaris对线程的支持从Solaris2到Solaris8在不断地发展，默认线程库使用了一个M:N模型，但是Solaris9默认是1:1模型线程支持。查看<a href="http://docs.sun.com/db/doc/805-5080">Sun's multithreaded programming guide</a> 和<a href="http://java.sun.com/docs/hotspot/threads/threads.html">Sun's note about Java and Solaris threading</a>.<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-4-4-7" class="outline-4">
-<h4 id="sec-4-4-7"><span class="section-number-4">4.4.7</span> JDK1.3.x�͸���Java�߳�֧��</h4>
+<h4 id="sec-4-4-7"><span class="section-number-4">4.4.7</span> JDK1.3.x和更早Java线程支持</h4>
 <div class="outline-text-4" id="text-4-4-7">
 
 
 <p><br/>
-������֪��Javaֱ��JDK1.3.x��֧���κη������ڴ����������ӳ���һ���̴߳���һ���ͻ��ˡ�Volanomark��һ���õ�С�����ܲ��ԣ������ڲ�ͬ�����Ĳ���������ÿ����Ϣ����������2003��5�£����Բ�ͬ��Ӧ�̵�JDK1.3ʵ��ʵ���ܹ�����1w����������--���������Ե������˻���<br/>
+众所周知，Java直到JDK1.3.x不支持任何方法用于处理网络连接除了一个线程处理一个客户端。Volanomark是一个好的小型性能测试，测量在不同数量的并发连接上每秒消息的吞吐量。2003年5月，在自不同供应商的JDK1.3实现实际能够处理1w个并发连接--尽管有明显的性能退化。<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-4-4-8" class="outline-4">
-<h4 id="sec-4-4-8"><span class="section-number-4">4.4.8</span> ע�⣺1:1�߳���M:N�̶߳Ա�</h4>
+<h4 id="sec-4-4-8"><span class="section-number-4">4.4.8</span> 注解：1:1线程与M:N线程对比</h4>
 <div class="outline-text-4" id="text-4-4-8">
 
 
 <p><br/>
-��ʵ��һ���߳̿�ʱ��һ��ѡ����ȿ��Խ������߳�֧�ַ����ںˣ�����Ϊ1:1�߳�ģ�ͣ�����������Խ����Ƶ��û��ռ䣨���ΪM:N�߳�ģ�ͣ�����һ�㣬M:N��Ȼ���ܸ��ߣ������ǳ����������ں�����ȷʹ�����������˶�����Զ������<br/>
+当实现一个线程库时有一个选择：你既可以将所有线程支持放入内核（它称为1:1线程模型），或者你可以将它移到用户空间（这称为M:N线程模型）。有一点，M:N虽然性能更高，但它非常复杂以致于很难正确使用它，许多人都正在远离它。<br/>
 </p><ul>
-<li><a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=103284879216107&amp;w=2">ΪʲôIngo Molnarϲ��1:1����M:N</a><br/>
+<li><a href="http://marc.theaimsgroup.com/?l=linux-kernel&amp;m=103284879216107&amp;w=2">为什么Ingo Molnar喜欢1:1超过M:N</a><br/>
 </li>
-<li><a href="http://java.sun.com/docs/hotspot/threads/threads.html">Sun��ת�Ƶ�1:1�߳�</a><br/>
+<li><a href="http://java.sun.com/docs/hotspot/threads/threads.html">Sun正转移到1:1线程</a><br/>
 </li>
-<li><a href="http://www-124.ibm.com/pthreads/">NGPT</a> ��һ��Linux M:N�߳̿�<br/>
+<li><a href="http://www-124.ibm.com/pthreads/">NGPT</a> 是一个Linux M:N线程库<br/>
 </li>
-<li>��ȻUlrich Drepper�ƻ�����glibc�߳̿���ʹ��M:N�̣߳����������л�����1:1�߳�ģ��<br/>
+<li>虽然Ulrich Drepper计划在新glibc线程库中使用M:N线程，但后来他切换到了1:1线程模型<br/>
 </li>
-<li>MacOSX �ƺ�ʹ��1:1ģ��<br/>
+<li>MacOSX 似乎使用1:1模型<br/>
 </li>
-<li><a href="http://people.freebsd.org/~julian/">FreeBSD</a> ��<a href="http://web.mit.edu/nathanw/www/usenix/freenix-sa/">NetBSD</a> �ƺ���Ȼ����M:N�߳�...<br/>
+<li><a href="http://people.freebsd.org/~julian/">FreeBSD</a> 和<a href="http://web.mit.edu/nathanw/www/usenix/freenix-sa/">NetBSD</a> 似乎仍然相信M:N线程...<br/>
 </li>
 </ul>
 
@@ -708,75 +708,75 @@ Solaris���̵߳�֧�ִ�Solaris2��Solaris8�ڲ��ϵط�չ��Ĭ���߳̿�ʹ����һ��M:Nģ��
 </div>
 
 <div id="outline-container-4-5" class="outline-3">
-<h3 id="sec-4-5"><span class="section-number-3">4.5</span> ���ں��й�������������</h3>
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> 在内核中构建服务器代码</h3>
 <div class="outline-text-3" id="text-4-5">
 
-<p>Novell��Microsoft��˵����ĳЩʱ���������������һ��NFSʵ�����������<a href="http://www.fenrus.demon.nl/">khttpd</a> ΪLinux�;�̬��ҳ�������������<a href="http://slashdot.org/comments.pl?sid=00/07/05/0211257&amp;cid=218">"TUX"(Threaded linUX webserver)</a>��һ����Ingo MolnarΪLinux��д�ķǳ����ٺ����kernel-space��HTTP��������Ingo��2000��9��1�չ���˵һ��alpha�汾��TUX���Դ�<a href="ftp://ftp.redhat.com/pub/redhat/tux">ftp://ftp.redhat.com/pub/redhat/tux</a> ���أ����ҽ�������μ����ʼ��б���ȡ������Ϣ��<br/>
+<p>Novell和Microsoft都说过在某些时间做过这个。至少一个NFS实现做过这个，<a href="http://www.fenrus.demon.nl/">khttpd</a> 为Linux和静态网页做过这个，并且<a href="http://slashdot.org/comments.pl?sid=00/07/05/0211257&amp;cid=218">"TUX"(Threaded linUX webserver)</a>是一个由Ingo Molnar为Linux编写的非常快速和灵活kernel-space的HTTP服务器。Ingo的2000年9月1日公告说一个alpha版本的TUX可以从<a href="ftp://ftp.redhat.com/pub/redhat/tux">ftp://ftp.redhat.com/pub/redhat/tux</a> 下载，并且解释了如何加入邮件列表获取更多信息。<br/>
 </p>
 <p><br/>
-linux-kernel�б��Ѿ����������ַ��������ף���һ����Ϊ��Ӧ�ý�web servers�����ںˣ������ں�Ӧ��������С������hooks����web sersver�����ܡ��������������͵�serves�������档<br/>
+linux-kernel列表已经讨论了这种方法的利弊，并一致认为不应该将web servers移入内核，而是内核应该添加最小合理的hooks提升web sersver的性能。这样，其它类型的serves可以受益。<br/>
 </p></div>
 </div>
 
 </div>
 
 <div id="outline-container-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> ��TCPջ�����û��ռ�</h2>
+<h2 id="sec-5"><span class="section-number-2">5</span> 将TCP栈带入用户空间</h2>
 <div class="outline-text-2" id="text-5">
 
-<p>�鿴ʵ����<a href="http://info.iet.unipi.it/~luigi/netmap/">netmap</a> ��I/O��ܣ���<a href="http://conferences.sigcomm.org/hotnets/2013/papers/hotnets-final43.pdf">Sandstorm</a> �������ĸ�����֤web server��<br/>
+<p>查看实例，<a href="http://info.iet.unipi.it/~luigi/netmap/">netmap</a> 包I/O框架，和<a href="http://conferences.sigcomm.org/hotnets/2013/papers/hotnets-final43.pdf">Sandstorm</a> 基于它的概念验证web server。<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-6" class="outline-2">
-<h2 id="sec-6"><span class="section-number-2">6</span> ����</h2>
+<h2 id="sec-6"><span class="section-number-2">6</span> 评论</h2>
 <div class="outline-text-2" id="text-6">
 
-<p>Richard Gooch��д��<a href="http://www.atnf.csiro.au/~rgooch/linux/docs/io-events.html">����I/Oѡ�������</a>��<br/>
+<p>Richard Gooch编写了<a href="http://www.atnf.csiro.au/~rgooch/linux/docs/io-events.html">讨论I/O选项的文章</a>。<br/>
 </p>
 <p><br/>
-2001�꣬Tim Brecht��MMichal OstrowskiΪ�򵥵�select-based������<a href="http://www.hpl.hp.com/techreports/2001/HPL-2001-314.html">�������ֲ���</a>��<br/>
+2001年，Tim Brecht和MMichal Ostrowski为简单的select-based服务器<a href="http://www.hpl.hp.com/techreports/2001/HPL-2001-314.html">测量各种策略</a>。<br/>
 </p>
 <p><br/>
-2003�꣬Tim Brecht�ύ��<a href="http://www.hpl.hp.com/research/linux/userver/">userver��Դ����</a> ��һ��С��web server����Abhishek Chandra,David Mosberger,David Pariag,��Michal Ostrowski��д�ļ���servers����һ�����ܹ�ʹ��select()��poll()��epoll()��sigio��<br/>
+2003年，Tim Brecht提交了<a href="http://www.hpl.hp.com/research/linux/userver/">userver的源代码</a> ，一个小型web server，将Abhishek Chandra,David Mosberger,David Pariag,和Michal Ostrowski编写的几种servers放在一起。它能够使用select()，poll()，epoll()或sigio。<br/>
 </p>
 <p><br/>
-�ص�1999��3�£�Dean Gaudet �����<br/>
-  <i>��һֱ���ʣ�������Ϊʲô����Zeusһ��ʹ�û���select/event��ģ�ͣ�����ʾ�����ġ�...</i><br/>
-����ԭ����Ϊ"��̫��ʹ���ˣ����Һô���̫����"�������º󣬺ô�������ԣ����ǿ�ʼԸ��ʹ������<br/>
+回到1999年3月，Dean Gaudet 提出：<br/>
+  <i>我一直在问：“你们为什么不像Zeus一样使用基于select/event的模型？它显示是最快的”...</i><br/>
+他把原因归结为"它太难使用了，并且好处不太明显"。几个月后，好处变得明显，人们开始愿意使用它。<br/>
 </p>
 <p><br/>
-Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</a> �� <a href="http://www.winntmag.com/Articles/Index.cfm?ArticleID=5048">һƪ����</a> ��������2.2Linux�ں���I/O�������ۡ���ʹ��һЩ���������ƺ��д��󣬵�Ҳֵ��һ�����ر��ǣ����ƺ���ΪLinux2.2���첽I/O���鿴�����F_SETSIG���ڵ����ݾ���ʱ����֪ͨ�û����̣�ֻ�ڵ������ӵ���ʱ��֪ͨ�����ƺ���һ����ֵ�������Ҳ���Կ����������ڲݰ������ۣ�1999��4��30��Ingo Molnar�ķ�����1999��5��2��Russinovich�����ۣ�Alan Cox�ķ���������linux-kernel�ʼ����Ҳ�������ͼ˵Linux��֧���첽����I/O������������ʵ�ģ�������SGI�Ѿ�ʵ����KAIO����������ô��ʵ�ˡ�<br/>
+Mark Russinovich编写<a href="http://linuxtoday.com/stories/5499.html">一个期刊</a> 和 <a href="http://www.winntmag.com/Articles/Index.cfm?ArticleID=5048">一篇文章</a> 讨论了在2.2Linux内核中I/O策略争论。即使在一些问题上他似乎有错误，但也值得一读。特别是，他似乎认为Linux2.2的异步I/O（查看上面的F_SETSIG）在当数据就绪时不会通知用户进程，只在当新连接到达时才通知。这似乎是一个奇怪的误区。也可以看看关于早期草案的评论，1999年4月30号Ingo Molnar的反驳，1999年5月2日Russinovich的评论，Alan Cox的反驳，各种linux-kernel邮件。我猜想他试图说Linux不支持异步磁盘I/O，这曾经是真实的，但现在SGI已经实现了KAIO，它不再那么真实了。<br/>
 </p>
 <p><br/>
-����<a href="http://www.sysinternals.com/ntw2k/info/comport.shtml">sysinternals.com</a> ��<a href="http://msdn.microsoft.com/library/techart/msdn_scalabil.htm">MSDN</a> �Ϲ���"completion ports"��Ϣ�����ģ� ��˵����NT��һ�޶��ġ������֮��win32��"�ص�I/O"����Ϊ̫�ͼ���������ʹ�ã�"completion ports"��һ����װ���ṩ��һ������¼��Ķ��У�����ħ����ĵ��ȣ���ͼͨ����������߳��ڻ�ȡ��ȫ�¼��Ķ˿���˯�ߣ�Ҳ����������I/O�������������̻߳�ȡ����¼������������̵߳���Ŀ�㶨��<br/>
+看看<a href="http://www.sysinternals.com/ntw2k/info/comport.shtml">sysinternals.com</a> 和<a href="http://msdn.microsoft.com/library/techart/msdn_scalabil.htm">MSDN</a> 上关于"completion ports"信息的论文， 据说这是NT独一无二的。简而言之，win32的"重叠I/O"是因为太低级而不方便使用，"completion ports"是一个封装，提供了一个完成事件的队列，加上魔法般的调度，试图通过如果其它线程在获取完全事件的端口上睡眠（也许在做阻塞I/O），允许更多线程获取完成事件来保持运行线程的数目恒定。<br/>
 </p>
 <p><br/>
-�鿴<a href="http://www.as400.ibm.com/developer/v4r5/api.html">OS/400��I/O completion ports��֧��</a>��<br/>
+查看<a href="http://www.as400.ibm.com/developer/v4r5/api.html">OS/400对I/O completion ports的支持</a>。<br/>
 </p>
 <p><br/>
-1999��9����linux-kernel����һ����Ȥ�����ۣ�����Ϊ"&gt;15000��������"��ͻ�����㣺<br/>
+1999年9月在linux-kernel上有一个有趣的讨论，标题为"&gt;15000并发连接"。突出亮点：<br/>
 </p><ul>
-<li>Ed Hall<a href="http://www.linuxhq.com/lnxlists/linux-kernel/lk_9909_01/msg00807.html">�ύ </a>��һЩ������������ռǣ�����һ������Solaris��UP P2/333��ʵ����&gt;1000����/�롣���Ĵ���ʹ����һ��С�͵����ӳ�(ÿ��CPU1��2)��ÿ���߳�ͨ��ʹ��"һ�������¼�ģ��"���������Ŀͻ��ˡ�<br/>
+<li>Ed Hall<a href="http://www.linuxhq.com/lnxlists/linux-kernel/lk_9909_01/msg00807.html">提交 </a>了一些关于他经验的日记；他在一个运行Solaris的UP P2/333上实现了&gt;1000连接/秒。它的代码使用了一个小型的连接池(每个CPU1或2)，每个线程通过使用"一个基于事件模型"管理大量的客户端。<br/>
 </li>
-<li>Mike Jagdis�ύ��<a href="http://www.linuxhq.com/lnxlists/linux-kernel/lk_9909_01/msg00831.html">һ������poll/select��������</a> ����˵"��ǰselect/poll��ʵ�ֿ��Դ��ظĽ����������������棬��������Ȼ��������������������������������Ϊselect/poll���ܼ�ס��Щ�������Ǳ���ע�ġ��⽫����ʹ����API���޸���..."<br/>
+<li>Mike Jagdis提交了<a href="http://www.linuxhq.com/lnxlists/linux-kernel/lk_9909_01/msg00831.html">一个关于poll/select开销分析</a> ，他说"当前select/poll的实现可以大大地改进，尤其在阻塞方面，但开销仍然会随着描述符的数量增长而增长，因为select/poll不能记住哪些描述符是被关注的。这将容易使用新API来修复它..."<br/>
 </li>
-<li>Mike�ύ�˹������ڸĽ�select()��poll()�ϵĹ�����<br/>
+<li>Mike提交了关于他在改进select()和poll()上的工作。<br/>
 </li>
-<li>Mike�ύ��һ�����һ�����ܴ���poll()/select()��API<br/>
+<li>Mike提交了一点关于一个可能代替poll()/select()的API<br/>
 </li>
 <li>Rogier Wolff suggested using "the API that the digital guys suggested", <a href="http://www.cs.rice.edu/~gaurav/papers/usenix99.ps">http://www.cs.rice.edu/~gaurav/papers/usenix99.ps</a><br/>
 </li>
-<li>Joerg Pommnitzָ����������������APIӦ���ܲ������Եȴ��ļ��������¼���Ҳ���Եȴ��źź�SYSV-IPC.����ͬ��ԭ�ﵱȻӦ�����������Win32��WaitForMultipleObjects��������.<br/>
+<li>Joerg Pommnitz指出沿着这个方向的新API应该能不仅可以等待文件描述符事件，也可以等待信号和SYSV-IPC.我们同步原语当然应该至少能完成Win32的WaitForMultipleObjects所做的事.<br/>
 </li>
 <li>Stephen Tweedie asserted that the combination of F_SETSIG, queued realtime signals, and sigwaitinfo() was a superset of the API proposed in <a href="http://www.cs.rice.edu/~gaurav/papers/usenix99.ps">http://www.cs.rice.edu/~gaurav/papers/usenix99.ps</a>. He also mentions that you keep the signal blocked at all times if you're interested in performance; instead of the signal being delivered asynchronously, the process grabs the next one from the queue with sigwaitinfo().<br/>
 </li>
-<li>Jayson Nordwick�Ƚ���completion ports��F_SETSIG�첽�¼�ģ��,�ó����������Ƿǳ�����.<br/>
+<li>Jayson Nordwick比较了completion ports与F_SETSIG异步事件模型,得出结论是它们非常相似.<br/>
 </li>
 <li>Alan Cox noted that an older rev of SCT's SIGIO patch is included in 2.3.18ac.<br/>
 </li>
-<li>Jordan Mendelson�ύ��һЩʾ������չʾ���ʹ��F_SETSIG��<br/>
+<li>Jordan Mendelson提交了一些示例代码展示如何使用F_SETSIG。<br/>
 </li>
 <li>Stephen C. Tweedie continued the comparison of completion ports and F_SETSIG, and noted: "With a signal dequeuing mechanism, your application is going to get signals destined for various library components if libraries are using the same mechanism," but the library can set up its own signal handler, so this shouldn't affect the program (much).<br/>
 </li>
@@ -791,63 +791,63 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> ���ļ�����ϵ�����</h2>
+<h2 id="sec-7"><span class="section-number-2">7</span> 打开文件句柄上的限制</h2>
 <div class="outline-text-2" id="text-7">
 
 <ul>
-<li>�κ�Unix:ͨ��ulimit��setrlimit��������<br/>
+<li>任何Unix:通过ulimit或setrlimit设置限制<br/>
 </li>
-<li>Solaris:�鿴Solaris��FAQ������3.46<br/>
+<li>Solaris:查看Solaris的FAQ，问题3.46<br/>
 </li>
 <li>FreeBSD:<br/>
-  �༭/boot/loader.conf�������У�<br/>
+  编辑/boot/loader.conf，添加行：<br/>
   set kern.maxfiles=xxxx<br/>
-  xxxx�ǹ����ļ���������ϵͳ���ƣ�Ȼ��������<br/>
+  xxxx是关于文件描述符的系统限制，然后重启。<br/>
 </li>
-<li>OpenBSD:һ������˵��<br/>
-  "��OpenBSD�У�Ϊ������ÿ�����̴��ļ��������������Ҫ����ĵ�������Ҫ����/etc/login.conf��openfiles-cur������ֵ�������ʹ��sysctl-w����sysctl.conf�ı�kern.maxfiles����û�����á�"<br/>
+<li>OpenBSD:一个读者说：<br/>
+  "在OpenBSD中，为了增加每个进程打开文件句柄的数量，需要额外的调整：需要增加/etc/login.conf中openfiles-cur参数的值。你可以使用sysctl-w或在sysctl.conf改变kern.maxfiles，但没有作用。"<br/>
 </li>
-<li>Linux:�鿴Bodo Bauer��/proc�ĵ�����2.4�ں��ϣ�<br/>
+<li>Linux:查看Bodo Bauer的/proc文档，在2.4内核上：<br/>
 
 <p><br/>
   echo 32768 &gt; /proc/sys/fs/file-max<br/>
 </p>
 <p>  <br/>
-  ���Ӵ��ļ���ϵͳ����<br/>
+  增加打开文件的系统限制<br/>
 </p>
 <p>  <br/>
   ulimit -n 32768<br/>
 </p>
 <p>  <br/>
-  ���ӵ�ǰ���̵�����<br/>
+  添加当前进程的限制<br/>
 </p>
 <p>  <br/>
-  ��2.2.x�ں��ϣ�<br/>
+  在2.2.x内核上：<br/>
 </p>
 <p>  <br/>
   echo 32768 &gt; /proc/sys/fs/file-max<br/>
   echo 65536 &gt; /proc/sys/fs/inode-max<br/>
 </p>
 <p>  <br/>
-  ���Ӵ��ļ���ϵͳ����<br/>
+  添加打开文件的系统限制<br/>
 </p>
 <p>  <br/>
   ulimia -n 32768<br/>
 </p>
 <p>  <br/>
-  ���ӵ�ǰ��������<br/>
+  增加当前进程限制<br/>
 </p>
 <p>  <br/>
-  ��֤ʵ��Red Hat6.0��ʹ�������ʽһ�����̿��Դ�����31000�ļ�������������ͬ��Ҳ֤ʵ��2.2.12���������ʽ���Դ�����90000�ļ��������Ͻ��ƺ��ǿ����ڴ档<br/>
+  我证实在Red Hat6.0上使用这个方式一个进程可以打开至少31000文件描述符。其他同事也证实在2.2.12上用这个方式可以打开至少90000文件描述。上界似乎是可用内存。<br/>
 </p>
 <p>  <br/>
-  Stephen C. Tweedie�ύ�˹����������ȫ��ulimit���ƻ�ÿ���û�������ʱʹ��initscript��pam_limit��<br/>
+  Stephen C. Tweedie提交了关于如何设置全局ulimit限制或每个用户在启动时使用initscript和pam_limit。<br/>
 </p>
 <p>  <br/>
-  ��2.2�ں���ǰ����ʹʹ������ķ�����ÿ�����̴��ļ���������Ȼ����Ϊ1024��<br/>
+  在2.2内核以前，即使使用上面的方法，每个进程打开文件的数量仍然限制为1024。<br/>
 </p>
 <p>  <br/>
-  �鿴Oskar��1998���ʼ���̸������2.0.36�ں���ÿ�����̺�ϵͳ��Χ�Ĺ����ļ����������ơ�<br/>
+  查看Oskar的1998年邮件，谈论了在2.0.36内核中每个进程和系统范围的关于文件描述符限制。<br/>
 </p></li>
 </ul>
 
@@ -856,18 +856,18 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> �߳��ϵ�����</h2>
+<h2 id="sec-8"><span class="section-number-2">8</span> 线程上的限制</h2>
 <div class="outline-text-2" id="text-8">
 
-<p>  ���κ���ϵ�ܹ��ϣ�Ϊ�˱��������ڴ�ľ��������Ҫ����ÿ���̵߳�ջ�ռ�����С�������ʹ���̣߳������������ʱʹ��pthread_att_init()��������<br/>
+<p>  在任何体系架构上，为了避免虚拟内存耗尽你可能需要减少每个线程的栈空间分配大小。如果你使用线程，你可以在运行时使用pthread_att_init()设置它。<br/>
 </p><ul>
-<li>Solaris: ��֧�־����ܶ�ؽ��߳�װ���ڴ棬����˵��<br/>
+<li>Solaris: 它支持尽可能多地将线程装入内存，我听说。<br/>
 </li>
-<li>ʹ��NPTL��Linux2.6�ںˣ�/proc/sys/vm/max_map_count������Ҫ���ӵ�32000���ϸ��߳�<br/>
+<li>使用NPTL的Linux2.6内核：/proc/sys/vm/max_map_count可以需要增加到32000以上个线程<br/>
 </li>
-<li>Linux2.4��/proc/sys/kernel/threads-max���̵߳�������������ҵ�Red Hat 8ϵͳ����Ĭ����2047�������ͨ����һ����ֵд���Ǹ��ļ������������������"echo 4000 &gt; /proc/sys/kernel/threads-max"<br/>
+<li>Linux2.4：/proc/sys/kernel/threads-max是线程的最大数量；在我的Red Hat 8系统上它默认是2047。你可以通过将一个新值写入那个文件来增加最大数量，如"echo 4000 &gt; /proc/sys/kernel/threads-max"<br/>
 </li>
-<li>Linux2.2��<br/>
+<li>Linux2.2：<br/>
 </li>
 <li>Java:<br/>
 </li>
@@ -878,7 +878,7 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-9" class="outline-2">
-<h2 id="sec-9"><span class="section-number-2">9</span> Java����</h2>
+<h2 id="sec-9"><span class="section-number-2">9</span> Java争论</h2>
 <div class="outline-text-2" id="text-9">
 
 </div>
@@ -886,37 +886,37 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-10" class="outline-2">
-<h2 id="sec-10"><span class="section-number-2">10</span> ��������</h2>
+<h2 id="sec-10"><span class="section-number-2">10</span> 其他技巧</h2>
 <div class="outline-text-2" id="text-10">
 
 <ul>
 <li>Zero-Copy : <br/>
-  ͨ�������ݴ����ﵽ������Ҫ���ƶ�Ρ��κ�������Щ����ʹ֮���ٵ���С�����޶ȵķ�����Ϊ"zero-copy"��<br/>
+  通常，数据从这里到那里需要复制多次。任何消除这些复制使之减少到最小物理限度的方法称为"zero-copy"。<br/>
 <ul>
-<li>��Linux2.4.17-2.4.20��Thomas Ogrisegg��ӳ���ļ�zero-copy���Ͳ�������������sendfile()���졣<br/>
+<li>在Linux2.4.17-2.4.20上Thomas Ogrisegg的映射文件zero-copy发送补丁，声称它比sendfile()更快。<br/>
 </li>
-<li>IO-Lite��һ������I/Oԭ�����飬�������������������<br/>
+<li>IO-Lite是一个关于I/O原语提议，它可以消除多个复本。<br/>
 </li>
-<li>1999��Alan Coxע��zero-copy��ʱ��ֵ��ȥ����<br/>
+<li>1999年Alan Cox注释zero-copy有时候不值得去做。<br/>
 </li>
-<li>Ingo��2000��7����2.4�ں�ΪTUX1.0ʵ����һ��zero-copy TCP����ʽ����˵���ܿ������������ڻ��ռ䡣<br/>
+<li>Ingo在2000年7月在2.4内核为TUX1.0实现了一种zero-copy TCP的形式，并说将很快用让它作用于户空间。<br/>
 </li>
-<li>Drew Gallatin��Robert Picco�Ѿ���һЩzero-copy�������ӵ�FreeBSD�У�<br/>
+<li>Drew Gallatin和Robert Picco已经将一些zero-copy功能添加到FreeBSD中；<br/>
 </li>
-<li>sendfile()ϵͳ�����ܹ�ʵ��zero-copy����<br/>
-    ��Linux��FreeBSD�ϣ�sendfile()������������ں˷���һ���ļ��򲿷֡���OS�����ܸ�Ч��ȥ�������¡�<br/>
+<li>sendfile()系统调用能够实现zero-copy网络<br/>
+    在Linux和FreeBSD上，sendfile()函数让你告诉内核发送一个文件或部分。让OS尽可能高效的去完成这件事。<br/>
 </li>
 </ul>
 
 </li>
-<li>ʹ��writev(��TCP_CORK)����С֡<br/>
-  ��Linux����һ���µ�socketѡ�TCP_CORK�������ں˱��ⷢ�Ͳ���֡������һ����������統���ڴ���write()����ʱ����ΪĳЩԭ���㲻�ܽ�����������һ�𡣲�����ѡ�ˢ�»�������ʹ��writev()���á�<br/>
+<li>使用writev(或TCP_CORK)避免小帧<br/>
+  在Linux下有一个新的socket选项，TCP_CORK，告诉内核避免发送部分帧，这有一点帮助。比如当存在大量write()调用时，因为某些原因你不能将它们捆绑在一起。不设置选项，刷新缓冲区。使用writev()更好。<br/>
 </li>
-<li>�ڳ�����״̬�����ܸ�֪<br/>
+<li>在超负荷状态下智能感知<br/>
 </li>
-<li>һЩ�����ܹ�������ʹ��non-Posix�߳�<br/>
+<li>一些程序能够得利于使用non-Posix线程<br/>
 </li>
-<li>�������Լ�������ʱ���кô�<br/>
+<li>缓存你自己数据有时会有好处<br/>
 </li>
 </ul>
 
@@ -925,19 +925,19 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-11" class="outline-2">
-<h2 id="sec-11"><span class="section-number-2">11</span> ��������</h2>
+<h2 id="sec-11"><span class="section-number-2">11</span> 其它限制</h2>
 <div class="outline-text-2" id="text-11">
 
-<p>  ��ϵͳ�����ʹ��16λ���������ļ������32767�����Ͼ���������鷳��glibc2.1Ӧ��û���⡣<br/>
-  ����ϵͳʹ��16λ����������̻��̵߳�ID����Volano��չ��׼������ֲ��C������Ȥ�ģ��������ֲ���ϵͳ���̵߳������Ƕ��١�<br/>
-  ��һЩ����ϵͳ���ֲ߳̾��ڴ������ࣻ���ÿ���̷߳���1MB����VM�ռ���2GB���������Դ���һ��2000�̵߳����ޡ�<br/>
-  ����<a href="http://www.acme.com/software/thttpd/benchmarks.html">http://www.acme.com/software/thttpd/benchmarks.html</a> �ײ����ܱȽ�ͼ��<br/>
+<p>  旧系统库可能使用16位变量保存文件句柄，32767个以上句柄会引起麻烦。glibc2.1应该没问题。<br/>
+  许多系统使用16位变量保存进程或线程的ID。将Volano扩展基准测试移植到C将是有趣的，看看各种操作系统上线程的上限是多少。<br/>
+  有一些操作系统给线程局部内存分配过多；如果每个线程分配1MB，总VM空间是2GB，那样可以创建一个2000线程的上限。<br/>
+  看看<a href="http://www.acme.com/software/thttpd/benchmarks.html">http://www.acme.com/software/thttpd/benchmarks.html</a> 底部性能比较图。<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-12" class="outline-2">
-<h2 id="sec-12"><span class="section-number-2">12</span> �ں�����</h2>
+<h2 id="sec-12"><span class="section-number-2">12</span> 内核争论</h2>
 <div class="outline-text-2" id="text-12">
 
 </div>
@@ -945,7 +945,7 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-13" class="outline-2">
-<h2 id="sec-13"><span class="section-number-2">13</span> ��������������</h2>
+<h2 id="sec-13"><span class="section-number-2">13</span> 测量服务器性能</h2>
 <div class="outline-text-2" id="text-13">
 
 </div>
@@ -953,21 +953,21 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-14" class="outline-2">
-<h2 id="sec-14"><span class="section-number-2">14</span> ʾ��</h2>
+<h2 id="sec-14"><span class="section-number-2">14</span> 示例</h2>
 <div class="outline-text-2" id="text-14">
 
-<p>  Nginx��һ��web������������Ŀ��OS��ʹ���κο��õĸ�Ч�����¼����ơ���Խ��Խ�ܻ�ӭ��<br/>
+<p>  Nginx是一个web服务器，它在目标OS上使用任何可用的高效网络事件机制。它越来越受欢迎。<br/>
 </p>
 </div>
 
 <div id="outline-container-14-1" class="outline-3">
-<h3 id="sec-14-1"><span class="section-number-3">14.1</span> ����select()��servers</h3>
+<h3 id="sec-14-1"><span class="section-number-3">14.1</span> 基于select()的servers</h3>
 <div class="outline-text-3" id="text-14-1">
 
 <ul>
-<li><a href="http://www.acme.com/software/thttpd/">thttpd</a> �ǳ��򵥡�ʹ�õ����̡���ӵ�кõ����ܣ�����������CPU�������Զ���չ��Ҳ�ܹ�ʹ��kqueue��<br/>
+<li><a href="http://www.acme.com/software/thttpd/">thttpd</a> 非常简单。使用单进程。它拥有好的性能，但不能随着CPU的数量自动扩展。也能够使用kqueue。<br/>
 </li>
-<li><a href="http://mathop.diva.nl/">mathopd</a> ��thttpd ����<br/>
+<li><a href="http://mathop.diva.nl/">mathopd</a> 与thttpd 类似<br/>
 </li>
 <li><a href="http://www.fhttpd.org/">fhttpd</a><br/>
 </li>
@@ -975,21 +975,21 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </li>
 <li><a href="http://www.roxen.com/">Roxen</a><br/>
 </li>
-<li><a href="http://www.zeustech.net/">Zeus</a> һ����ҵ��server����ͼ��Ϊ���Ե����server��<br/>
+<li><a href="http://www.zeustech.net/">Zeus</a> 一个商业版server，试图成为绝对的最快server。<br/>
 </li>
 <li><a href="http://ca.us.mirrors.freshmeat.net/appindex/1999/02/17/919251275.html">BetaFTPd</a><br/>
 </li>
-<li><a href="http://www.cs.rice.edu/~vivek/iol98/">Flash-Lite</a> ʹ��IO-Lite��web server<br/>
+<li><a href="http://www.cs.rice.edu/~vivek/iol98/">Flash-Lite</a> 使用IO-Lite的web server<br/>
 </li>
-<li><a href="http://www.cs.rice.edu/~vivek/flash99/">Flash</a>:һ����Ч����ֲ��web server--ʹ��select(),mmap(),mincore()<br/>
+<li><a href="http://www.cs.rice.edu/~vivek/flash99/">Flash</a>:一个高效可移植的web server--使用select(),mmap(),mincore()<br/>
 </li>
-<li><a href="http://www.cs.princeton.edu/~yruan/debox/">2003���Flash web server</a> --ʹ��select(),�޶���sendfile(),�첽open()<br/>
+<li><a href="http://www.cs.princeton.edu/~yruan/debox/">2003年的Flash web server</a> --使用select(),修订的sendfile(),异步open()<br/>
 </li>
 <li><a href="http://www.imatix.com/html/xitami/">xitami</a><br/>
 </li>
 <li><a href="http://www.nightmare.com/medusa/medusa.html">Medusa</a><br/>
 </li>
-<li><a href="http://www.hpl.hp.com/research/linux/userver/">userver</a> - һ��С��http server���ܹ�ʹ��select,poll,epoll��sigio<br/>
+<li><a href="http://www.hpl.hp.com/research/linux/userver/">userver</a> - 一个小型http server，能够使用select,poll,epoll或sigio<br/>
 </li>
 </ul>
 
@@ -998,22 +998,22 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-14-2" class="outline-3">
-<h3 id="sec-14-2"><span class="section-number-3">14.2</span> ����/dev/poll��servers</h3>
+<h3 id="sec-14-2"><span class="section-number-3">14.2</span> 基于/dev/poll的servers</h3>
 <div class="outline-text-3" id="text-14-2">
 
-<p>N. Provos, C. Lever,"<a href="http://www.citi.umich.edu/techreports/reports/citi-tr-00-4.pdf">Scalable Network I/O in Linux</a>,"������һ��thttpd�޸İ汾��֧��/dev/poll��������phhttpd����ȡ�<br/>
+<p>N. Provos, C. Lever,"<a href="http://www.citi.umich.edu/techreports/reports/citi-tr-00-4.pdf">Scalable Network I/O in Linux</a>,"描述了一个thttpd修改版本，支持/dev/poll。性能与phhttpd与相比。<br/>
 </p></div>
 
 </div>
 
 <div id="outline-container-14-3" class="outline-3">
-<h3 id="sec-14-3"><span class="section-number-3">14.3</span> ����epoll��servers</h3>
+<h3 id="sec-14-3"><span class="section-number-3">14.3</span> 基于epoll的servers</h3>
 <div class="outline-text-3" id="text-14-3">
 
 <ul>
 <li><a href="https://github.com/Adaptv/ribs2">ribs2</a><br/>
 </li>
-<li><a href="http://bogomips.org/cmogstored/README">cmogstored</a> -Ϊ�󲿷�����ʹ��epoll/kqueue��Ϊ���̺�accept4ʹ���߳�.<br/>
+<li><a href="http://bogomips.org/cmogstored/README">cmogstored</a> -为大部分网络使用epoll/kqueue，为磁盘和accept4使用线程.<br/>
 </li>
 </ul>
 
@@ -1022,7 +1022,7 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-14-4" class="outline-3">
-<h3 id="sec-14-4"><span class="section-number-3">14.4</span> ����kqueue��servers</h3>
+<h3 id="sec-14-4"><span class="section-number-3">14.4</span> 基于kqueue的servers</h3>
 <div class="outline-text-3" id="text-14-4">
 
 <ul>
@@ -1035,13 +1035,13 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-14-5" class="outline-3">
-<h3 id="sec-14-5"><span class="section-number-3">14.5</span> ����ʵʱ�źŵ�servers</h3>
+<h3 id="sec-14-5"><span class="section-number-3">14.5</span> 基于实时信号的servers</h3>
 <div class="outline-text-3" id="text-14-5">
 
 <ul>
-<li>Chromium��X15<br/>
+<li>Chromium的X15<br/>
 </li>
-<li>Zach Brown��<a href="#Chromium">phhttpd</a><br/>
+<li>Zach Brown的<a href="#Chromium">phhttpd</a><br/>
 </li>
 </ul>
 
@@ -1050,19 +1050,19 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-14-6" class="outline-3">
-<h3 id="sec-14-6"><span class="section-number-3">14.6</span> �����̵߳�servers</h3>
+<h3 id="sec-14-6"><span class="section-number-3">14.6</span> 基于线程的servers</h3>
 <div class="outline-text-3" id="text-14-6">
 
 <ul>
 <li><a href="http://www.zabbo.net/hftpd/">Hoser FTPD</a><br/>
 </li>
-<li>Peter Eriksson��<a href="http://ca.us.mirrors.freshmeat.net/appindex/1999/02/06/918317238.html">phttpd</a>��<br/>
+<li>Peter Eriksson的<a href="http://ca.us.mirrors.freshmeat.net/appindex/1999/02/06/918317238.html">phttpd</a>和<br/>
 </li>
 <li><a href="http://ca.us.mirrors.freshmeat.net/appindex/1999/02/06/918313631.html">pftpd</a><br/>
 </li>
-<li>����Java servers��<a href="http://www.acme.com/software/thttpd/benchmarks.html">http://www.acme.com/software/thttpd/benchmarks.html</a> ���г�<br/>
+<li>基于Java servers在<a href="http://www.acme.com/software/thttpd/benchmarks.html">http://www.acme.com/software/thttpd/benchmarks.html</a> 被列出<br/>
 </li>
-<li>Sun��<a href="http://jserv.javasoft.com/">Java Web Server</a>(����������500�����ͻ���)<br/>
+<li>Sun的<a href="http://jserv.javasoft.com/">Java Web Server</a>(被报道处理500并发客户端)<br/>
 </li>
 </ul>
 
@@ -1071,7 +1071,7 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-14-7" class="outline-3">
-<h3 id="sec-14-7"><span class="section-number-3">14.7</span> ���ں��е�servers</h3>
+<h3 id="sec-14-7"><span class="section-number-3">14.7</span> 在内核中的servers</h3>
 <div class="outline-text-3" id="text-14-7">
 
 <ul>
@@ -1087,7 +1087,7 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </div>
 
 <div id="outline-container-15" class="outline-2">
-<h2 id="sec-15"><span class="section-number-2">15</span> ������Ȥ������</h2>
+<h2 id="sec-15"><span class="section-number-2">15</span> 其它有趣的链接</h2>
 <div class="outline-text-2" id="text-15">
 
 <ul>
@@ -1099,7 +1099,7 @@ Mark Russinovich��д<a href="http://linuxtoday.com/stories/5499.html">һ���ڿ�</
 </li>
 <li><a href="http://www.novell.com/bordermanager/ispcon4.html">Novell's FastCache</a> -- claims 10000 hits per second. Quite the pretty performance graph.<br/>
 </li>
-<li>Rik van Rielr��<a href="http://linuxperf.nl.linux.org/">Linux Performance Tuning site</a><br/>
+<li>Rik van Rielr的<a href="http://linuxperf.nl.linux.org/">Linux Performance Tuning site</a><br/>
 </li>
 </ul>
 
