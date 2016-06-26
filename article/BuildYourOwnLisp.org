@@ -1,126 +1,126 @@
-* ¼ò½é(Introduction)
-** ¹ØÓÚ
+* ç®€ä»‹(Introduction)
+** å…³äºŽ
 
-ÔÚÕâ±¾ÖÐ£¬Äã½«Ñ§»áCÓïÑÔºÍÈçºÎ¹¹½¨×Ô¼ºµÄ±à³ÌÓïÑÔ£¬Ò»¸ö¼«Ð¡Lisp£¬1000ÐÐÒÔÏÂµÄ´úÂë
-Á¿¡£ÎÒÃÇ½«Ê¹ÓÃÒ»¸ö¿âÀ´Íê³É×î³õ¹¤×÷£¬ËùÒÔÎÒÔÚ´úÂëÁ¿ÉÏÈöÁËµã»Ñ£¬µ«ÆäÓàµÄ´úÂë¶¼ÊÇÔ­
-´´£¬×îÖÕÄã½«»á´´½¨Ò»¸öÇ¿´óÐ¡ÇÉµÄLisp¡£
+åœ¨è¿™æœ¬ä¸­ï¼Œä½ å°†å­¦ä¼šCè¯­è¨€å’Œå¦‚ä½•æž„å»ºè‡ªå·±çš„ç¼–ç¨‹è¯­è¨€ï¼Œä¸€ä¸ªæžå°Lispï¼Œ1000è¡Œä»¥ä¸‹çš„ä»£ç 
+é‡ã€‚æˆ‘ä»¬å°†ä½¿ç”¨ä¸€ä¸ªåº“æ¥å®Œæˆæœ€åˆå·¥ä½œï¼Œæ‰€ä»¥æˆ‘åœ¨ä»£ç é‡ä¸Šæ’’äº†ç‚¹è°Žï¼Œä½†å…¶ä½™çš„ä»£ç éƒ½æ˜¯åŽŸ
+åˆ›ï¼Œæœ€ç»ˆä½ å°†ä¼šåˆ›å»ºä¸€ä¸ªå¼ºå¤§å°å·§çš„Lispã€‚
 
-Õâ±¾ÊéÊÇÊÜÆäËü´ÓÍ·¹¹½¨×Ô¼º±à³ÌÓïÑÔ½Ì³ÌµÄÆô·¢¡£ÎÒ±àÐ´Õâ±¾Êé±íÃ÷£¬ÕâÖÖÓÐÈ¤ÇÒ´´½¨ÐÔ
-ÏîÄ¿ÊÇÑ§Ï°Ò»ÃÅ±à³ÌÓïÑÔ¼«ºÃµÄ·½·¨£¬²»¾ÖÏÞÓÚ³éÏó¸ß¼¶ÓïÑÔ»òÀÏÁ·µÄ³ÌÐòÔ±¡£
+è¿™æœ¬ä¹¦æ˜¯å—å…¶å®ƒä»Žå¤´æž„å»ºè‡ªå·±ç¼–ç¨‹è¯­è¨€æ•™ç¨‹çš„å¯å‘ã€‚æˆ‘ç¼–å†™è¿™æœ¬ä¹¦è¡¨æ˜Žï¼Œè¿™ç§æœ‰è¶£ä¸”åˆ›å»ºæ€§
+é¡¹ç›®æ˜¯å­¦ä¹ ä¸€é—¨ç¼–ç¨‹è¯­è¨€æžå¥½çš„æ–¹æ³•ï¼Œä¸å±€é™äºŽæŠ½è±¡é«˜çº§è¯­è¨€æˆ–è€ç»ƒçš„ç¨‹åºå‘˜ã€‚
 
-Ðí¶àÈËÏëÑ§Ï°C£¬µ«²»Öª´ÓºÎ¿ªÊ¼¡£ÏÖÔÚ²»Ðè½è¿Ú¡£Èç¹ûÄã×ñÑ­Õâ±¾Êé£¬ÎÒ¿ÉÒÔ±£Ö¤£¬×î»µ
-µÄÇé¿ö£¬Äã½«µÃµ½Ò»¸ö·Ç³£¿áµÄÐÂ±à³ÌÓïÑÔ£¬Í¬Ê±Ò²·Ç³£ÓÐÏ£Íû³ÉÎªÒ»¸öÓÐ¾­ÀúµÄC³ÌÐòÔ±¡£
+è®¸å¤šäººæƒ³å­¦ä¹ Cï¼Œä½†ä¸çŸ¥ä»Žä½•å¼€å§‹ã€‚çŽ°åœ¨ä¸éœ€å€Ÿå£ã€‚å¦‚æžœä½ éµå¾ªè¿™æœ¬ä¹¦ï¼Œæˆ‘å¯ä»¥ä¿è¯ï¼Œæœ€å
+çš„æƒ…å†µï¼Œä½ å°†å¾—åˆ°ä¸€ä¸ªéžå¸¸é…·çš„æ–°ç¼–ç¨‹è¯­è¨€ï¼ŒåŒæ—¶ä¹Ÿéžå¸¸æœ‰å¸Œæœ›æˆä¸ºä¸€ä¸ªæœ‰ç»åŽ†çš„Cç¨‹åºå‘˜ã€‚
 
-** ÊÊºÏË­
+** é€‚åˆè°
 
-Õâ±¾ÊéÊÊºÏÈÎºÎÏëÑ§Ï°C»òÏëÖªµÀÈçºÎ¹¹½¨ËûÃÇ×Ô¼º±à³ÌÓïÑÔµÄÈË£¬µ«²»ÊÊºÏ×÷Îª±à³ÌÓïÑÔ
-ÈëÃÅÊéÏä¡£ÈÎºÎÓÐÒ»µã±à³Ì¾­ÀúµÄÈË£¬ÔÚÈÎºÎÓïÑÔÉÏ£¬Ó¦¸ÃÔÚÀïÃæÕÒµ½Ò»Ð©ÐÂÆæÓÐÈ¤µÄ¶«Î÷¡£
+è¿™æœ¬ä¹¦é€‚åˆä»»ä½•æƒ³å­¦ä¹ Cæˆ–æƒ³çŸ¥é“å¦‚ä½•æž„å»ºä»–ä»¬è‡ªå·±ç¼–ç¨‹è¯­è¨€çš„äººï¼Œä½†ä¸é€‚åˆä½œä¸ºç¼–ç¨‹è¯­è¨€
+å…¥é—¨ä¹¦ç®±ã€‚ä»»ä½•æœ‰ä¸€ç‚¹ç¼–ç¨‹ç»åŽ†çš„äººï¼Œåœ¨ä»»ä½•è¯­è¨€ä¸Šï¼Œåº”è¯¥åœ¨é‡Œé¢æ‰¾åˆ°ä¸€äº›æ–°å¥‡æœ‰è¶£çš„ä¸œè¥¿ã€‚
 
-ÎÒÊÔÍ¼ÈÃ±¾Êé¶Ô³õÑ§Õß¾¡Á¿ÓÑºÃ¡£ÎÒ·Ç³£»¶Ó­³õÑ§ÕßÒòÎªËûÃÇÓÐ·Ç³£¶àµÄ·¢ÏÖ¡£³õÑ§ÕßÒ²¿É
-ÄÜ·¢ÏÖ±¾Êé¾ßÓÐÌôÕ½ÐÔ¡£ÎÒÃÇ½«¸²¸ÇÒ»Ð©ÐÂ¸ÅÄî£¬»ù±¾ÉÏÍ¬Ê±Ñ§Ï°Á½ÃÅÐÂ±à³ÌÓïÑÔ¡£
+æˆ‘è¯•å›¾è®©æœ¬ä¹¦å¯¹åˆå­¦è€…å°½é‡å‹å¥½ã€‚æˆ‘éžå¸¸æ¬¢è¿Žåˆå­¦è€…å› ä¸ºä»–ä»¬æœ‰éžå¸¸å¤šçš„å‘çŽ°ã€‚åˆå­¦è€…ä¹Ÿå¯
+èƒ½å‘çŽ°æœ¬ä¹¦å…·æœ‰æŒ‘æˆ˜æ€§ã€‚æˆ‘ä»¬å°†è¦†ç›–ä¸€äº›æ–°æ¦‚å¿µï¼ŒåŸºæœ¬ä¸ŠåŒæ—¶å­¦ä¹ ä¸¤é—¨æ–°ç¼–ç¨‹è¯­è¨€ã€‚
 
-Èç¹ûÄãÑ°Çó°ïÖú£¬Äã¿ÉÄÜ»á·¢ÏÖÈËÃÇ¶ÔÄãÃ»ÓÐÄÍÐÄ¡£Äã¿ÉÄÜ»á·¢ÏÖ£¬Ïà±È°ïÖú£¬ËûÃÇ»á»¨·Ñ
-¸ü¶àµÄÊ±¼äÀ´±í´ïËûÃÇ¶ÔÕâ¸öÖ÷ÌâÓÐ¶àÁË½â¡£ÓÐ¾­ÀúµÄ³ÌÐòÔ±¿ÉÄÜ»á¸æËßÄãÄã´íÁË¡£ËûÃÇÓï
-ÆøµÄÇ±Ì¨´Ê¿ÉÄÜÊÇÄãÏÖÔÚÓ¦¸ÃÍ£Ö¹£¬²»Òª¸øÊÀ½ç´øÀ´Ôã¸âµÄ´úÂë¡£
+å¦‚æžœä½ å¯»æ±‚å¸®åŠ©ï¼Œä½ å¯èƒ½ä¼šå‘çŽ°äººä»¬å¯¹ä½ æ²¡æœ‰è€å¿ƒã€‚ä½ å¯èƒ½ä¼šå‘çŽ°ï¼Œç›¸æ¯”å¸®åŠ©ï¼Œä»–ä»¬ä¼šèŠ±è´¹
+æ›´å¤šçš„æ—¶é—´æ¥è¡¨è¾¾ä»–ä»¬å¯¹è¿™ä¸ªä¸»é¢˜æœ‰å¤šäº†è§£ã€‚æœ‰ç»åŽ†çš„ç¨‹åºå‘˜å¯èƒ½ä¼šå‘Šè¯‰ä½ ä½ é”™äº†ã€‚ä»–ä»¬è¯­
+æ°”çš„æ½œå°è¯å¯èƒ½æ˜¯ä½ çŽ°åœ¨åº”è¯¥åœæ­¢ï¼Œä¸è¦ç»™ä¸–ç•Œå¸¦æ¥ç³Ÿç³•çš„ä»£ç ã€‚
 
-¾­¹ýÒ»Ð©ÏñÕâÑùµÄ½»Á÷Ö®ºó£¬Äã¿ÉÄÜ»áÈ·¶¨×Ô¼º²»ÊÇÒ»¸ö³ÌÐòÔ±£¬»ò²»ÊÇÕæÕýÏ²»¶±à³Ì£¬»ò
-Ö»ÊÇÔÝÊ±Ã»ÓÐÃ÷°×¡£Äã¿ÉÄÜÈÏÎªÄãÔø¾­Ï²»¶ÔÚ¹¹½¨×Ô¼º±à³ÌÓïÑÔÉÏµÄÏë·¨£¬µ«ÊÇÏÖÔÚÄã¾õµÃ
-ÕâÐ©Ì«³éÏó£¬Äã²»ÔÙÔÚºõ¡£ÄãÏÖÔÚ¹ØÐÄÆäËüµÄ°®ºÃ£¬ÈÎºÎÓÐÈ¤µÄ£¬¿ìÀÖµÄ»ò¸ÐÐËÈ¤µÄ¿´·¨¿É
-ÄÜÒÑ¾­±ä³É³ÉÁËÕÏ°­¡£
+ç»è¿‡ä¸€äº›åƒè¿™æ ·çš„äº¤æµä¹‹åŽï¼Œä½ å¯èƒ½ä¼šç¡®å®šè‡ªå·±ä¸æ˜¯ä¸€ä¸ªç¨‹åºå‘˜ï¼Œæˆ–ä¸æ˜¯çœŸæ­£å–œæ¬¢ç¼–ç¨‹ï¼Œæˆ–
+åªæ˜¯æš‚æ—¶æ²¡æœ‰æ˜Žç™½ã€‚ä½ å¯èƒ½è®¤ä¸ºä½ æ›¾ç»å–œæ¬¢åœ¨æž„å»ºè‡ªå·±ç¼–ç¨‹è¯­è¨€ä¸Šçš„æƒ³æ³•ï¼Œä½†æ˜¯çŽ°åœ¨ä½ è§‰å¾—
+è¿™äº›å¤ªæŠ½è±¡ï¼Œä½ ä¸å†åœ¨ä¹Žã€‚ä½ çŽ°åœ¨å…³å¿ƒå…¶å®ƒçš„çˆ±å¥½ï¼Œä»»ä½•æœ‰è¶£çš„ï¼Œå¿«ä¹çš„æˆ–æ„Ÿå…´è¶£çš„çœ‹æ³•å¯
+èƒ½å·²ç»å˜æˆæˆäº†éšœç¢ã€‚
 
-¶ÔÓÚÕâÐ©ÎÒÖ»ÄÜµÀÇ¸¡£³ÌÐòÔ±¿ÉÒÔÊÇÐÄ»³µÐÒâµÄ£¬´óÄÐ×ÓÖ÷ÒåµÄ£¬°ÁÂýµÄ£¬ºÃ¶·µÄ¡£²»ÐèÒª
-ÎªÕâÐ©Ñ°ÕÒÀíÓÉ¡£ÖªµÀÎÒÊÇÕ¾ÔÚÄãÕâ±ß¡£Æð³õÃ»ÓÐÈËÃ÷°×¡£Ã¿¸öÈË¶¼ºÜÅ¬Á¦£¬»³ÒÉ×Ô¼ºµÄÄÜ
-Á¦¡£Çë²»Òª·ÅÆú»òÈÃ¿ìÀÖ´Ó´´ÐÔµÄ¾­ÀúÖÐÎü×ß¡£ÎªÄãµÄ´´Ôì¸Ðµ½½¾°Á£¬²»¹ÜÊÇÊ²Ã´¡£ÈËÃÇ±È
-ÈçÎÒ²»Ï£ÍûÄã·ÅÆú±à³Ì¡£ÎÒÃÇÏëÌýµ½ÄãµÄÉùÒôºÍÄãËùËµµÄ»°¡£
+å¯¹äºŽè¿™äº›æˆ‘åªèƒ½é“æ­‰ã€‚ç¨‹åºå‘˜å¯ä»¥æ˜¯å¿ƒæ€€æ•Œæ„çš„ï¼Œå¤§ç”·å­ä¸»ä¹‰çš„ï¼Œå‚²æ…¢çš„ï¼Œå¥½æ–—çš„ã€‚ä¸éœ€è¦
+ä¸ºè¿™äº›å¯»æ‰¾ç†ç”±ã€‚çŸ¥é“æˆ‘æ˜¯ç«™åœ¨ä½ è¿™è¾¹ã€‚èµ·åˆæ²¡æœ‰äººæ˜Žç™½ã€‚æ¯ä¸ªäººéƒ½å¾ˆåŠªåŠ›ï¼Œæ€€ç–‘è‡ªå·±çš„èƒ½
+åŠ›ã€‚è¯·ä¸è¦æ”¾å¼ƒæˆ–è®©å¿«ä¹ä»Žåˆ›æ€§çš„ç»åŽ†ä¸­å¸èµ°ã€‚ä¸ºä½ çš„åˆ›é€ æ„Ÿåˆ°éª„å‚²ï¼Œä¸ç®¡æ˜¯ä»€ä¹ˆã€‚äººä»¬æ¯”
+å¦‚æˆ‘ä¸å¸Œæœ›ä½ æ”¾å¼ƒç¼–ç¨‹ã€‚æˆ‘ä»¬æƒ³å¬åˆ°ä½ çš„å£°éŸ³å’Œä½ æ‰€è¯´çš„è¯ã€‚
 
-** ÎªºÎÑ§C
+** ä¸ºä½•å­¦C
 
-CÊÇÕâ¸öÊÀ½çÉÏ×îÁ÷ÐÐ×î¾ßÓ°ÏìÁ¦µÄ³ÌÐòÓïÑÔÖ®Ò»¡£ËüÊÇÔÚLinuxÉÏ¿ª·¢µÄÊ×Ñ¡ÓïÑÔ£¬ÒÑ¾­ÔÚ
-OSXºÍMSÉÏºÜÆÕÍ¨¡£ËüÒ²ÔÚÎ¢»úÉÏÊ¹ÓÃ¡£ÄãµÄ±ùÏä»òÆû³µÉÏÒ²¿ÉÄÜÔÚÔËÐÐËü¡£ÔÚÏÖ´úÈí¼þ¿ª
-·¢ÖÐ£¬¿ÉÄÜ±Ü¿ªCµÄÊ¹ÓÃ£¬µ«ÀúÊ·Ö¤Ã÷£¬ÈÎºÎÒ»¸öÏë³ÉÎªÖ°ÒµÈí¼þ¿ª·¢µÄÈË¶¼Ó¦¸ÃÑ§Ï°C¡£
+Cæ˜¯è¿™ä¸ªä¸–ç•Œä¸Šæœ€æµè¡Œæœ€å…·å½±å“åŠ›çš„ç¨‹åºè¯­è¨€ä¹‹ä¸€ã€‚å®ƒæ˜¯åœ¨Linuxä¸Šå¼€å‘çš„é¦–é€‰è¯­è¨€ï¼Œå·²ç»åœ¨
+OSXå’ŒMSä¸Šå¾ˆæ™®é€šã€‚å®ƒä¹Ÿåœ¨å¾®æœºä¸Šä½¿ç”¨ã€‚ä½ çš„å†°ç®±æˆ–æ±½è½¦ä¸Šä¹Ÿå¯èƒ½åœ¨è¿è¡Œå®ƒã€‚åœ¨çŽ°ä»£è½¯ä»¶å¼€
+å‘ä¸­ï¼Œå¯èƒ½é¿å¼€Cçš„ä½¿ç”¨ï¼Œä½†åŽ†å²è¯æ˜Žï¼Œä»»ä½•ä¸€ä¸ªæƒ³æˆä¸ºèŒä¸šè½¯ä»¶å¼€å‘çš„äººéƒ½åº”è¯¥å­¦ä¹ Cã€‚
 
-CÓëÈí¼þ¿ª·¢ºÍÖ°ÒµÎÞ¹Ø£¬CÊÇ×ÔÓÉµÄ¡£ËüÔÚ¼¼ÊõºÍ×ÔÓÉÉÏ»ñÈ¡ÃûÍû¡£ËüÔÚ¼ÆËã»úÉÏÌåÏÖÁËÈË
-Éí×ÔÓÉÀíÄî¡£Ï£ÍûÄãÄÜ¿ØÖÆÓ°Ïì×Ô¼ºÉú»îµÄ¼¼Êõ¡£
+Cä¸Žè½¯ä»¶å¼€å‘å’ŒèŒä¸šæ— å…³ï¼ŒCæ˜¯è‡ªç”±çš„ã€‚å®ƒåœ¨æŠ€æœ¯å’Œè‡ªç”±ä¸ŠèŽ·å–åæœ›ã€‚å®ƒåœ¨è®¡ç®—æœºä¸Šä½“çŽ°äº†äºº
+èº«è‡ªç”±ç†å¿µã€‚å¸Œæœ›ä½ èƒ½æŽ§åˆ¶å½±å“è‡ªå·±ç”Ÿæ´»çš„æŠ€æœ¯ã€‚
 
-** ÈçºÎÑ§C
+** å¦‚ä½•å­¦C
 
-Ã»ÓÐ°ì·¨£¬CÊÇÒ»¸öÀ§ÄÑµÄÓïÑÔ¡£ËüÓÐÐí¶àÉúÊèµÄ¸ÅÄî¡£ËüÃ»ÓÐÊÔÍ¼°ïÖúÒ»¸öÐÂÊÖ¡£ÔÚ±¾Êé
-ÖÐÎÒÃ»ÓÐ¸²¸ÇÓïÑÔµÄÓï·¨Ã÷Ï¸ºÍÈçºÎ±àÐ´Ñ­»·ºÍÌõ¼þÓï¾ä¡£
+æ²¡æœ‰åŠžæ³•ï¼ŒCæ˜¯ä¸€ä¸ªå›°éš¾çš„è¯­è¨€ã€‚å®ƒæœ‰è®¸å¤šç”Ÿç–çš„æ¦‚å¿µã€‚å®ƒæ²¡æœ‰è¯•å›¾å¸®åŠ©ä¸€ä¸ªæ–°æ‰‹ã€‚åœ¨æœ¬ä¹¦
+ä¸­æˆ‘æ²¡æœ‰è¦†ç›–è¯­è¨€çš„è¯­æ³•æ˜Žç»†å’Œå¦‚ä½•ç¼–å†™å¾ªçŽ¯å’Œæ¡ä»¶è¯­å¥ã€‚
 
-ÎÒ½«´ÓÁíÒ»·½ÃæÕ¹Ê¾ÈçºÎÓÃC¹¹½¨Ò»¸öÏÖÊµÊÀ½çÖÐ³ÌÐò¡£ÕâÖÖ·½Ê½¶ÔÔÄ¶ÁÕßÀ´ÑÔ×ÜÊÇ¸üÀ§ÄÑ£¬
-µ«Ëü¸üÓÐÏ£ÍûµØ½Ì»áÄãÒ»Ð©´«Í³·½Ê½²»ÄÜ½Ì»áµÄÐí¶àÒþ²ØÊÂÇé¡£ÎÒ²»ÄÜ±£Ö¤Õâ±¾ÊéÄÜÈÃÄã³É
-Ò»¸öÓÐÐÅÐÄµÄCÊ¹ÓÃÕß¡£ÎÒÄÜ³ÐÅµµÄÊÇ£¬ÄÇ°ü¹üÔÚÄÚÈÝÖÐµÄ1000ÐÐ´úÂë£¬Äã½«Ñ§»áÒ»Ð©ÓÐ¼Û
-ÖµµÄÊÂ¡£
+æˆ‘å°†ä»Žå¦ä¸€æ–¹é¢å±•ç¤ºå¦‚ä½•ç”¨Cæž„å»ºä¸€ä¸ªçŽ°å®žä¸–ç•Œä¸­ç¨‹åºã€‚è¿™ç§æ–¹å¼å¯¹é˜…è¯»è€…æ¥è¨€æ€»æ˜¯æ›´å›°éš¾ï¼Œ
+ä½†å®ƒæ›´æœ‰å¸Œæœ›åœ°æ•™ä¼šä½ ä¸€äº›ä¼ ç»Ÿæ–¹å¼ä¸èƒ½æ•™ä¼šçš„è®¸å¤šéšè—äº‹æƒ…ã€‚æˆ‘ä¸èƒ½ä¿è¯è¿™æœ¬ä¹¦èƒ½è®©ä½ æˆ
+ä¸€ä¸ªæœ‰ä¿¡å¿ƒçš„Cä½¿ç”¨è€…ã€‚æˆ‘èƒ½æ‰¿è¯ºçš„æ˜¯ï¼Œé‚£åŒ…è£¹åœ¨å†…å®¹ä¸­çš„1000è¡Œä»£ç ï¼Œä½ å°†å­¦ä¼šä¸€äº›æœ‰ä»·
+å€¼çš„äº‹ã€‚
 
-±¾Êé°üº¬ÁË16ÕÂ½Ú¡£ÈçºÎÍê³É±¾ÊéÈ¡¾öÓÚÄã¡£¿ÉÄÜÒ»¸öÖÜÄ©¿ìËÙä¯ÀÀÒ»±éÀú»òÃ¿ÍíÂýÂýµØÍê
-³É1µ½2ÕÂ¡£Ëü²»»á»¨·ÑºÜ³¤µÄÊ±¼äÀ´Íê³É£¬½«Ï£ÍûÄã¹»¸ü½øÒ»²½µÄ¿ª·¢×Ô¼ºµÄÓïÑÔ¡£
+æœ¬ä¹¦åŒ…å«äº†16ç« èŠ‚ã€‚å¦‚ä½•å®Œæˆæœ¬ä¹¦å–å†³äºŽä½ ã€‚å¯èƒ½ä¸€ä¸ªå‘¨æœ«å¿«é€Ÿæµè§ˆä¸€éåŽ†æˆ–æ¯æ™šæ…¢æ…¢åœ°å®Œ
+æˆ1åˆ°2ç« ã€‚å®ƒä¸ä¼šèŠ±è´¹å¾ˆé•¿çš„æ—¶é—´æ¥å®Œæˆï¼Œå°†å¸Œæœ›ä½ å¤Ÿæ›´è¿›ä¸€æ­¥çš„å¼€å‘è‡ªå·±çš„è¯­è¨€ã€‚
 
-** ÎªºÎ¹¹½¨Ò»¸öLisp
+** ä¸ºä½•æž„å»ºä¸€ä¸ªLisp
 
-ÎÒÃÇÔÚ±¾ÊéÖÐ½«Òª¹¹½¨µÄÓïÑÔÊÇÒ»¸öLisp¡£ÔÚÕâ¸öÓïÑÔ¼ÒÍ¥ÖÐÊÂÊµÌØÕ÷ÊÇËüÃÇËùÓÐµÄ¼ÆËã¶¼
-ÊÇÓÉÁÐ±í(list)±íÊ¾µÄ¡£Õâ¿ÉÄÜÌýÆðÀ´¿ÉÅÂ£¬ÊÂÊµÉÏLispÊÇ·Ç³£¼òµ¥£¬ÓëÖÚ²»Í¬£¬Ç¿´óµÄÓïÑÔ¡£
+æˆ‘ä»¬åœ¨æœ¬ä¹¦ä¸­å°†è¦æž„å»ºçš„è¯­è¨€æ˜¯ä¸€ä¸ªLispã€‚åœ¨è¿™ä¸ªè¯­è¨€å®¶åº­ä¸­äº‹å®žç‰¹å¾æ˜¯å®ƒä»¬æ‰€æœ‰çš„è®¡ç®—éƒ½
+æ˜¯ç”±åˆ—è¡¨(list)è¡¨ç¤ºçš„ã€‚è¿™å¯èƒ½å¬èµ·æ¥å¯æ€•ï¼Œäº‹å®žä¸ŠLispæ˜¯éžå¸¸ç®€å•ï¼Œä¸Žä¼—ä¸åŒï¼Œå¼ºå¤§çš„è¯­è¨€ã€‚
 
-¹¹½¨Ò»¸öLispÊÇÒ»¸ö·Ç³£ºÃµÄÏîÄ¿£¬Ô­ÒòºÜ¶à¡£Ëü°ÑÄã·Å½øÓïÑÔÉè¼ÆµÄÊÀ½ç£¬ÈÃÄãÐÀÉÍÓïÑÔ
-Õû¸ö¹ý³Ì£¬´ÓÓïÑÔÒ»Ö±µ½»úÆ÷¡£Ëü¶¼»áÄãº¯ÊýÊ½±à³Ì£¬ÐÂµÄ¼ÆËã·½Ê½¡£×îÖÕÄã»ñµÃµÄ²úÆ·Îª
-Î´À´µÄÏë·¨ºÍ¿ª·¢Ìá¹©ÁËÄ£°å£¬¸øÄãÒ»¸ö³¢ÊÔÐÂÊÂÎïµÄ¿ªÊ¼¡£²»ÄÜ¸ù±¾µØÀí½â±à³ÌºÍ¼ÆËã»ú
-¿ÆÑ§µÄ´´½¨ºÍÖÇ»Û£¬³ý·ÇÄãÌ½Ë÷ÓïÑÔ±¾Éí¡£
+æž„å»ºä¸€ä¸ªLispæ˜¯ä¸€ä¸ªéžå¸¸å¥½çš„é¡¹ç›®ï¼ŒåŽŸå› å¾ˆå¤šã€‚å®ƒæŠŠä½ æ”¾è¿›è¯­è¨€è®¾è®¡çš„ä¸–ç•Œï¼Œè®©ä½ æ¬£èµè¯­è¨€
+æ•´ä¸ªè¿‡ç¨‹ï¼Œä»Žè¯­è¨€ä¸€ç›´åˆ°æœºå™¨ã€‚å®ƒéƒ½ä¼šä½ å‡½æ•°å¼ç¼–ç¨‹ï¼Œæ–°çš„è®¡ç®—æ–¹å¼ã€‚æœ€ç»ˆä½ èŽ·å¾—çš„äº§å“ä¸º
+æœªæ¥çš„æƒ³æ³•å’Œå¼€å‘æä¾›äº†æ¨¡æ¿ï¼Œç»™ä½ ä¸€ä¸ªå°è¯•æ–°äº‹ç‰©çš„å¼€å§‹ã€‚ä¸èƒ½æ ¹æœ¬åœ°ç†è§£ç¼–ç¨‹å’Œè®¡ç®—æœº
+ç§‘å­¦çš„åˆ›å»ºå’Œæ™ºæ…§ï¼Œé™¤éžä½ æŽ¢ç´¢è¯­è¨€æœ¬èº«ã€‚
 
-ÎÒÃÇ½«¹¹ÔìµÄLispÀàÐÍÊÇÎÒÎª±¾Êé·¢Ã÷Ö®Ò»¡£ÎÒ°ÑËüÉè¼ÆµÄ·Ç³£¼«¼ò£¬¼òµ¥£¬ÇåÎú£¬ÎÒÒÑ¾­
-·Ç³£Ï²»¶Ëü¡£ÎÒÏ£ÍûÄã½«Ò²Ï²»¶Ëü¡£ÔÚ¸ÅÄîÉÏ£¬Óï·¨ÉÏ£¬ÔÚÊµÏÖÖÐ£¬Õâ¸öLispÓëÆäËüLispÖ÷
-Òª·ÖÖ§ÓÐËù²»Í¬¡£ÒÔÖÁÓÚÎÒ´ÓLisp³ÌÐòÔ±µÃµ½ÓÊ¼þ¸æËßÎÒËµËü²»ÊÇLispÒòÎªËü¿´ÆðÀ´²»Ïñ¡£
+æˆ‘ä»¬å°†æž„é€ çš„Lispç±»åž‹æ˜¯æˆ‘ä¸ºæœ¬ä¹¦å‘æ˜Žä¹‹ä¸€ã€‚æˆ‘æŠŠå®ƒè®¾è®¡çš„éžå¸¸æžç®€ï¼Œç®€å•ï¼Œæ¸…æ™°ï¼Œæˆ‘å·²ç»
+éžå¸¸å–œæ¬¢å®ƒã€‚æˆ‘å¸Œæœ›ä½ å°†ä¹Ÿå–œæ¬¢å®ƒã€‚åœ¨æ¦‚å¿µä¸Šï¼Œè¯­æ³•ä¸Šï¼Œåœ¨å®žçŽ°ä¸­ï¼Œè¿™ä¸ªLispä¸Žå…¶å®ƒLispä¸»
+è¦åˆ†æ”¯æœ‰æ‰€ä¸åŒã€‚ä»¥è‡³äºŽæˆ‘ä»ŽLispç¨‹åºå‘˜å¾—åˆ°é‚®ä»¶å‘Šè¯‰æˆ‘è¯´å®ƒä¸æ˜¯Lispå› ä¸ºå®ƒçœ‹èµ·æ¥ä¸åƒã€‚
 
-ÎÒ²»ÊÇÈÃÕâ¸öLispµÄ²»Í¬À´ÃÔ»ó³õÑ§Õß£¬ÎÒ´´½¨²îÒìÊÇÒòÎª²îÒìÊÇºÃµÄ¡£
+æˆ‘ä¸æ˜¯è®©è¿™ä¸ªLispçš„ä¸åŒæ¥è¿·æƒ‘åˆå­¦è€…ï¼Œæˆ‘åˆ›å»ºå·®å¼‚æ˜¯å› ä¸ºå·®å¼‚æ˜¯å¥½çš„ã€‚
 
-Èç¹ûÄãÏëÁË½â´«Í³LsipµÄÓïÒåºÍÐÐÎª£¬ÈçºÎÊ¹ÓÃËüÃÇ±à³Ì£¬Õâ±¾Êé¿ÉÄÜ²»ÊÊºÏÄã¡£Ïà·´£¬±¾
-ÊéÌá¹©µÄÊÇÐÂÏÊ¶ÀÌØµÄ¸ÅÄî£¬×ÔÎÒ±í´ï£¬´´½¨Á¦ºÍÀÖÈ¤¡£
+å¦‚æžœä½ æƒ³äº†è§£ä¼ ç»ŸLsipçš„è¯­ä¹‰å’Œè¡Œä¸ºï¼Œå¦‚ä½•ä½¿ç”¨å®ƒä»¬ç¼–ç¨‹ï¼Œè¿™æœ¬ä¹¦å¯èƒ½ä¸é€‚åˆä½ ã€‚ç›¸åï¼Œæœ¬
+ä¹¦æä¾›çš„æ˜¯æ–°é²œç‹¬ç‰¹çš„æ¦‚å¿µï¼Œè‡ªæˆ‘è¡¨è¾¾ï¼Œåˆ›å»ºåŠ›å’Œä¹è¶£ã€‚
 
-** ×Ô¼ºµÄLisp
+** è‡ªå·±çš„Lisp
 
-×ñÑ­Õâ±¾Êé×îºÃµÄ·½Ê½£¬Èç±êÌâËùÑÔ£¬±àÐ´×Ô¼ºµÄLisp¡£ÄãµÄLispÓ¦¸ÃÊÊºÏÄãºÍÄã×Ô¼ºµÄÕÜ
-Ñ§¡£Õû±¾ÊéÎÒ½«»áÌá¹©ÃèÊöºÍ¹Û²ì£¬´óÁ¿µÄ´úÂë¡£
+éµå¾ªè¿™æœ¬ä¹¦æœ€å¥½çš„æ–¹å¼ï¼Œå¦‚æ ‡é¢˜æ‰€è¨€ï¼Œç¼–å†™è‡ªå·±çš„Lispã€‚ä½ çš„Lispåº”è¯¥é€‚åˆä½ å’Œä½ è‡ªå·±çš„å“²
+å­¦ã€‚æ•´æœ¬ä¹¦æˆ‘å°†ä¼šæä¾›æè¿°å’Œè§‚å¯Ÿï¼Œå¤§é‡çš„ä»£ç ã€‚
 
-×Ô¼ºÊäÈëÃ¿¿éÊ¾Àý´úÂë£¬Õâ³ÆÎªThe Hard Way¡£²»ÊÇÒòÎªËüÔÚ¼¼ÊõÉÏÀ§ÄÑ£¬¶øÊÇÒòÎªËüÐèÒª
-ÑµÁ·¡£Í¨¹ýThe Hard WayÍê³ÉÊÂÇéÄã½«Ã÷°×ÊäÈë´úÂë±³ºóµÄÔ­Àí¡£
+è‡ªå·±è¾“å…¥æ¯å—ç¤ºä¾‹ä»£ç ï¼Œè¿™ç§°ä¸ºThe Hard Wayã€‚ä¸æ˜¯å› ä¸ºå®ƒåœ¨æŠ€æœ¯ä¸Šå›°éš¾ï¼Œè€Œæ˜¯å› ä¸ºå®ƒéœ€è¦
+è®­ç»ƒã€‚é€šè¿‡The Hard Wayå®Œæˆäº‹æƒ…ä½ å°†æ˜Žç™½è¾“å…¥ä»£ç èƒŒåŽçš„åŽŸç†ã€‚
 
-* °²×°(Installation)
-** ÅäÖÃ»·¾³
+* å®‰è£…(Installation)
+** é…ç½®çŽ¯å¢ƒ
 
-ÔÚÎÒÃÇ¿ªÊ¼Ê¹ÓÃC±à³ÌÖ®Ç°£¬ÎÒÃÇÐèÒª°²×°Ò»Ð©Èí¼þºÍÉèÖÃ»·¾³¡£ÒòÎªCÊÇÒ»¸öÍ¨
-ÓÃÓïÑÔÇÒÏàµ±¼òµ¥¡£ÎÒÃÇÖÁÉÙÐèÒª°²×°Á½¸öÖ÷Òª»ù±¾Èí¼þ£º±à¼­Æ÷ºÍ±à¼­Æ÷¡£
+åœ¨æˆ‘ä»¬å¼€å§‹ä½¿ç”¨Cç¼–ç¨‹ä¹‹å‰ï¼Œæˆ‘ä»¬éœ€è¦å®‰è£…ä¸€äº›è½¯ä»¶å’Œè®¾ç½®çŽ¯å¢ƒã€‚å› ä¸ºCæ˜¯ä¸€ä¸ªé€š
+ç”¨è¯­è¨€ä¸”ç›¸å½“ç®€å•ã€‚æˆ‘ä»¬è‡³å°‘éœ€è¦å®‰è£…ä¸¤ä¸ªä¸»è¦åŸºæœ¬è½¯ä»¶ï¼šç¼–è¾‘å™¨å’Œç¼–è¾‘å™¨ã€‚
 
-** ±à¼­Æ÷
+** ç¼–è¾‘å™¨
 
-±à¼­Æ÷ÔÊÐíÄãÊ¹ÓÃÒ»ÖÖÊÊºÏ±à³ÌµÄ·½Ê½À´±à¼­ÎÄ±¾ÎÄ¼þ¡£
+ç¼–è¾‘å™¨å…è®¸ä½ ä½¿ç”¨ä¸€ç§é€‚åˆç¼–ç¨‹çš„æ–¹å¼æ¥ç¼–è¾‘æ–‡æœ¬æ–‡ä»¶ã€‚
 
-ÔÚLinuxÉÏÎÒÍÆ¼öÊ¹ÓÃgedit¡£Èç¹ûÄãÊÇÒ»¸öVim»òEmacsÓÃ»§£¬ÕâÐ©Ò²¿ÉÒÔÊ¹ÓÃ¡£
-Çë²»ÒªÊ¹ÓÃÈÎºÎIDE¡£Õâ¸öÐ¡ÏîÄ¿²»ÐèÒªIDE£¬²¢ÇÒ¶ÔÓÚÀí½âÔ­ÀíÃ»ÓÐ°ïÖú¡£
+åœ¨Linuxä¸Šæˆ‘æŽ¨èä½¿ç”¨geditã€‚å¦‚æžœä½ æ˜¯ä¸€ä¸ªVimæˆ–Emacsç”¨æˆ·ï¼Œè¿™äº›ä¹Ÿå¯ä»¥ä½¿ç”¨ã€‚
+è¯·ä¸è¦ä½¿ç”¨ä»»ä½•IDEã€‚è¿™ä¸ªå°é¡¹ç›®ä¸éœ€è¦IDEï¼Œå¹¶ä¸”å¯¹äºŽç†è§£åŽŸç†æ²¡æœ‰å¸®åŠ©ã€‚
 
-ÔÚMacÉÏ¿ÉÒÔÊ¹ÓÃTextWrangler¡£Çë²»ÒªÊ¹ÓÃXCode¡£
+åœ¨Macä¸Šå¯ä»¥ä½¿ç”¨TextWranglerã€‚è¯·ä¸è¦ä½¿ç”¨XCodeã€‚
 
-ÔÚWindowsÉÏ¿ÉÒÔÑ¡ÔñNotepad++¡£Çë²»ÒªÊ¹ÓÃVisual Studio¡£
+åœ¨Windowsä¸Šå¯ä»¥é€‰æ‹©Notepad++ã€‚è¯·ä¸è¦ä½¿ç”¨Visual Studioã€‚
 
-** ±àÒëÆ÷
+** ç¼–è¯‘å™¨
 
-±àÒëÆ÷¿ÉÒÔ½«CÔ´Âë×ª»»³ÉµçÄÔÄÜÔËÐÐµÄ³ÌÐò¡£±àÒëÆ÷µÄ°²×°¹ý³ÌÈ¡¾öÓÚ²Ù×÷Ïµ
-Í³¡£
+ç¼–è¯‘å™¨å¯ä»¥å°†Cæºç è½¬æ¢æˆç”µè„‘èƒ½è¿è¡Œçš„ç¨‹åºã€‚ç¼–è¯‘å™¨çš„å®‰è£…è¿‡ç¨‹å–å†³äºŽæ“ä½œç³»
+ç»Ÿã€‚
 
-ÔÚLinuxÉÏ¿ÉÒÔÍ¨¹ýÏÂÔØÒ»Ð©°üÀ´°²×°±àÒëÆ÷¡£Èç¹ûÄãÔËÐÐUbuntu»òDebian£¬Äã
-¿ÉÒÔÊ¹ÓÃÃüÁî *sudo apt-get install build-essential* ¡£Èç¹ûÄãÔËÐÐFedora
-»òÀàËÆLinux±äÌå£¬Äã¿ÉÒÔÊ¹ÓÃÃüÁî *su -c yum 'groupinstall
-development-tools`* ¡£
+åœ¨Linuxä¸Šå¯ä»¥é€šè¿‡ä¸‹è½½ä¸€äº›åŒ…æ¥å®‰è£…ç¼–è¯‘å™¨ã€‚å¦‚æžœä½ è¿è¡ŒUbuntuæˆ–Debianï¼Œä½ 
+å¯ä»¥ä½¿ç”¨å‘½ä»¤ *sudo apt-get install build-essential* ã€‚å¦‚æžœä½ è¿è¡ŒFedora
+æˆ–ç±»ä¼¼Linuxå˜ä½“ï¼Œä½ å¯ä»¥ä½¿ç”¨å‘½ä»¤ *su -c yum 'groupinstall
+development-tools`* ã€‚
 
-ÔÚMacÉÏ¿ÉÄã¿ÉÒÔÍ¨¹ýÏÂÔØºÍ°²×°×îÐÂ°æµÄXCodeÀ´°²×°±àÒëÆ÷¡£
+åœ¨Macä¸Šå¯ä½ å¯ä»¥é€šè¿‡ä¸‹è½½å’Œå®‰è£…æœ€æ–°ç‰ˆçš„XCodeæ¥å®‰è£…ç¼–è¯‘å™¨ã€‚
 
-ÔÚWindowsÉÏÄã¿ÉÒÔÍ¨¹ýÏÂÔØºÍ°²×°MinGWÀ´°²×°±àÒëÆ÷¡£
+åœ¨Windowsä¸Šä½ å¯ä»¥é€šè¿‡ä¸‹è½½å’Œå®‰è£…MinGWæ¥å®‰è£…ç¼–è¯‘å™¨ã€‚
 
-*** ²âÊÔ±àÒëÆ÷
+*** æµ‹è¯•ç¼–è¯‘å™¨
 
-Äã¿ÉÒÔÊ¹ÓÃÈçÏÂÃüÁîÀ´²âÊÔÄãµÄC±àÒëÆ÷ÊÇ·ñÒÑ°²×°£º
+ä½ å¯ä»¥ä½¿ç”¨å¦‚ä¸‹å‘½ä»¤æ¥æµ‹è¯•ä½ çš„Cç¼–è¯‘å™¨æ˜¯å¦å·²å®‰è£…ï¼š
 *cc --version*
 
 ** Hello World
 
-ÄãµÄ»·¾³ÉèÖÃºó£¬Æô¶¯ÄãµÄ±à¼­Æ÷£¬ÊäÈëÈçÏÂ´úÂë¡£±£´æÎÄ¼þÎªhello\_world.c¡£
+ä½ çš„çŽ¯å¢ƒè®¾ç½®åŽï¼Œå¯åŠ¨ä½ çš„ç¼–è¾‘å™¨ï¼Œè¾“å…¥å¦‚ä¸‹ä»£ç ã€‚ä¿å­˜æ–‡ä»¶ä¸ºhello\_world.cã€‚
 
 #+BEGIN_SRC c
 #include <stdio.h>
@@ -131,86 +131,86 @@ int main(int argc, char **argv) {
 }
 #+END_SRC
 
-ÎÒ½«³¢ÊÔÒ»²½Ò»²½À´½âÊÍÕâ¸ö³ÌÐò¡£
+æˆ‘å°†å°è¯•ä¸€æ­¥ä¸€æ­¥æ¥è§£é‡Šè¿™ä¸ªç¨‹åºã€‚
 
-µÚÒ»´ÎÎÒÃÇ°üº¬(include)Í·ÎÄ¼þ(header)¡£Õâ¸öÉùÃ÷ÔÊÐíÎÒÃÇÊ¹ÓÃ *stdio.h*
-ÖÐµÄº¯Êý¡£Õâ¸öÍ·ÎÄ¼þ°üº¬ÁËCµÄ±ê×¼ÊäÈëºÍÊä³öº¯Êý¿â¡£ºóÃæÎÒÃÇÔÚ³ÌÐòÖÐ¿´
-µ½µÄº¯Êý *puts* ¾ÍÊÇÕâ¸ö¿âÖÐµÄº¯ÊýÖ®Ò»¡£
+ç¬¬ä¸€æ¬¡æˆ‘ä»¬åŒ…å«(include)å¤´æ–‡ä»¶(header)ã€‚è¿™ä¸ªå£°æ˜Žå…è®¸æˆ‘ä»¬ä½¿ç”¨ *stdio.h*
+ä¸­çš„å‡½æ•°ã€‚è¿™ä¸ªå¤´æ–‡ä»¶åŒ…å«äº†Cçš„æ ‡å‡†è¾“å…¥å’Œè¾“å‡ºå‡½æ•°åº“ã€‚åŽé¢æˆ‘ä»¬åœ¨ç¨‹åºä¸­çœ‹
+åˆ°çš„å‡½æ•° *puts* å°±æ˜¯è¿™ä¸ªåº“ä¸­çš„å‡½æ•°ä¹‹ä¸€ã€‚
 
-½ÓÏÂÀ´ÎÒÃÇÉùÃ÷µÄº¯ÊýÊÇ *main* ¡£Õâ¸öº¯ÊýµÄ·µ»ØÖµÀàÐÍÊÇ *int* ,Ê¹
-ÓÃ *int* ÀàÐÍµÄ *argc* ºÍ *char *** ÀàÐÍµÄ *argv* ×÷Îª²ÎÊý¡£
+æŽ¥ä¸‹æ¥æˆ‘ä»¬å£°æ˜Žçš„å‡½æ•°æ˜¯ *main* ã€‚è¿™ä¸ªå‡½æ•°çš„è¿”å›žå€¼ç±»åž‹æ˜¯ *int* ,ä½¿
+ç”¨ *int* ç±»åž‹çš„ *argc* å’Œ *char *** ç±»åž‹çš„ *argv* ä½œä¸ºå‚æ•°ã€‚
 
-ÔÚ *main* º¯ÊýÄÚ²¿£¬ *puts* º¯Êý±»µ÷ÓÃ£¬Ëü½«Hello, world!Êä³öµ½ÃüÁîÐÐ
-¡£ *puts* º¯ÊýÊÇ *put string* µÄ¼òÐ´¡£º¯ÊýÖÐµÄµÚ¶þÌõÓï¾äÊÇ *return
-0;* ¡£ Ëü¸æËß *main* º¯Êý½áÊø²¢ÇÒ·µ»Ø0¡£µ±Ò»¸öC³ÌÐò·µ»Ø0±íÃ÷ÔËÐÐÕâ¸öº¯
-ÊýÃ»ÓÐ´íÎó¡£
+åœ¨ *main* å‡½æ•°å†…éƒ¨ï¼Œ *puts* å‡½æ•°è¢«è°ƒç”¨ï¼Œå®ƒå°†Hello, world!è¾“å‡ºåˆ°å‘½ä»¤è¡Œ
+ã€‚ *puts* å‡½æ•°æ˜¯ *put string* çš„ç®€å†™ã€‚å‡½æ•°ä¸­çš„ç¬¬äºŒæ¡è¯­å¥æ˜¯ *return
+0;* ã€‚ å®ƒå‘Šè¯‰ *main* å‡½æ•°ç»“æŸå¹¶ä¸”è¿”å›ž0ã€‚å½“ä¸€ä¸ªCç¨‹åºè¿”å›ž0è¡¨æ˜Žè¿è¡Œè¿™ä¸ªå‡½
+æ•°æ²¡æœ‰é”™è¯¯ã€‚
 
-** ±àÒë
+** ç¼–è¯‘
 
-ÔÚÔËÐÐÕâ¸ö³ÌÐòÖ®Ç°ÎÒÃÇÐèÒª±àÒëËü¡£Ëü½«²úÉúÒ»¸öÊµ¼Ê¿ÉÔÚµçÄÔÉÏÖ´ÐÐµÄ³ÌÐò¡£
-ÔÚÃüÁîÐÐÉÏÎÒÃÇ¿ÉÒÔÊäÈëÈçÏÂÃüÁî£º
+åœ¨è¿è¡Œè¿™ä¸ªç¨‹åºä¹‹å‰æˆ‘ä»¬éœ€è¦ç¼–è¯‘å®ƒã€‚å®ƒå°†äº§ç”Ÿä¸€ä¸ªå®žé™…å¯åœ¨ç”µè„‘ä¸Šæ‰§è¡Œçš„ç¨‹åºã€‚
+åœ¨å‘½ä»¤è¡Œä¸Šæˆ‘ä»¬å¯ä»¥è¾“å…¥å¦‚ä¸‹å‘½ä»¤ï¼š
 
 #+BEGIN_SRC shell
 cc -std=c99 -Wall hello_world.c -o hello_world
 #+END_SRC
 
-Õâ¸öÃüÁî±àÒëhello\_world.cÖÐµÄ´úÂë£¬±¨¸æÈÎºÎ¾¯¸æ£¬²¢²úÉúÒ»¸öhello\_world
-ÎÄ¼þ¡£ÎÒÃÇÊ¹ÓÃ *-std=c99* ±êÖ¾¸æËß±àÒëÆ÷ÎÒÃÇÊ¹ÓÃÄÄ¸ö±ê×¼C°æ±¾¡£ÕâÈÃ±à
-ÒëÆ÷È·±£ÎÒÃÇµÄ´úÂëÊÇ±ê×¼µÄ£¬ÕâÑù²»Í¬µÄ²Ù×÷ÏµÍ³»ò±àÒëÆ÷½«¿ÉÒÔÊ¹ÓÃÎÒÃÇµÄ´ú
-Âë¡£
+è¿™ä¸ªå‘½ä»¤ç¼–è¯‘hello\_world.cä¸­çš„ä»£ç ï¼ŒæŠ¥å‘Šä»»ä½•è­¦å‘Šï¼Œå¹¶äº§ç”Ÿä¸€ä¸ªhello\_world
+æ–‡ä»¶ã€‚æˆ‘ä»¬ä½¿ç”¨ *-std=c99* æ ‡å¿—å‘Šè¯‰ç¼–è¯‘å™¨æˆ‘ä»¬ä½¿ç”¨å“ªä¸ªæ ‡å‡†Cç‰ˆæœ¬ã€‚è¿™è®©ç¼–
+è¯‘å™¨ç¡®ä¿æˆ‘ä»¬çš„ä»£ç æ˜¯æ ‡å‡†çš„ï¼Œè¿™æ ·ä¸åŒçš„æ“ä½œç³»ç»Ÿæˆ–ç¼–è¯‘å™¨å°†å¯ä»¥ä½¿ç”¨æˆ‘ä»¬çš„ä»£
+ç ã€‚
 
-Èç¹û±àÒë³É¹¦£¬ÎÒÃÇ½«¿´µ½Ä¿Â¼ÖÐ²úÉúµÄhello\_worldÎÄ¼þ¡£Êä
-Èë *./hello\_world* À´ÔËÐÐÕâ¸ö³ÌÐò¡£Èç¹ûÒ»ÇÐ¶¼ÕýÈ·ÎÒÃÇ×îÖÕ»á¿´
-µ½ *Hello, world!* ÏûÏ¢³öÏÖ¡£
+å¦‚æžœç¼–è¯‘æˆåŠŸï¼Œæˆ‘ä»¬å°†çœ‹åˆ°ç›®å½•ä¸­äº§ç”Ÿçš„hello\_worldæ–‡ä»¶ã€‚è¾“
+å…¥ *./hello\_world* æ¥è¿è¡Œè¿™ä¸ªç¨‹åºã€‚å¦‚æžœä¸€åˆ‡éƒ½æ­£ç¡®æˆ‘ä»¬æœ€ç»ˆä¼šçœ‹
+åˆ° *Hello, world!* æ¶ˆæ¯å‡ºçŽ°ã€‚
 
-** ´íÎó
+** é”™è¯¯
 
-Èç¹ûÄãµÄC³ÌÐòÓÐÎÊÌâ£¬ÔÚ±àÒë¹ý³ÌÖÐ¿ÉÄÜ»áÊ§°Ü¡£Õâ¸öÎÊÌâÔ­Òò·¶Î§¿ÉÄÜ´Ó¼ò
-µ¥µÄÓï·¨´íÎóµ½ÄÑ¶®µÄ¸´ÔÓÎÊÌâ¡£
+å¦‚æžœä½ çš„Cç¨‹åºæœ‰é—®é¢˜ï¼Œåœ¨ç¼–è¯‘è¿‡ç¨‹ä¸­å¯èƒ½ä¼šå¤±è´¥ã€‚è¿™ä¸ªé—®é¢˜åŽŸå› èŒƒå›´å¯èƒ½ä»Žç®€
+å•çš„è¯­æ³•é”™è¯¯åˆ°éš¾æ‡‚çš„å¤æ‚é—®é¢˜ã€‚
 
-ÓÐÊ±À´×Ô±àÒëÆ÷µÄ´íÎóÐÅÏ¢½«±äµÃÓÐÒâÒå£¬Èç¹ûÄãÄÑÒÔÀí½âËü¿ÉÒÔ³¢ÊÔÔÚÍøÉÏËÑ
-Ë÷Ïà¹ØÐÅÏ¢¡£ÄãÓ¦¸ÃÏÈ¿´¿´ÄãÊÇ·ñÄÜÕÒ³ö´íÎóÐÅÏ¢µÄÒâË¼ºÍÈçºÎ¸ÄÕýËü¡£
+æœ‰æ—¶æ¥è‡ªç¼–è¯‘å™¨çš„é”™è¯¯ä¿¡æ¯å°†å˜å¾—æœ‰æ„ä¹‰ï¼Œå¦‚æžœä½ éš¾ä»¥ç†è§£å®ƒå¯ä»¥å°è¯•åœ¨ç½‘ä¸Šæœ
+ç´¢ç›¸å…³ä¿¡æ¯ã€‚ä½ åº”è¯¥å…ˆçœ‹çœ‹ä½ æ˜¯å¦èƒ½æ‰¾å‡ºé”™è¯¯ä¿¡æ¯çš„æ„æ€å’Œå¦‚ä½•æ”¹æ­£å®ƒã€‚
 
-ÓÐÊ±¶à¸ö±àÒë´íÎó¿ÉÄÜÔ´ÓÚÏàÍ¬´¦¡£
+æœ‰æ—¶å¤šä¸ªç¼–è¯‘é”™è¯¯å¯èƒ½æºäºŽç›¸åŒå¤„ã€‚
 
-ÓÐÊ±±àÒëÆ÷ÄÜ±àÒë³ÌÐò£¬µ«ÔÚÔËÐÐÊ±±ÀÀ£¡£ÕâÖÖÇé¿öÏÂµ÷ÊÔC³ÌÐò·Ç³£À§ÄÑ¡£
+æœ‰æ—¶ç¼–è¯‘å™¨èƒ½ç¼–è¯‘ç¨‹åºï¼Œä½†åœ¨è¿è¡Œæ—¶å´©æºƒã€‚è¿™ç§æƒ…å†µä¸‹è°ƒè¯•Cç¨‹åºéžå¸¸å›°éš¾ã€‚
 
-Èç¹ûÄãÊÇÒ»¸ö³õÑ§Õß£¬µ÷ÊÔ±ÀÀ£µÄ³ÌÐò¿ÉÒÔÍ¨¹ý´òÓ¡Ò»Ð©ÐÅÏ¢À´¶¨Î»³ö´íµÄ·¶Î§£¬
-ÕâÊÇÒ»¸öÓÐÐ§µÄµ÷ÊÔ¼¼Êõ¡£
+å¦‚æžœä½ æ˜¯ä¸€ä¸ªåˆå­¦è€…ï¼Œè°ƒè¯•å´©æºƒçš„ç¨‹åºå¯ä»¥é€šè¿‡æ‰“å°ä¸€äº›ä¿¡æ¯æ¥å®šä½å‡ºé”™çš„èŒƒå›´ï¼Œ
+è¿™æ˜¯ä¸€ä¸ªæœ‰æ•ˆçš„è°ƒè¯•æŠ€æœ¯ã€‚
 
-¿ÉÒÔÊ¹ÓÃ *gdb* À´µ÷ÊÔÄãµÄC³ÌÐò£¬Ê¹ÓÃËü¿ÉÄÜ»áºÜÀ§ÄÑºÍÄÑ¶®£¬µ«Ëü·Ç³£Ç¿´ó£¬
-ÄÜ¹»¸øÄã·Ç³£ÓÐ¼ÛÖµµÄÐÅÏ¢ÒÔ¼°Éú²ú´íÎóÐÅÏ¢ºÍÎ»ÖÃ¡£
+å¯ä»¥ä½¿ç”¨ *gdb* æ¥è°ƒè¯•ä½ çš„Cç¨‹åºï¼Œä½¿ç”¨å®ƒå¯èƒ½ä¼šå¾ˆå›°éš¾å’Œéš¾æ‡‚ï¼Œä½†å®ƒéžå¸¸å¼ºå¤§ï¼Œ
+èƒ½å¤Ÿç»™ä½ éžå¸¸æœ‰ä»·å€¼çš„ä¿¡æ¯ä»¥åŠç”Ÿäº§é”™è¯¯ä¿¡æ¯å’Œä½ç½®ã€‚
 
-ÔÚMac¿ÉÒÔÊ¹ÓÃ *lldb** À´´úÌæ *gdb* Íê³ÉÍ¬ÑùµÄÈÎÎñ¡£
+åœ¨Macå¯ä»¥ä½¿ç”¨ *lldb** æ¥ä»£æ›¿ *gdb* å®ŒæˆåŒæ ·çš„ä»»åŠ¡ã€‚
 
-ÔÚLinux»òMacÉÏ *valgrind* ¿ÉÒÔÓÃÀ´¼ì²âÄÚ´æÒç³öºÍÆäËüµÄÑÏÖØ´íÎó¡£
-ValgrindÄÜ¹»½ÚÔ¼Äãµ÷ÊÔµÄÊ±¼ä¡£²»ÐèÒªÌ«¾«Í¨Ëü£¬ËùÒÔÇ¿ÁÒÍÆ¼ö¡£
+åœ¨Linuxæˆ–Macä¸Š *valgrind* å¯ä»¥ç”¨æ¥æ£€æµ‹å†…å­˜æº¢å‡ºå’Œå…¶å®ƒçš„ä¸¥é‡é”™è¯¯ã€‚
+Valgrindèƒ½å¤ŸèŠ‚çº¦ä½ è°ƒè¯•çš„æ—¶é—´ã€‚ä¸éœ€è¦å¤ªç²¾é€šå®ƒï¼Œæ‰€ä»¥å¼ºçƒˆæŽ¨èã€‚
 
-** ÎÄµµ
+** æ–‡æ¡£
 
-Õâ±¾ÊéµÄÊµÀýÖÐÄã¿ÉÄÜ»áÓöµ½²»ÈÏÊ¶µÄº¯Êý£¬Äã¿ÉÒÔ²é¿´±ê×¼¿âÎÄµµÀ´ÁË½âËü¿ÉÒÔ×ö
-Ê²Ã´£¬ÒÔ¼°ÈçºÎÊ¹ÓÃËüÃÇ¡£
+è¿™æœ¬ä¹¦çš„å®žä¾‹ä¸­ä½ å¯èƒ½ä¼šé‡åˆ°ä¸è®¤è¯†çš„å‡½æ•°ï¼Œä½ å¯ä»¥æŸ¥çœ‹æ ‡å‡†åº“æ–‡æ¡£æ¥äº†è§£å®ƒå¯ä»¥åš
+ä»€ä¹ˆï¼Œä»¥åŠå¦‚ä½•ä½¿ç”¨å®ƒä»¬ã€‚
 
-* »ù´¡(Basics)
-** ¸ÅÊö
+* åŸºç¡€(Basics)
+** æ¦‚è¿°
 
-ÕâÒ»ÕÂÎÒÃÇ½«¿ìËÙä¯ÀÀCµÄ»ù±¾ÌØÕ÷¡£
+è¿™ä¸€ç« æˆ‘ä»¬å°†å¿«é€Ÿæµè§ˆCçš„åŸºæœ¬ç‰¹å¾ã€‚
 
-** ³ÌÐò
+** ç¨‹åº
 
-C³ÌÐòÊÇÓÉº¯Êý¶¨ÒåºÍ½á¹¹Ìå¶¨Òå×é³ÉµÄ¡£
+Cç¨‹åºæ˜¯ç”±å‡½æ•°å®šä¹‰å’Œç»“æž„ä½“å®šä¹‰ç»„æˆçš„ã€‚
 
-Òò´ËÒ»¸öÔ´ÎÄ¼þÊÇº¯ÊýºÍÀàÐÍµÄÁÐ±í¡£º¯Êý¿ÉÒÔµ÷ÓÃÆäËü£¨»ò±¾Éí£©º¯Êý£¬¿ÉÒÔ
-Ê¹ÓÃÈÎÒâÒÑ¾­¶¨Òå»òÄÚÖÃµÄÊý¾ÝÀàÐÍ¡£
+å› æ­¤ä¸€ä¸ªæºæ–‡ä»¶æ˜¯å‡½æ•°å’Œç±»åž‹çš„åˆ—è¡¨ã€‚å‡½æ•°å¯ä»¥è°ƒç”¨å…¶å®ƒï¼ˆæˆ–æœ¬èº«ï¼‰å‡½æ•°ï¼Œå¯ä»¥
+ä½¿ç”¨ä»»æ„å·²ç»å®šä¹‰æˆ–å†…ç½®çš„æ•°æ®ç±»åž‹ã€‚
 
-¿ÉÒÔµ÷ÓÃÆäËü¿âÖÐµÄº¯Êý»òÊ¹ÓÃ¿âÖÐµÄÊý¾ÝÀàÐÍ¡£
+å¯ä»¥è°ƒç”¨å…¶å®ƒåº“ä¸­çš„å‡½æ•°æˆ–ä½¿ç”¨åº“ä¸­çš„æ•°æ®ç±»åž‹ã€‚
 
-ÈçÇ°ÕÂËù¼û£¬C³ÌÐòµÄÖ´ÐÐ´Ó *main* º¯Êý¿ªÊ¼£¬ *main* ÄÚ²¿µ÷ÓÃÆäËü¸ü¶àµÄ
-º¯ÊýÀ´Íê³ÉËùÐèµÄÐÐÎª¡£
+å¦‚å‰ç« æ‰€è§ï¼ŒCç¨‹åºçš„æ‰§è¡Œä»Ž *main* å‡½æ•°å¼€å§‹ï¼Œ *main* å†…éƒ¨è°ƒç”¨å…¶å®ƒæ›´å¤šçš„
+å‡½æ•°æ¥å®Œæˆæ‰€éœ€çš„è¡Œä¸ºã€‚
 
-** ±äÁ¿
+** å˜é‡
 
-CÖÐÃ¿¸ö±äÁ¿¶¼ÓÐÒ»¸öÃ÷È·µÄÀàÐÍ¡£ÕâÐ©ÀàÐÍÓÉÎÒÃÇ¶¨Òå»òÓïÑÔÖÐÄÚÖÃ¡£
+Cä¸­æ¯ä¸ªå˜é‡éƒ½æœ‰ä¸€ä¸ªæ˜Žç¡®çš„ç±»åž‹ã€‚è¿™äº›ç±»åž‹ç”±æˆ‘ä»¬å®šä¹‰æˆ–è¯­è¨€ä¸­å†…ç½®ã€‚
 
 #+BEGIN_SRC C
 type variable[=value];
@@ -221,30 +221,30 @@ int count;
 char ch = 'A';
 #+END_SRC
 
-ÄÚÖÃÀàÐÍÈçÏÂ£º
-| void   | ¿ÕÀàÐÍ         |
-| char   | ×Ö·û           |
-| int    | ÕûÐÍ           |
-| long   | ³¤ÕûÐÍ         |
-| float  | µ¥¾«¶È¸¡µãÀàÐÍ |
-| double | Ë«¾«¶È¸¡µãÀàÐÍ |
+å†…ç½®ç±»åž‹å¦‚ä¸‹ï¼š
+| void   | ç©ºç±»åž‹         |
+| char   | å­—ç¬¦           |
+| int    | æ•´åž‹           |
+| long   | é•¿æ•´åž‹         |
+| float  | å•ç²¾åº¦æµ®ç‚¹ç±»åž‹ |
+| double | åŒç²¾åº¦æµ®ç‚¹ç±»åž‹ |
 
-** º¯ÊýÉùÃ÷
+** å‡½æ•°å£°æ˜Ž
 
-º¯ÊýÊÇ²Ù×÷±äÁ¿µÄ¼ÆËã¹ý³Ì£¬¿ÉÒÔ¸Ä±ä³ÌÐòµÄ×´Ì¬¡£Ëü½ÓÊÕ¶à¸ö±äÁ¿ÎªÊäÈë£¬·µ
-»Øµ¥±äÁ¿×÷ÎªÊä³ö¡£
+å‡½æ•°æ˜¯æ“ä½œå˜é‡çš„è®¡ç®—è¿‡ç¨‹ï¼Œå¯ä»¥æ”¹å˜ç¨‹åºçš„çŠ¶æ€ã€‚å®ƒæŽ¥æ”¶å¤šä¸ªå˜é‡ä¸ºè¾“å…¥ï¼Œè¿”
+å›žå•å˜é‡ä½œä¸ºè¾“å‡ºã€‚
 
 #+BEGIN_SRC C
-//ÉùÃ÷º¯Êý
+//å£°æ˜Žå‡½æ•°
 return_type function_name(args...);
 
-//¶¨Òåº¯Êý
+//å®šä¹‰å‡½æ•°
 return_type function_name(args...)
 {
       //function body...
 }
 
-//µ÷ÓÃº¯Êý
+//è°ƒç”¨å‡½æ•°
 function_name(...);
 #+END_SRC
 
@@ -260,21 +260,21 @@ int add(int x, int y) {
 int rs = add(10, 11);
 #+END_SRC
 
-** ½á¹¹Ìå¶¨Òå
+** ç»“æž„ä½“å®šä¹‰
 
-½á¹¹ÌåÓÃÓÚÉùÃ÷ÐÂÀàÐÍ¡£½á¹¹Ìå½«¼¸¸ö±äÁ¿À¦°ó³ÉÒ»¸ö°ü¡£
+ç»“æž„ä½“ç”¨äºŽå£°æ˜Žæ–°ç±»åž‹ã€‚ç»“æž„ä½“å°†å‡ ä¸ªå˜é‡æ†ç»‘æˆä¸€ä¸ªåŒ…ã€‚
 
-ÎÒÃÇ¿ÉÒÔÊ¹ÓÃ½á¹¹ÌåÀ´±íÊ¾¸ü¸´ÔÓµÄÊý¾ÝÀàÐÍ¡£
+æˆ‘ä»¬å¯ä»¥ä½¿ç”¨ç»“æž„ä½“æ¥è¡¨ç¤ºæ›´å¤æ‚çš„æ•°æ®ç±»åž‹ã€‚
 
 #+BEGIN_SRC C
-//¶¨Òå½á¹¹Ìå
+//å®šä¹‰ç»“æž„ä½“
 struct name {
     type1 variable1;
     type2 variable2;
     //...
 };
 
-//Ê¹ÓÃ½á¹¹ÌåÉùÃ÷±äÁ¿
+//ä½¿ç”¨ç»“æž„ä½“å£°æ˜Žå˜é‡
 struct name variable;
 #+END_SRC
 
@@ -289,25 +289,25 @@ p.x = 0.1;
 p.y = 10.0;
 #+END_SRC
 
-** Ö¸Õë
+** æŒ‡é’ˆ
 
-Ö¸ÕëÊÇÒ»°ãÀàÐÍµÄ±äÖÖ£¬ÔÚÀàÐÍºóÃæ¼ÓÉÏÐÇºÅºó×º¡£ÀýÈç£¬¶¨ÒåÕûÐÍÖ¸
-Õë *int ** ¡£ÎÒÃÇÒÑ¾­¿´µ½¹ý _char** argv_ £¬ ÕâÊÇÒ»¸öÖ¸ÏòÖ¸ÕëµÄÖ¸Õë£¬
-ÓÃÓÚ *main* º¯ÊýµÄÊäÈë¡£
+æŒ‡é’ˆæ˜¯ä¸€èˆ¬ç±»åž‹çš„å˜ç§ï¼Œåœ¨ç±»åž‹åŽé¢åŠ ä¸Šæ˜Ÿå·åŽç¼€ã€‚ä¾‹å¦‚ï¼Œå®šä¹‰æ•´åž‹æŒ‡
+é’ˆ *int ** ã€‚æˆ‘ä»¬å·²ç»çœ‹åˆ°è¿‡ _char** argv_ ï¼Œ è¿™æ˜¯ä¸€ä¸ªæŒ‡å‘æŒ‡é’ˆçš„æŒ‡é’ˆï¼Œ
+ç”¨äºŽ *main* å‡½æ•°çš„è¾“å…¥ã€‚
 
-** ×Ö·û´®
+** å­—ç¬¦ä¸²
 
-ÔÚCÖÐ×Ö·û´®Ê¹ÓÃÖ¸Õë *char** À´±íÊ¾¡£µ×²ã´æ´¢ÊÇµÄÒ»¸ö×Ö·ûÁÐ±í£¬×îºóÒ»¸ö
-×Ö·ûÊÇ¿ÕÖÕÖ¹·û(/null terminator/)¡£
+åœ¨Cä¸­å­—ç¬¦ä¸²ä½¿ç”¨æŒ‡é’ˆ *char** æ¥è¡¨ç¤ºã€‚åº•å±‚å­˜å‚¨æ˜¯çš„ä¸€ä¸ªå­—ç¬¦åˆ—è¡¨ï¼Œæœ€åŽä¸€ä¸ª
+å­—ç¬¦æ˜¯ç©ºç»ˆæ­¢ç¬¦(/null terminator/)ã€‚
 
-×Ö·û´®Ò²¿ÉÒÔÊ¹ÓÃË«ÒýºÅ¶¨Òå£¬½«×Ö·ûÎÄ±¾·ÅÖÃÔÚË«ÒýºÅÖ®ÄÚ¡£Èç"Hello, world!"¡£
+å­—ç¬¦ä¸²ä¹Ÿå¯ä»¥ä½¿ç”¨åŒå¼•å·å®šä¹‰ï¼Œå°†å­—ç¬¦æ–‡æœ¬æ”¾ç½®åœ¨åŒå¼•å·ä¹‹å†…ã€‚å¦‚"Hello, world!"ã€‚
 
-** Ìõ¼þ
+** æ¡ä»¶
 
-Ìõ¼þÓïÑÔÊÇÈÃ³ÌÐòÔÚÖ»ÄÜÔÚÂú×ãÄ³¸öÌõ¼þÊ±²ÅÖ´ÐÐ¡£
+æ¡ä»¶è¯­è¨€æ˜¯è®©ç¨‹åºåœ¨åªèƒ½åœ¨æ»¡è¶³æŸä¸ªæ¡ä»¶æ—¶æ‰æ‰§è¡Œã€‚
 
-ÎªÁËÔÚÄ³¸öÌõ¼þÏÂÖ´ÐÐ´úÂëÎÒÃÇÊ¹ÓÃ *if* Óï¾ä¡£ *else if* ºÍ *else* ¶¼ÊÇ
-¿ÉÑ¡µÄ¡£
+ä¸ºäº†åœ¨æŸä¸ªæ¡ä»¶ä¸‹æ‰§è¡Œä»£ç æˆ‘ä»¬ä½¿ç”¨ *if* è¯­å¥ã€‚ *else if* å’Œ *else* éƒ½æ˜¯
+å¯é€‰çš„ã€‚
 
 #+BEGIN_SRC C
 if (condition) {
@@ -327,12 +327,12 @@ if (x > 10 && x < 100) {
 }
 #+END_SRC
 
-** Ñ­»·
+** å¾ªçŽ¯
 
-Ñ­»·ÊÇÔÊÐí´úÂëÄÜ¹»ÖØ¸´Ö´ÐÐÖ±µ½Ä³¸öÌõ¼þ±ä³É¼Ù»ò¼ÆÊýÆ÷½áÊø¡£
+å¾ªçŽ¯æ˜¯å…è®¸ä»£ç èƒ½å¤Ÿé‡å¤æ‰§è¡Œç›´åˆ°æŸä¸ªæ¡ä»¶å˜æˆå‡æˆ–è®¡æ•°å™¨ç»“æŸã€‚
 
-CÖÐÖ÷ÒªÁ½ÖÖÑ­»·¡£Ò»¸öÊÇ *while* Ñ­»·£¬ Õâ¸öÑ­»·ÖØ¸´Ö´ÐÐ´úÂë¿éÖ±µ½Ìõ¼þ
-±ä³É¼Ù¡£
+Cä¸­ä¸»è¦ä¸¤ç§å¾ªçŽ¯ã€‚ä¸€ä¸ªæ˜¯ *while* å¾ªçŽ¯ï¼Œ è¿™ä¸ªå¾ªçŽ¯é‡å¤æ‰§è¡Œä»£ç å—ç›´åˆ°æ¡ä»¶
+å˜æˆå‡ã€‚
 
 #+BEGIN_SRC C
 while (condition) {
@@ -340,7 +340,7 @@ while (condition) {
 }
 #+END_SRC
 
-µÚ¶þÖÖÀàÐÍÊÇ *for* Ñ­»·¡£
+ç¬¬äºŒç§ç±»åž‹æ˜¯ *for* å¾ªçŽ¯ã€‚
 
 #+BEGIN_SRC C
 for (initialiser; condition; incrementer) {
@@ -348,29 +348,29 @@ for (initialiser; condition; incrementer) {
 }
 #+END_SRC
 
-* ½»»¥Ê½ÌáÊ¾·û(An Interactive Prompt)
-** ¶ÁÈ¡£¬ÇóÖµ£¬´òÓ¡
+* äº¤äº’å¼æç¤ºç¬¦(An Interactive Prompt)
+** è¯»å–ï¼Œæ±‚å€¼ï¼Œæ‰“å°
 
-µ±ÎÒÃÇ¹¹½¨ÎÒÃÇµÄ±à³ÌÓïÑÔÊ±£¬ÎÒÃÇÐèÒªÄ³Ò»Ð©·½·¨À´ÓëËü½»»¥¡£C¿ÉÒÔÐÞ¸Ä´ú
-Âë£¬ÖØÐÂ±àÒëºóÔËÐÐ¡£¸üºÃµÄ·½·¨ÎÒÃÇÄÜ¶¯Ì¬µØÓëÓïÑÔ½øÐÐ½»»¥¡£ÎÒÃÇÄÜ¹»ÔÚÐí
-¶àÌõ¼þÏÂ²âÊÔËüµÄÌõ¼þ¶¼ºÜÑ¸ËÙ¡£ÎªÁË´ïµ½Õâ¸öÄ¿µÄ£¬ÎÒÃÇ¹¹½¨Ò»¸ö³ÆÎª½»»¥Ê½
-ÌáÊ¾·û(/interactive prompt/)µÄ¶«Î÷¡£
+å½“æˆ‘ä»¬æž„å»ºæˆ‘ä»¬çš„ç¼–ç¨‹è¯­è¨€æ—¶ï¼Œæˆ‘ä»¬éœ€è¦æŸä¸€äº›æ–¹æ³•æ¥ä¸Žå®ƒäº¤äº’ã€‚Cå¯ä»¥ä¿®æ”¹ä»£
+ç ï¼Œé‡æ–°ç¼–è¯‘åŽè¿è¡Œã€‚æ›´å¥½çš„æ–¹æ³•æˆ‘ä»¬èƒ½åŠ¨æ€åœ°ä¸Žè¯­è¨€è¿›è¡Œäº¤äº’ã€‚æˆ‘ä»¬èƒ½å¤Ÿåœ¨è®¸
+å¤šæ¡ä»¶ä¸‹æµ‹è¯•å®ƒçš„æ¡ä»¶éƒ½å¾ˆè¿…é€Ÿã€‚ä¸ºäº†è¾¾åˆ°è¿™ä¸ªç›®çš„ï¼Œæˆ‘ä»¬æž„å»ºä¸€ä¸ªç§°ä¸ºäº¤äº’å¼
+æç¤ºç¬¦(/interactive prompt/)çš„ä¸œè¥¿ã€‚
 
-Õâ¸ö³ÌÐòÌáÊ¾ÓÃ»§ÊäÈë£¬²¢ÇÒ·´À¡Ò»Ð©ÐÅÏ¢¡£Ê¹ÓÃËüÎÒÃÇ¿ÉÒÔºÜÈÝÒ×µÄ²âÊÔÎÒÃÇ
-µÄ±à³ÌÓïÑÔºÍÁË½âËüÈçºÎ¹¤×÷¡£Õâ¸öÏµÍ³½ÐREPL£¬ÊÇread-evaluate-print-loop
-µÄËõÐ´¡£ÕâÊÇÒ»ÖÖ³£¼ûÓë±à³ÌÓïÑÔ½»»¥µÄ·½Ê½£¬ÈçPython¡£
+è¿™ä¸ªç¨‹åºæç¤ºç”¨æˆ·è¾“å…¥ï¼Œå¹¶ä¸”åé¦ˆä¸€äº›ä¿¡æ¯ã€‚ä½¿ç”¨å®ƒæˆ‘ä»¬å¯ä»¥å¾ˆå®¹æ˜“çš„æµ‹è¯•æˆ‘ä»¬
+çš„ç¼–ç¨‹è¯­è¨€å’Œäº†è§£å®ƒå¦‚ä½•å·¥ä½œã€‚è¿™ä¸ªç³»ç»Ÿå«REPLï¼Œæ˜¯read-evaluate-print-loop
+çš„ç¼©å†™ã€‚è¿™æ˜¯ä¸€ç§å¸¸è§ä¸Žç¼–ç¨‹è¯­è¨€äº¤äº’çš„æ–¹å¼ï¼Œå¦‚Pythonã€‚
 
-ÔÚ¹¹½¨Ò»¸öÍêÕûµÄREPLÖ®Ç°ÎÒÃÇ½«´ÓÒ»Ð©¼òµ¥×ÅÊÖ¡£ÎÒÃÇ½«×öÒ»¸öÏµÍ³£¬Õâ¸öÏµ
-Í³ÌáÊ¾ÓÃ»§ÊäÈë£¬²¢ÇÒÖ±½Ó»ØÏÔÊäÈë¡£Ö®ºóÎÒÃÇ¿ÉÒÔ½«ÆäÀ©Õ¹£¬Ê¹Ö®ÄÜ¹»½âÎöÓÃ
-»§ÊäÈë£¬¼ÆËãËü£¬¾ÍÏñËüÊÇÒ»¸öÕæÊµµÄLisp³ÌÐòÒ»Ñù¡£
+åœ¨æž„å»ºä¸€ä¸ªå®Œæ•´çš„REPLä¹‹å‰æˆ‘ä»¬å°†ä»Žä¸€äº›ç®€å•ç€æ‰‹ã€‚æˆ‘ä»¬å°†åšä¸€ä¸ªç³»ç»Ÿï¼Œè¿™ä¸ªç³»
+ç»Ÿæç¤ºç”¨æˆ·è¾“å…¥ï¼Œå¹¶ä¸”ç›´æŽ¥å›žæ˜¾è¾“å…¥ã€‚ä¹‹åŽæˆ‘ä»¬å¯ä»¥å°†å…¶æ‰©å±•ï¼Œä½¿ä¹‹èƒ½å¤Ÿè§£æžç”¨
+æˆ·è¾“å…¥ï¼Œè®¡ç®—å®ƒï¼Œå°±åƒå®ƒæ˜¯ä¸€ä¸ªçœŸå®žçš„Lispç¨‹åºä¸€æ ·ã€‚
 
-** ½»»¥Ê½ÌáÊ¾·û
+** äº¤äº’å¼æç¤ºç¬¦
 
-µÚÒ»²½ÎÒÃÇÏë±àÐ´Ò»¸öÑ­»·£¬Õâ¸öÑ­»·ÖØ¸´Êä³öÒ»¸öÏûÏ¢£¬È»ºóµÈ´ýÓÃ»§ÊäÈë¡£
-ÎªÁË»ñÈ¡ÓÃ»§ÊäÈëÎÒÃÇ¿ÉÒÔÊ¹ÓÃº¯Êý *fgets* £¬Ëü¶ÁÈ¡ÓÃ»§ÊäÈëÖ±µ½Ò»¸ö»»ÐÐ
-·û¡£ÎÒÃÇÐèÒªÒ»Ð©µØ·½À´´æ´¢ÓÃ»§ÊäÈë¡£ÎÒÃÇ¿ÉÉùÃ÷Ò»¸öÁ¬Ðø´óÐ¡µÄÊäÈë»º³åÇø¡£
+ç¬¬ä¸€æ­¥æˆ‘ä»¬æƒ³ç¼–å†™ä¸€ä¸ªå¾ªçŽ¯ï¼Œè¿™ä¸ªå¾ªçŽ¯é‡å¤è¾“å‡ºä¸€ä¸ªæ¶ˆæ¯ï¼Œç„¶åŽç­‰å¾…ç”¨æˆ·è¾“å…¥ã€‚
+ä¸ºäº†èŽ·å–ç”¨æˆ·è¾“å…¥æˆ‘ä»¬å¯ä»¥ä½¿ç”¨å‡½æ•° *fgets* ï¼Œå®ƒè¯»å–ç”¨æˆ·è¾“å…¥ç›´åˆ°ä¸€ä¸ªæ¢è¡Œ
+ç¬¦ã€‚æˆ‘ä»¬éœ€è¦ä¸€äº›åœ°æ–¹æ¥å­˜å‚¨ç”¨æˆ·è¾“å…¥ã€‚æˆ‘ä»¬å¯å£°æ˜Žä¸€ä¸ªè¿žç»­å¤§å°çš„è¾“å…¥ç¼“å†²åŒºã€‚
 
-Ò»µ©ÎÒÃÇ´æ´¢ÁËÓÃ»§ÊäÈë£¬ÎÒÃÇ¿ÉÒÔ½«Æä´òÓ¡£¬Ê¹ÓÃº¯Êý *printf* ¡£
+ä¸€æ—¦æˆ‘ä»¬å­˜å‚¨äº†ç”¨æˆ·è¾“å…¥ï¼Œæˆ‘ä»¬å¯ä»¥å°†å…¶æ‰“å°ï¼Œä½¿ç”¨å‡½æ•° *printf* ã€‚
 
 #+BEGIN_SRC c
 #include <stdio.h>
@@ -401,37 +401,37 @@ int main(int argc, char** argv) {
 }
 #+END_SRC
 
-ÓÃ/* */°ü¹üµÄÐÅÏ¢ÊÇ×¢ÊÍ£¬ËüÃÇ±»±àÒëÆ÷ºöÂÔ£¬ÓÃÓÚ·½±ãÈËÔÄ¶Á³ÌÐòÁË½âÆäÒâ
-Í¼¡£
+ç”¨/* */åŒ…è£¹çš„ä¿¡æ¯æ˜¯æ³¨é‡Šï¼Œå®ƒä»¬è¢«ç¼–è¯‘å™¨å¿½ç•¥ï¼Œç”¨äºŽæ–¹ä¾¿äººé˜…è¯»ç¨‹åºäº†è§£å…¶æ„
+å›¾ã€‚
 
-*static char input[ 2048 ];* ´úÂëÐÐÉùÃ÷ÁËÒ»¸ö°üº¬ÁË2048¸ö×Ö·ûµÄÈ«¾ÖÊý
-×é¡£ Õâ¸öÔ¤ÁôµÄÊý¾Ý¿éÎÒÃÇ¿ÉÒÔÔÚ³ÌÐòµÄÈÎºÎÎ»ÖÃ·ÃÎÊËü¡£ÕâÀïÎÒÃÇÓÃËüÀ´´æ
-´¢´ÓÃüÁîÐÐµÄÓÃ»§ÊäÈë¡£¹Ø¼ü×Ö *static* Ê¹±äÁ¿¾ÖÏÞÓÚÕâ¸öÎÄ±¾¡£
+*static char input[ 2048 ];* ä»£ç è¡Œå£°æ˜Žäº†ä¸€ä¸ªåŒ…å«äº†2048ä¸ªå­—ç¬¦çš„å…¨å±€æ•°
+ç»„ã€‚ è¿™ä¸ªé¢„ç•™çš„æ•°æ®å—æˆ‘ä»¬å¯ä»¥åœ¨ç¨‹åºçš„ä»»ä½•ä½ç½®è®¿é—®å®ƒã€‚è¿™é‡Œæˆ‘ä»¬ç”¨å®ƒæ¥å­˜
+å‚¨ä»Žå‘½ä»¤è¡Œçš„ç”¨æˆ·è¾“å…¥ã€‚å…³é”®å­— *static* ä½¿å˜é‡å±€é™äºŽè¿™ä¸ªæ–‡æœ¬ã€‚
 
-ÎÒÃÇ±àÐ´ÁËÒ»¸öÎÞÏÞÑ­»· *while(1)* ¡£ÔÚÌõ¼þ¿éÖÐ *1* ±íÊ¾ÓÀÔ¶ÎªÕæ¡£ËùÒÔ
-ÔÚÑ­»·ÄÚ²¿µÄÃüÁî½«ÓÀÔ¶ÔËÐÐÏÂÈ¥¡£
+æˆ‘ä»¬ç¼–å†™äº†ä¸€ä¸ªæ— é™å¾ªçŽ¯ *while(1)* ã€‚åœ¨æ¡ä»¶å—ä¸­ *1* è¡¨ç¤ºæ°¸è¿œä¸ºçœŸã€‚æ‰€ä»¥
+åœ¨å¾ªçŽ¯å†…éƒ¨çš„å‘½ä»¤å°†æ°¸è¿œè¿è¡Œä¸‹åŽ»ã€‚
 
-ÎÒÃÇÊ¹ÓÃº¯Êý *fputs* À´ÊäÈëÎÒÃÇµÄÌáÊ¾·û¡£ËüÓë *puts* ÓÐÒ»¸öÇáÎ¢µÄ²»Í¬
-ÊÇËü²»»áÌí¼Ó»»ÐÐ·û¡£ÎÒÃÇÊ¹ÓÃ *fgets* º¯Êý»ñÈ¡ÓÃ»§ÊäÈë¡£Á½¸öº¯Êý¶¼ÊÇÐè
-ÒªÄ³¸öÎÄ¼þÀ´Ð´Èë»ò¶ÁÈ¡¡£ÎªÁËÕâ¸öÎÒÃÇÌá¹©ÁËÁ½¸öÌØÊâµÄ±äÁ¿ *stdin*
-ºÍ *stdout* ¡£ËüÃÇ¶¼ÔÚ<stdio.h>ÖÐÉùÃ÷£¬´ú±íÁËÊäÈëºÍÊä³ö¡£ *fgets* º¯Êý
-µÈ´ýÓÃ»§ÊäÈëÒ»ÐÐÎÄ±¾£¬È»ºóËü½«ÎÄ±¾´æ´¢µ½ *input* »º³åÇøÖÐ£¬°üº¬ÁË»»ÐÐ
-·û¡£ÎªÁË±ÜÃâ *fgets* ¶ÁÈ¡¹ý¶àµÄÊý¾Ý£¬ÎÒÃÇÌáÊ¾ÁË»º³åÇøµÄ´óÐ¡ *2048* ¡£
+æˆ‘ä»¬ä½¿ç”¨å‡½æ•° *fputs* æ¥è¾“å…¥æˆ‘ä»¬çš„æç¤ºç¬¦ã€‚å®ƒä¸Ž *puts* æœ‰ä¸€ä¸ªè½»å¾®çš„ä¸åŒ
+æ˜¯å®ƒä¸ä¼šæ·»åŠ æ¢è¡Œç¬¦ã€‚æˆ‘ä»¬ä½¿ç”¨ *fgets* å‡½æ•°èŽ·å–ç”¨æˆ·è¾“å…¥ã€‚ä¸¤ä¸ªå‡½æ•°éƒ½æ˜¯éœ€
+è¦æŸä¸ªæ–‡ä»¶æ¥å†™å…¥æˆ–è¯»å–ã€‚ä¸ºäº†è¿™ä¸ªæˆ‘ä»¬æä¾›äº†ä¸¤ä¸ªç‰¹æ®Šçš„å˜é‡ *stdin*
+å’Œ *stdout* ã€‚å®ƒä»¬éƒ½åœ¨<stdio.h>ä¸­å£°æ˜Žï¼Œä»£è¡¨äº†è¾“å…¥å’Œè¾“å‡ºã€‚ *fgets* å‡½æ•°
+ç­‰å¾…ç”¨æˆ·è¾“å…¥ä¸€è¡Œæ–‡æœ¬ï¼Œç„¶åŽå®ƒå°†æ–‡æœ¬å­˜å‚¨åˆ° *input* ç¼“å†²åŒºä¸­ï¼ŒåŒ…å«äº†æ¢è¡Œ
+ç¬¦ã€‚ä¸ºäº†é¿å… *fgets* è¯»å–è¿‡å¤šçš„æ•°æ®ï¼Œæˆ‘ä»¬æç¤ºäº†ç¼“å†²åŒºçš„å¤§å° *2048* ã€‚
 
-ÎÒÃÇÊ¹ÓÃº¯Êý *printf* ½«ÏûÏ¢»ØÏÔ¸øÓÃ»§¡£Õâ¸öº¯ÊýÌá¹©ÁËÒ»ÖÖ´òÓ¡°üº¬ÁË¶à¸ö
-ÔªËØµÄÏûÏ¢µÄ·½·¨¡£Ëü½«²ÎÊýÓë¸ø¶¨µÄ×Ö·û´®½øÐÐÆ¥Åä¡£±ÈÈç£¬ÎÒÃÇ¿´µ½ *%s*
-£¬ÕâÒâÎ¶×ÅËü½«±»½ÓÏÂÀ´×÷Îª×Ö·û´®µÄ²ÎÊýËùÈ¡´ú¡£
+æˆ‘ä»¬ä½¿ç”¨å‡½æ•° *printf* å°†æ¶ˆæ¯å›žæ˜¾ç»™ç”¨æˆ·ã€‚è¿™ä¸ªå‡½æ•°æä¾›äº†ä¸€ç§æ‰“å°åŒ…å«äº†å¤šä¸ª
+å…ƒç´ çš„æ¶ˆæ¯çš„æ–¹æ³•ã€‚å®ƒå°†å‚æ•°ä¸Žç»™å®šçš„å­—ç¬¦ä¸²è¿›è¡ŒåŒ¹é…ã€‚æ¯”å¦‚ï¼Œæˆ‘ä»¬çœ‹åˆ° *%s*
+ï¼Œè¿™æ„å‘³ç€å®ƒå°†è¢«æŽ¥ä¸‹æ¥ä½œä¸ºå­—ç¬¦ä¸²çš„å‚æ•°æ‰€å–ä»£ã€‚
 
-** ±àÒë
+** ç¼–è¯‘
 
-ÎÒÃÇ¿ÉÒÔÓÃÈçÏÂÃüÁîÀ´±àÒë¸Ã´úÂë£º
+æˆ‘ä»¬å¯ä»¥ç”¨å¦‚ä¸‹å‘½ä»¤æ¥ç¼–è¯‘è¯¥ä»£ç ï¼š
 
 #+BEGIN_SRC c
 cc -std=c99 -Wall prompt.c -o prompt
 #+END_SRC
 
-±àÒëºóÎÒÃÇ¿É³¢ÊÔÔËÐÐËü¡£Äã¿ÉÒÔÊ¹ÓÃ *Ctrl+c* À´ÍË³ö³ÌÐò¡£Èç¹ûÒ»ÇÐ¶¼ÕýÈ·
-ÄãµÄ³ÌÐòÓ¦¸ÃÈçÕâÑùÔËÐÐ£º
+ç¼–è¯‘åŽæˆ‘ä»¬å¯å°è¯•è¿è¡Œå®ƒã€‚ä½ å¯ä»¥ä½¿ç”¨ *Ctrl+c* æ¥é€€å‡ºç¨‹åºã€‚å¦‚æžœä¸€åˆ‡éƒ½æ­£ç¡®
+ä½ çš„ç¨‹åºåº”è¯¥å¦‚è¿™æ ·è¿è¡Œï¼š
 
 #+BEGIN_SRC shell
 Lispy Version 0.0.0.0.1
@@ -446,10 +446,10 @@ No You're a Stop being so rude!
 lispy>
 #+END_SRC
 
-** ±à¼­ÊäÈë
+** ç¼–è¾‘è¾“å…¥
 
-Èç¹ûÄãÔÚLinux»òMacÉÏ¹¤×÷£¬Äã½«×¢Òâµ±ÄãÊ¹ÓÃ·½Ïò¼ýÍ·r°´¼üÀ´±à¼­ÄãµÄÊäÈëÊ±²úÉú
-Ò»Ð©Ææ¹ÖµÄÐÐÎª¡£
+å¦‚æžœä½ åœ¨Linuxæˆ–Macä¸Šå·¥ä½œï¼Œä½ å°†æ³¨æ„å½“ä½ ä½¿ç”¨æ–¹å‘ç®­å¤´ræŒ‰é”®æ¥ç¼–è¾‘ä½ çš„è¾“å…¥æ—¶äº§ç”Ÿ
+ä¸€äº›å¥‡æ€ªçš„è¡Œä¸ºã€‚
 
 #+BEGIN_SRC shell
 Lispy Version 0.0.0.0.3
@@ -458,18 +458,18 @@ Press Ctrl+c to Exit
 lispy> hel^[[D^[[C
 #+END_SRC
 
-Ê¹ÓÃ¼ýÍ·°´¼ü»áÉú²úÒ»Ð©Ææ¹ÖµÄ×Ö·û *^[[D* »ò *^[[C* £¬¶ø²»ÊÇÒÆ¶¯¹â±ê¡£ÎÒ
-ÃÇÕæÕýÏëÒªÊÇÄÜ¹»ÔÚÐÐÉÏÒÆ¶¯¹â±ê£¬É¾³ýºÍ±à¼­ÎÒÃÇµÄÊäÈë¡£
+ä½¿ç”¨ç®­å¤´æŒ‰é”®ä¼šç”Ÿäº§ä¸€äº›å¥‡æ€ªçš„å­—ç¬¦ *^[[D* æˆ– *^[[C* ï¼Œè€Œä¸æ˜¯ç§»åŠ¨å…‰æ ‡ã€‚æˆ‘
+ä»¬çœŸæ­£æƒ³è¦æ˜¯èƒ½å¤Ÿåœ¨è¡Œä¸Šç§»åŠ¨å…‰æ ‡ï¼Œåˆ é™¤å’Œç¼–è¾‘æˆ‘ä»¬çš„è¾“å…¥ã€‚
 
-ÔÚWindowsÕâÐ©ÐÐÎªÊÇÄ¬ÈÏµÄ¡£ÔÚLinuxºÍMacÐèÒª¿â *editline* Ìá¹©¡£ÔÚ
-LinuxºÍMacÉÏÎÒÃÇÐèÒªÓÃ¿âº¯Êýµ÷ÓÃÀ´Ìæ»» *fputs* ºÍ *fgets* µ÷ÓÃ¡£
+åœ¨Windowsè¿™äº›è¡Œä¸ºæ˜¯é»˜è®¤çš„ã€‚åœ¨Linuxå’ŒMacéœ€è¦åº“ *editline* æä¾›ã€‚åœ¨
+Linuxå’ŒMacä¸Šæˆ‘ä»¬éœ€è¦ç”¨åº“å‡½æ•°è°ƒç”¨æ¥æ›¿æ¢ *fputs* å’Œ *fgets* è°ƒç”¨ã€‚
 
-*** Ê¹ÓÃEditline
+*** ä½¿ç”¨Editline
 
-*editline* Ìá¹©ÁËÁ½¸öº¯Êý¹©ÎÒÃÇ½«À´Ê¹ÓÃ *readline* ºÍ *add\_history*
-¡£ *readline* º¯ÊýÓÃÓÚ´ÓÄ³ÌáÊ¾¶ÁÈ¡ÊäÈë£¬Í¬Ê±ÔÊÐí¶ÔÊäÈë½øÐÐ±à¼­¡£
-*add\_history* º¯Êý¼ÇÂ¼ÊäÈëµÄÀúÊ·ÒÔ±ãÎÒÃÇÄÜ¹»Í¨¹ýÉÏÏÂ·½Ïò¼üÀ´ÖØÐÂ»ñÈ¡Ö®
-Ç°µÄÊäÈë¡£
+*editline* æä¾›äº†ä¸¤ä¸ªå‡½æ•°ä¾›æˆ‘ä»¬å°†æ¥ä½¿ç”¨ *readline* å’Œ *add\_history*
+ã€‚ *readline* å‡½æ•°ç”¨äºŽä»ŽæŸæç¤ºè¯»å–è¾“å…¥ï¼ŒåŒæ—¶å…è®¸å¯¹è¾“å…¥è¿›è¡Œç¼–è¾‘ã€‚
+*add\_history* å‡½æ•°è®°å½•è¾“å…¥çš„åŽ†å²ä»¥ä¾¿æˆ‘ä»¬èƒ½å¤Ÿé€šè¿‡ä¸Šä¸‹æ–¹å‘é”®æ¥é‡æ–°èŽ·å–ä¹‹
+å‰çš„è¾“å…¥ã€‚
 
 #+BEGIN_SRC c
 #include <stdio.h>
@@ -505,62 +505,62 @@ int main(int argc, char** argv) {
 }
 #+END_SRC
 
-ÎÒÃÇ°üº¬ÁË¼¸¸öÐÂÍ·ÎÄ¼þ£¬ *#include <stdlib.h>* ÓÃÓÚ·ÃÎÊ *free* º¯Êý¡£
-*#include <readline/readline.h>* ºÍ *#include <readline/history.h>* ÓÃ
-ÓÚ·ÃÎÊ *readline* ºÍ *add\_history* º¯Êý¡£
+æˆ‘ä»¬åŒ…å«äº†å‡ ä¸ªæ–°å¤´æ–‡ä»¶ï¼Œ *#include <stdlib.h>* ç”¨äºŽè®¿é—® *free* å‡½æ•°ã€‚
+*#include <readline/readline.h>* å’Œ *#include <readline/history.h>* ç”¨
+äºŽè®¿é—® *readline* å’Œ *add\_history* å‡½æ•°ã€‚
 
-²»Ïñ *fgets* £¬ *readline* º¯ÊýÈ¥µôÁËÊäÈëÎ²²¿µÄ»»ÐÐ·û£¬ËùÒÔÎÒÃÇÐèÒª
-ÔÚ *printf* º¯Êý¼ÓÉÏ»»ÐÐ·û¡£ÎÒÃÇÐèÒªÉ¾³ý *readline* º¯Êý·µ»ØµÄinput£¬
-µ± *readline* º¯Êý±»µ÷ÓÃÊ±£¬Ëü·ÖÅäÁËÐÂÄÚ´æ¡£ÔÚ²»ÐèÒªÕâ¸öÄÚ´æµÄÊ±ºòÍ¨¹ý
-º¯Êý *free* ÊÍ·ÅÕâ¸öÄÚ´æ¡£
+ä¸åƒ *fgets* ï¼Œ *readline* å‡½æ•°åŽ»æŽ‰äº†è¾“å…¥å°¾éƒ¨çš„æ¢è¡Œç¬¦ï¼Œæ‰€ä»¥æˆ‘ä»¬éœ€è¦
+åœ¨ *printf* å‡½æ•°åŠ ä¸Šæ¢è¡Œç¬¦ã€‚æˆ‘ä»¬éœ€è¦åˆ é™¤ *readline* å‡½æ•°è¿”å›žçš„inputï¼Œ
+å½“ *readline* å‡½æ•°è¢«è°ƒç”¨æ—¶ï¼Œå®ƒåˆ†é…äº†æ–°å†…å­˜ã€‚åœ¨ä¸éœ€è¦è¿™ä¸ªå†…å­˜çš„æ—¶å€™é€šè¿‡
+å‡½æ•° *free* é‡Šæ”¾è¿™ä¸ªå†…å­˜ã€‚
 
-*** ÓëEditlineÒ»Æð±àÒë
+*** ä¸ŽEditlineä¸€èµ·ç¼–è¯‘
 
-Èç¹û°´ÉÏ´ÎÃüÁîÀ´±àÒë¿ÉÄÜ»áµÃµ½Ò»¸ö´íÎó¡£ÕâÊÇÒòÎªÄãÐèÒª°²×° *editline*
-¿â¡£
+å¦‚æžœæŒ‰ä¸Šæ¬¡å‘½ä»¤æ¥ç¼–è¯‘å¯èƒ½ä¼šå¾—åˆ°ä¸€ä¸ªé”™è¯¯ã€‚è¿™æ˜¯å› ä¸ºä½ éœ€è¦å®‰è£… *editline*
+åº“ã€‚
 
 #+BEGIN_SRC shell
 fatal error: readline/readline.h: No such file or directory #include <readline/readline.h>
 #+END_SRC
 
-ÔÚLinuxÉÏ£¬¿ÉÒÔÍ¨¹ýÃüÁî *sudo apt-get install libedit-devel* »ò *su -c
-`yum install libedit-devel`*  À´°²×°
-editline¿â¡£
+åœ¨Linuxä¸Šï¼Œå¯ä»¥é€šè¿‡å‘½ä»¤ *sudo apt-get install libedit-devel* æˆ– *su -c
+`yum install libedit-devel`*  æ¥å®‰è£…
+editlineåº“ã€‚
 
-Ò»µ©ÄãÒÑ¾­°²×°ÁËeditline¿â²¢³¢ÊÔÔÙ´Î±àÒë£¬Äã»áµÈµ½ÁíÍâÒ»¸ö²»Í¬µÄ´íÎó¡£
+ä¸€æ—¦ä½ å·²ç»å®‰è£…äº†editlineåº“å¹¶å°è¯•å†æ¬¡ç¼–è¯‘ï¼Œä½ ä¼šç­‰åˆ°å¦å¤–ä¸€ä¸ªä¸åŒçš„é”™è¯¯ã€‚
 
 #+BEGIN_SRC shell
 undefined reference to `readline'
 undefined reference to `add_history'
 #+END_SRC
 
-ÕâÒâÎ¶×ÅÄãµÄ³ÌÐòÃ»ÓÐÁ´½Óµ½ *editline* ¡£ Á´½Ó¹ý³ÌÔÊÐí±àÒëÆ÷Ö±½Ó
-½« *editline* Ç¶Èëµ½ÄãµÄ³ÌÐòÖÐ¡£Äã¿ÉÍ¨¹ýÌí¼Ó *-ledit* ±êÖ¾µ½ÄãµÄ±àÒëÃü
-ÁîÖÐÀ´Íê³ÉÁ´½Ó¡£
+è¿™æ„å‘³ç€ä½ çš„ç¨‹åºæ²¡æœ‰é“¾æŽ¥åˆ° *editline* ã€‚ é“¾æŽ¥è¿‡ç¨‹å…è®¸ç¼–è¯‘å™¨ç›´æŽ¥
+å°† *editline* åµŒå…¥åˆ°ä½ çš„ç¨‹åºä¸­ã€‚ä½ å¯é€šè¿‡æ·»åŠ  *-ledit* æ ‡å¿—åˆ°ä½ çš„ç¼–è¯‘å‘½
+ä»¤ä¸­æ¥å®Œæˆé“¾æŽ¥ã€‚
 
 #+BEGIN_SRC shell
 CC -std=c99 -Wall prompt.c -ledit -o prompt
 #+END_SRC
 
-** CÔ¤´¦ÀíÆ÷
+** Cé¢„å¤„ç†å™¨
 
-²»ÔÚÍ¬µÄ²Ù×÷»ò±àÒëÆ÷ÉÏ¶¼ÄÜ±àÒëºÍÔËÐÐ£¬Õâ½Ð¿ÉÒÆÖ²ÐÔ(/portability/)¡£ÔÚC
-´æÔÚÕâ¸öÎÊÌâ£¬²¢²»×ÜÊÇÓÐÒ»¸ö¼òµ¥»òÕýÈ·µÄ½â¾ö·½°¸¡£
+ä¸åœ¨åŒçš„æ“ä½œæˆ–ç¼–è¯‘å™¨ä¸Šéƒ½èƒ½ç¼–è¯‘å’Œè¿è¡Œï¼Œè¿™å«å¯ç§»æ¤æ€§(/portability/)ã€‚åœ¨C
+å­˜åœ¨è¿™ä¸ªé—®é¢˜ï¼Œå¹¶ä¸æ€»æ˜¯æœ‰ä¸€ä¸ªç®€å•æˆ–æ­£ç¡®çš„è§£å†³æ–¹æ¡ˆã€‚
 
-µ«ÊÇCÌá¹©ÁËÒ»¸öÓÐÓÃµÄ»úÆ÷£¬½ÐÔ¤´¦ÀíÆ÷(/preprocessor/)¡£
+ä½†æ˜¯Cæä¾›äº†ä¸€ä¸ªæœ‰ç”¨çš„æœºå™¨ï¼Œå«é¢„å¤„ç†å™¨(/preprocessor/)ã€‚
 
-Ô¤´¦ÀíÆ÷ÊÇÒ»¸öÔÚ±àÒëÆ÷Ö®Ç°ÔËÐÐµÄ³ÌÐò¡£ËüÓÐºÜ¶àÓÃÍ¾£¬¶øÇÒÎÒÃÇÒÑ¾­Êµ¼ÊµØ
-ÔÚ²»ÖªÇéµÄÇé¿öÏÂÊ¹ÓÃÁËËü¡£ÈÎºÎÒÔ#¿ªÍ·µÄÐÐ¶¼ÊÇÒ»¸öÔ¤´¦ÀíÃüÁî¡£ÎÒÃÇÒÑ¾­
-Ê¹ÓÃËü°üº¬Í·ÎÄ¼þ(/include/)£¬Ê¹ÎÒÃÇÄÜ¹»·ÃÎÊ±ê×¼»òÆäËü¿âµÄº¯Êý¡£
+é¢„å¤„ç†å™¨æ˜¯ä¸€ä¸ªåœ¨ç¼–è¯‘å™¨ä¹‹å‰è¿è¡Œçš„ç¨‹åºã€‚å®ƒæœ‰å¾ˆå¤šç”¨é€”ï¼Œè€Œä¸”æˆ‘ä»¬å·²ç»å®žé™…åœ°
+åœ¨ä¸çŸ¥æƒ…çš„æƒ…å†µä¸‹ä½¿ç”¨äº†å®ƒã€‚ä»»ä½•ä»¥#å¼€å¤´çš„è¡Œéƒ½æ˜¯ä¸€ä¸ªé¢„å¤„ç†å‘½ä»¤ã€‚æˆ‘ä»¬å·²ç»
+ä½¿ç”¨å®ƒåŒ…å«å¤´æ–‡ä»¶(/include/)ï¼Œä½¿æˆ‘ä»¬èƒ½å¤Ÿè®¿é—®æ ‡å‡†æˆ–å…¶å®ƒåº“çš„å‡½æ•°ã€‚
 
-Ô¤´¦ÀíÆ÷ÁíÍâÒ»¸öÓÃ·¨¾ÍÊÇÅÐ¶Ï²Ù×÷ÏµÍ³µÄÀàÐÍÀ´±àÒë²»Í¬µÄ´úÂë¡£
+é¢„å¤„ç†å™¨å¦å¤–ä¸€ä¸ªç”¨æ³•å°±æ˜¯åˆ¤æ–­æ“ä½œç³»ç»Ÿçš„ç±»åž‹æ¥ç¼–è¯‘ä¸åŒçš„ä»£ç ã€‚
 
-ÕâÕýÊÇÎÒÃÇÒªÊ¹ÓÃËüµÄ·½Ê½¡£Èç¹ûÎÒÃÇÔÚWindowsÉÏ±àÒëºÍÔËÐÐ´úÂë£¬ÎÒÃÇÐèÒª
-×¼±¸Î±ÔìÒ»Ð©Ïñ *readline* ºÍ *add_history* µÄº¯Êý¡£·ñÔòÎÒÃÇ°ü
-º¬ *editline* µÄÍ·ÎÄ¼þ¡£
+è¿™æ­£æ˜¯æˆ‘ä»¬è¦ä½¿ç”¨å®ƒçš„æ–¹å¼ã€‚å¦‚æžœæˆ‘ä»¬åœ¨Windowsä¸Šç¼–è¯‘å’Œè¿è¡Œä»£ç ï¼Œæˆ‘ä»¬éœ€è¦
+å‡†å¤‡ä¼ªé€ ä¸€äº›åƒ *readline* å’Œ *add_history* çš„å‡½æ•°ã€‚å¦åˆ™æˆ‘ä»¬åŒ…
+å« *editline* çš„å¤´æ–‡ä»¶ã€‚
 
-ÎªÁËÉùÃ÷ÄÄÐ©´úÂë±àÒëÆ÷Ó¦¸Ã±àÒë£¬ÎÒÃÇÓÃ *#ifndef* , *#else* , *endif*
-Ô¤´¦ÀíÓï¾ä½«ËüÃÇ°üº¬¡£
+ä¸ºäº†å£°æ˜Žå“ªäº›ä»£ç ç¼–è¯‘å™¨åº”è¯¥ç¼–è¯‘ï¼Œæˆ‘ä»¬ç”¨ *#ifndef* , *#else* , *endif*
+é¢„å¤„ç†è¯­å¥å°†å®ƒä»¬åŒ…å«ã€‚
 
 #+BEGIN_SRC c
 #include <stdio.h>
@@ -611,30 +611,30 @@ int main(int argc, char** argv) {
 }
 #+END_SRC
 
-* ÓïÑÔ(Languages)
-** ±à³ÌÓïÑÔÊÇÊ²Ã´?
+* è¯­è¨€(Languages)
+** ç¼–ç¨‹è¯­è¨€æ˜¯ä»€ä¹ˆ?
 
-±à³ÌÓïÑÔÓëÏÖÊµÓïÑÔ·Ç³£ÀàËÆ¡£±³ºóÓÐ½á¹¹£¬¹æÔò¡£µ±ÎÒÃÇÔÄ¶ÁºÍÊéÐ´×ÔÈ»ÓïÑÔ£¬
-ÎÒÃÇÔÚ²»Öª²»¾õÖÐÑ§Ï°ÄÇÐ©¹æÔò£¬±à³ÌÓïÑÔÒ²ÊÇÈç´Ë¡£ÎÒÃÇÀûÓÃÕâÐ©¹æÔòÀ´Àí½â
-ËûÈË£¬²úÉú×Ô¼ºµÄÑÔÓï»ò´úÂë¡£
+ç¼–ç¨‹è¯­è¨€ä¸ŽçŽ°å®žè¯­è¨€éžå¸¸ç±»ä¼¼ã€‚èƒŒåŽæœ‰ç»“æž„ï¼Œè§„åˆ™ã€‚å½“æˆ‘ä»¬é˜…è¯»å’Œä¹¦å†™è‡ªç„¶è¯­è¨€ï¼Œ
+æˆ‘ä»¬åœ¨ä¸çŸ¥ä¸è§‰ä¸­å­¦ä¹ é‚£äº›è§„åˆ™ï¼Œç¼–ç¨‹è¯­è¨€ä¹Ÿæ˜¯å¦‚æ­¤ã€‚æˆ‘ä»¬åˆ©ç”¨è¿™äº›è§„åˆ™æ¥ç†è§£
+ä»–äººï¼Œäº§ç”Ÿè‡ªå·±çš„è¨€è¯­æˆ–ä»£ç ã€‚
 
-1950ÄêÓïÑÔÑ§¼ÒNoam ChomskyÕý¹æ»¯ÁËÓïÑÔµÄÒ»Ð©ÖØÒª¹Ûµã¡£ÕâÐ©¼û½âÐÎ³ÉÎÒÃÇ
-Àí½âÓïÑÔµÄ»ù´¡¡£×îÖØÒªµÄ¹ÛµãÖ®Ò»¾ÍÊÇ×ÔÈ»ÓïÑÔÊÇ½¨Á¢ÔÚµÝ¹éºÍÖØ¸´×Ó½á¹¹Ö®
-ÉÏ¡£
+1950å¹´è¯­è¨€å­¦å®¶Noam Chomskyæ­£è§„åŒ–äº†è¯­è¨€çš„ä¸€äº›é‡è¦è§‚ç‚¹ã€‚è¿™äº›è§è§£å½¢æˆæˆ‘ä»¬
+ç†è§£è¯­è¨€çš„åŸºç¡€ã€‚æœ€é‡è¦çš„è§‚ç‚¹ä¹‹ä¸€å°±æ˜¯è‡ªç„¶è¯­è¨€æ˜¯å»ºç«‹åœ¨é€’å½’å’Œé‡å¤å­ç»“æž„ä¹‹
+ä¸Šã€‚
 
-ÀýÈç£º
+ä¾‹å¦‚ï¼š
 #+BEGIN_SRC shell
 The cat walked on the carpet.
 #+END_SRC
 
-Ê¹ÓÃÓ¢Óï¹æÔò£¬Ãû´ÊcatÄÜ¹»Ê¹ÓÃÁ½¸öÓÃand·Ö¸ôµÄÃû´ÊÌæ»»¡£
+ä½¿ç”¨è‹±è¯­è§„åˆ™ï¼Œåè¯catèƒ½å¤Ÿä½¿ç”¨ä¸¤ä¸ªç”¨andåˆ†éš”çš„åè¯æ›¿æ¢ã€‚
 #+BEGIN_SRC shell
 The cat and dog walked on the carpet.
 #+END_SRC
 
-Ã¿¸öÐÂÃû´ÊÓÖÄÜÒÀ´Î±»Ìæ»»¡£ÎÒÃÇ¿ÉÒÔÓëÖ®Ç°ÏàÍ¬µÄ¹æÔò£¬½«catÌæ»»³ÉÓÃandÁ¬
-½ÓµÄÁ½¸öÐÂÃû´Ê¡£»òÕßÎÒÃÇ¿ÉÒÔÊ¹ÓÃÁíÒ»¸ö²»Í¬¹æÔò£¬ÓÃÐÎÈÝ´ÊºÍÃû´ÊÀ´Ìæ»»Ã¿
-¸öÃû´Ê¡£
+æ¯ä¸ªæ–°åè¯åˆèƒ½ä¾æ¬¡è¢«æ›¿æ¢ã€‚æˆ‘ä»¬å¯ä»¥ä¸Žä¹‹å‰ç›¸åŒçš„è§„åˆ™ï¼Œå°†catæ›¿æ¢æˆç”¨andè¿ž
+æŽ¥çš„ä¸¤ä¸ªæ–°åè¯ã€‚æˆ–è€…æˆ‘ä»¬å¯ä»¥ä½¿ç”¨å¦ä¸€ä¸ªä¸åŒè§„åˆ™ï¼Œç”¨å½¢å®¹è¯å’Œåè¯æ¥æ›¿æ¢æ¯
+ä¸ªåè¯ã€‚
 #+BEGIN_SRC shell
 The cat and mouse and dog walked on the carpet.
 #+END_SRC
@@ -643,12 +643,12 @@ The cat and mouse and dog walked on the carpet.
 The white cat and black dog walked on the carpet.
 #+END_SRC
 
-ÕâÀï½ö½öÖ»ÓÐÁ½¸öÀý×Ó£¬µ«Ó¢ÓïÓÐÐí¶à²»Í¬µÄ¹æÔòÀ´¹æ¶¨ÁËÄÄÐ©µ¥´ÊÀàÐÍÄÜ¹»±»¸Ä±ä£¬²Ù×÷£¬ºÍ
-Ìæ»»¡£
+è¿™é‡Œä»…ä»…åªæœ‰ä¸¤ä¸ªä¾‹å­ï¼Œä½†è‹±è¯­æœ‰è®¸å¤šä¸åŒçš„è§„åˆ™æ¥è§„å®šäº†å“ªäº›å•è¯ç±»åž‹èƒ½å¤Ÿè¢«æ”¹å˜ï¼Œæ“ä½œï¼Œå’Œ
+æ›¿æ¢ã€‚
 
-ÎÒÃÇ×¢ÒâÕâÐ©ÐÐÎªÔÚ±à³ÌÓïÑÔÒ²´æÔÚ£¬°üÀ¨C¡£ÔÚCÖÐ£¬ *if* Óï¾äµÄÖ÷ÌåÊÇÒ»×éÓï¾ä¡£
-¶øÃ¿¸öÓï¾ä¿ÉÒÔÊÇÆäËüµÄ *if* Óï¾ä¡£ÄÇÐ©ÖØ¸´½á¹¹ºÍÌæ»»ÔÚÓïÑÔµÄËùÓÐµØ·½Ìå
-ÏÖ³öÀ´¡£
+æˆ‘ä»¬æ³¨æ„è¿™äº›è¡Œä¸ºåœ¨ç¼–ç¨‹è¯­è¨€ä¹Ÿå­˜åœ¨ï¼ŒåŒ…æ‹¬Cã€‚åœ¨Cä¸­ï¼Œ *if* è¯­å¥çš„ä¸»ä½“æ˜¯ä¸€ç»„è¯­å¥ã€‚
+è€Œæ¯ä¸ªè¯­å¥å¯ä»¥æ˜¯å…¶å®ƒçš„ *if* è¯­å¥ã€‚é‚£äº›é‡å¤ç»“æž„å’Œæ›¿æ¢åœ¨è¯­è¨€çš„æ‰€æœ‰åœ°æ–¹ä½“
+çŽ°å‡ºæ¥ã€‚
 
 #+BEGIN_SRC C
 if (x > 5) { return x; }
@@ -657,31 +657,31 @@ if (x > 5) { return x; }
 if (x > 5) { if (x > 10) { return x; } }
 #+END_SRC
 
-ChomskyµÄÕâ¸ö¹ÛµãµÄ½á¹û·Ç³£ÖØÒª¡£ËüÒâÎ¶×ÅËäÈ»ÔÚÒ»¸öÌØ¶¨µÄÓïÑÔÖÐ¿ÉÒÔËµ
-»òÐ´ÎÞÇî¶à¸ö²»Í¬ÊÂÇé£¬µ«ÈÔÈ»ÓÐ¿ÉÄÜÓÃÓÐÏÞµÄ¹æÔòÀ´´¦ÀíºÍÃ÷°×ËüÃÇ¡£ÕâÐ©¹æ
-Ôò±»³ÆÎªÓï·¨(/grammar/)¡£
+Chomskyçš„è¿™ä¸ªè§‚ç‚¹çš„ç»“æžœéžå¸¸é‡è¦ã€‚å®ƒæ„å‘³ç€è™½ç„¶åœ¨ä¸€ä¸ªç‰¹å®šçš„è¯­è¨€ä¸­å¯ä»¥è¯´
+æˆ–å†™æ— ç©·å¤šä¸ªä¸åŒäº‹æƒ…ï¼Œä½†ä»ç„¶æœ‰å¯èƒ½ç”¨æœ‰é™çš„è§„åˆ™æ¥å¤„ç†å’Œæ˜Žç™½å®ƒä»¬ã€‚è¿™äº›è§„
+åˆ™è¢«ç§°ä¸ºè¯­æ³•(/grammar/)ã€‚
 
-ÎªÁË±àÐ´Ò»ÃÅ±à³ÌÓïÑÔÈçLispÎÒÃÇ½«ÐèÒªÀí½âÓï·¨¡£ÎªÁË¶ÁÈ¡ÓÃ»§ÊäÈëÎÒÃÇÐèÒª
-±àÐ´Óï·¨À´ÃèÊöÊäÈë¡£È»ºóÎÒÃÇÓÃÓï·¨À´¼ì²âÊäÈëµÄÓÐÐ§ÐÔ¡£ÎÒÃÇÒ²¿ÉÒÔÊ¹ÓÃËü
-½¨ÒéÒ»¸ö½á¹¹»¯µÄÄÚ²¿±íÊ¾ÐÎÊ½£¬ÄÜ¸üÈÝÒ×µØÀí½â£¬¼ÆËãºÍÖ´ÐÐ¡£
+ä¸ºäº†ç¼–å†™ä¸€é—¨ç¼–ç¨‹è¯­è¨€å¦‚Lispæˆ‘ä»¬å°†éœ€è¦ç†è§£è¯­æ³•ã€‚ä¸ºäº†è¯»å–ç”¨æˆ·è¾“å…¥æˆ‘ä»¬éœ€è¦
+ç¼–å†™è¯­æ³•æ¥æè¿°è¾“å…¥ã€‚ç„¶åŽæˆ‘ä»¬ç”¨è¯­æ³•æ¥æ£€æµ‹è¾“å…¥çš„æœ‰æ•ˆæ€§ã€‚æˆ‘ä»¬ä¹Ÿå¯ä»¥ä½¿ç”¨å®ƒ
+å»ºè®®ä¸€ä¸ªç»“æž„åŒ–çš„å†…éƒ¨è¡¨ç¤ºå½¢å¼ï¼Œèƒ½æ›´å®¹æ˜“åœ°ç†è§£ï¼Œè®¡ç®—å’Œæ‰§è¡Œã€‚
 
-** ½âÎö×éºÏÊ½
+** è§£æžç»„åˆå¼
 
-*mpc* ÊÇÎÒ±àÐ´µÄÒ»¸ö½âÎö×éºÏÊ½¿â¡£Õâ¸ö¿âÄÜÔÊÐíÎÒÃÇ¹¹½¨Àí½âºÍ´¦ÀíÌØ¶¨Óï
-ÑÔµÄ³ÌÐò¡£³ÆÎª½âÎöÆ÷(/parser/)¡£
+*mpc* æ˜¯æˆ‘ç¼–å†™çš„ä¸€ä¸ªè§£æžç»„åˆå¼åº“ã€‚è¿™ä¸ªåº“èƒ½å…è®¸æˆ‘ä»¬æž„å»ºç†è§£å’Œå¤„ç†ç‰¹å®šè¯­
+è¨€çš„ç¨‹åºã€‚ç§°ä¸ºè§£æžå™¨(/parser/)ã€‚
 
-** ±àÂëÓï·¨
+** ç¼–ç è¯­æ³•
 
-ÏñÓï·¨µÄ´úÂë¿´ÆðÀ´ÏñÊ²Ã´£¿ÈÃÎÒÃÇ¿´Ò»ÏÂ *mpc* £¬³¢ÊÔÓÃËü±àÐ´Ê¶±ðShiba
-InuÓïÑÔ£¨¸üÍ¨Ë×µÄ³Æ·¨ÊÇDoge£©µÄÓï·¨¡£Õâ¸öÓïÑÔÎÒÃÇ¶¨ÒåÈçÏÂ£º
-- ÐÎÈÝ´Ê£¬Èç"wow", "many", "so", "such"
-- Ãû´Ê£¬Èç"lisp", "language", "c", "book", "build"
-- ¶ÌÓï£¬ÐÎÈÝ´Ê+Ãû´Ê
-- Doge¾ÍÊÇ0»ò¶à¸ö¶ÌÓï
+åƒè¯­æ³•çš„ä»£ç çœ‹èµ·æ¥åƒä»€ä¹ˆï¼Ÿè®©æˆ‘ä»¬çœ‹ä¸€ä¸‹ *mpc* ï¼Œå°è¯•ç”¨å®ƒç¼–å†™è¯†åˆ«Shiba
+Inuè¯­è¨€ï¼ˆæ›´é€šä¿—çš„ç§°æ³•æ˜¯Dogeï¼‰çš„è¯­æ³•ã€‚è¿™ä¸ªè¯­è¨€æˆ‘ä»¬å®šä¹‰å¦‚ä¸‹ï¼š
+- å½¢å®¹è¯ï¼Œå¦‚"wow", "many", "so", "such"
+- åè¯ï¼Œå¦‚"lisp", "language", "c", "book", "build"
+- çŸ­è¯­ï¼Œå½¢å®¹è¯+åè¯
+- Dogeå°±æ˜¯0æˆ–å¤šä¸ªçŸ­è¯­
 
-ÎÒÃÇ¿ÉÒÔ´Ó³¢ÊÔ¶¨ÒåÐÎÈÝ´ÊºÍÃû´Ê¿ªÊ¼¡£ÎÒÃÇ´´½¨Á½¸öÐÂ½âÎöÆ÷£¬
-ÓÃ *mpc\_parser\_t** À´±íÊ¾¡£ÎÒÃÇ°ÑËüÃÇ´æ´¢ÔÚÁ½¸ö±äÁ¿ *Adjective*
-ºÍ *Noun* ÖÐ¡£
+æˆ‘ä»¬å¯ä»¥ä»Žå°è¯•å®šä¹‰å½¢å®¹è¯å’Œåè¯å¼€å§‹ã€‚æˆ‘ä»¬åˆ›å»ºä¸¤ä¸ªæ–°è§£æžå™¨ï¼Œ
+ç”¨ *mpc\_parser\_t** æ¥è¡¨ç¤ºã€‚æˆ‘ä»¬æŠŠå®ƒä»¬å­˜å‚¨åœ¨ä¸¤ä¸ªå˜é‡ *Adjective*
+å’Œ *Noun* ä¸­ã€‚
 
 #+BEGIN_SRC C
 /* Build a parser 'Adjective' to recognize descriptions */
@@ -698,32 +698,32 @@ mpc_parser_t* Noun = mpc_or(5,
 );
 #+END_SRC
 
-ÎªÁË¶¨Òå *Phrase* £¬ÎÒÃÇÐèÒªÊ¹ÓÃº¯Êý *mpc\_and* £¬ÎÒÃÇÏòËü´«
-µÝ *Ajdective* ºÍ *Noun* ×÷ÎªÊäÈë¡£Õâ¸öº¯Êý»¹ÐèÒªÁ½¸ö²Î
-Êý *mpcf\_strfold* ºÍ *free* ¡£
+ä¸ºäº†å®šä¹‰ *Phrase* ï¼Œæˆ‘ä»¬éœ€è¦ä½¿ç”¨å‡½æ•° *mpc\_and* ï¼Œæˆ‘ä»¬å‘å®ƒä¼ 
+é€’ *Ajdective* å’Œ *Noun* ä½œä¸ºè¾“å…¥ã€‚è¿™ä¸ªå‡½æ•°è¿˜éœ€è¦ä¸¤ä¸ªå‚
+æ•° *mpcf\_strfold* å’Œ *free* ã€‚
 
 #+BEGIN_SRC C
 mpc_parser_t* Phrase = mpc_and(2, mpcf_strfold, 
   Adjective, Noun, free);
 #+END_SRC
 
-ÎªÁË¶¨ÒåDogeÎÒÃÇ±ØÐëÖ¸¶¨0»ò¶à¸ö±ØÐèµÄ½âÎöÆ÷¡£ÎÒÃÇÐèÒªÊ¹ÓÃº¯
-Êý *mpc\_many* ¡£¸Ãº¯ÊýÐèÒªÖ¸¶¨±äÁ¿ *mpcf\_strfold* ¡£
+ä¸ºäº†å®šä¹‰Dogeæˆ‘ä»¬å¿…é¡»æŒ‡å®š0æˆ–å¤šä¸ªå¿…éœ€çš„è§£æžå™¨ã€‚æˆ‘ä»¬éœ€è¦ä½¿ç”¨å‡½
+æ•° *mpc\_many* ã€‚è¯¥å‡½æ•°éœ€è¦æŒ‡å®šå˜é‡ *mpcf\_strfold* ã€‚
 
 #+BEGIN_SRC C
 mpc_parser_t* Doge = mpc_many(mpcf_strfold, Phrase);
 #+END_SRC
 
-ÎÒÃÇµÄDoge½âÎöÆ÷¿ÉÒÔ½ÓÊÕÈÎÒâ³¤¶ÈµÄÊäÈë¡£ÕâÒâÎ¶×ÅËüµÄÓïÑÔÊÇ²»ÇîµÄ¡£
+æˆ‘ä»¬çš„Dogeè§£æžå™¨å¯ä»¥æŽ¥æ”¶ä»»æ„é•¿åº¦çš„è¾“å…¥ã€‚è¿™æ„å‘³ç€å®ƒçš„è¯­è¨€æ˜¯ä¸ç©·çš„ã€‚
 
-Èç¹ûÎÒÃÇÊ¹ÓÃ¸ü¶à *mpc* º¯Êý£¬ÎÒÃÇ¿ÉÒÔÂýÂý¹¹½¨½âÎöÆ÷À´½âÎö³öÔ½À´Ô½¸´ÔÓ
-µÄÓïÑÔ¡£ ÎÒÃÇ´úÂë¶ÁÆðÀ´ÏñÒ»¸öÓï·¨£¬µ«Ëæ×Å¸´ÔÓ¶È»á±äµÃÔ½À´Ô½»ìÂÒ¡£Òò´Ë£¬
-²ÉÈ¡ÕâÑùµÄ·½Ê½²¢²»×ÜÊÇÒ»¼þÈÝÒ×µÄÈÎÎñ¡£
+å¦‚æžœæˆ‘ä»¬ä½¿ç”¨æ›´å¤š *mpc* å‡½æ•°ï¼Œæˆ‘ä»¬å¯ä»¥æ…¢æ…¢æž„å»ºè§£æžå™¨æ¥è§£æžå‡ºè¶Šæ¥è¶Šå¤æ‚
+çš„è¯­è¨€ã€‚ æˆ‘ä»¬ä»£ç è¯»èµ·æ¥åƒä¸€ä¸ªè¯­æ³•ï¼Œä½†éšç€å¤æ‚åº¦ä¼šå˜å¾—è¶Šæ¥è¶Šæ··ä¹±ã€‚å› æ­¤ï¼Œ
+é‡‡å–è¿™æ ·çš„æ–¹å¼å¹¶ä¸æ€»æ˜¯ä¸€ä»¶å®¹æ˜“çš„ä»»åŠ¡ã€‚
 
-** ×ÔÈ»Óï·¨
+** è‡ªç„¶è¯­æ³•
 
-*mpc* ¿ÉÒÔÈÃÎÒÃÇÏñ¸ü×ÔÈ»µÄÐÎÊ½À´±àÐ´Óï·¨¡£Ïà±ÈÊ¹ÓÃ¿´Æð²»ÏñÓï·¨µÄCº¯Êý£¬
-ÎÒÃÇ¿ÉÒÔÊ¹ÓÃÒ»¸ö³¤×Ö·û´®À´Ö¸¶¨ËùÓÐÊÂÇé¡£
+*mpc* å¯ä»¥è®©æˆ‘ä»¬åƒæ›´è‡ªç„¶çš„å½¢å¼æ¥ç¼–å†™è¯­æ³•ã€‚ç›¸æ¯”ä½¿ç”¨çœ‹èµ·ä¸åƒè¯­æ³•çš„Cå‡½æ•°ï¼Œ
+æˆ‘ä»¬å¯ä»¥ä½¿ç”¨ä¸€ä¸ªé•¿å­—ç¬¦ä¸²æ¥æŒ‡å®šæ‰€æœ‰äº‹æƒ…ã€‚
 
 #+BEGIN_SRC C
 mpc_parser_t* Adjective = mpc_new("adjective");
@@ -747,84 +747,84 @@ mpca_lang(MPCA_LANG_DEFAULT,
 mpc_cleanup(4, Adjective, Noun, Phrase, Doge);
 #+END_SRC
 
-ÓÃÓÚ¶¨Òå¹æÔòµÄÌØÊâ·ûºÅ×÷ÓÃÈçÏÂ£º
-| "ab"          | ×Ö·û´®abÊÇ±ØÐèµÄ               |
-| 'a'           | ×Ö·ûaÊÇ±ØÐèµÄ                  |
-| 'a' 'b'       | 'a'ÏÈÊÇ±ØÐèµÄ£¬È»ºó'b'ÊÇ±ØÐèµÄ |
-| 'a' \vert 'b' | 'a'»ò'b'ÊÇ±ØÐèµÄ               |
-| 'a'*          | 0¸ö»ò¶à¸ö'a'ÊÇ±ØÐèµÄ           |
-| 'a'+          | Ò»¸ö»ò¶à¸ö'a'ÊÇ±ØÐèµÄ          |
-| <abba>        | ³ÆÎªabbaµÄ¹æÔòÊÇ±ØÐèµÄ         |
+ç”¨äºŽå®šä¹‰è§„åˆ™çš„ç‰¹æ®Šç¬¦å·ä½œç”¨å¦‚ä¸‹ï¼š
+| "ab"          | å­—ç¬¦ä¸²abæ˜¯å¿…éœ€çš„               |
+| 'a'           | å­—ç¬¦aæ˜¯å¿…éœ€çš„                  |
+| 'a' 'b'       | 'a'å…ˆæ˜¯å¿…éœ€çš„ï¼Œç„¶åŽ'b'æ˜¯å¿…éœ€çš„ |
+| 'a' \vert 'b' | 'a'æˆ–'b'æ˜¯å¿…éœ€çš„               |
+| 'a'*          | 0ä¸ªæˆ–å¤šä¸ª'a'æ˜¯å¿…éœ€çš„           |
+| 'a'+          | ä¸€ä¸ªæˆ–å¤šä¸ª'a'æ˜¯å¿…éœ€çš„          |
+| <abba>        | ç§°ä¸ºabbaçš„è§„åˆ™æ˜¯å¿…éœ€çš„         |
 
-* Óï·¨·ÖÎö(Parsing)
-** ²¨À¼±íÊ¾·¨
+* è¯­æ³•åˆ†æž(Parsing)
+** æ³¢å…°è¡¨ç¤ºæ³•
 
-ÎªÁËÊÔÓÃ *mpc* ÎÒÃÇ½«ÊµÏÖÒ»¸ö¼òµ¥µÄÓï·¨£¬ÀàËÆÎÒÃÇLispµÄÒ»¸öÊýÑ§×Ó¼¯¡£
-Ëü½«²¨À¼±íÊ¾·¨(/Polish Notation/)£¬ÕâÖÖ±íÊ¾·¨ÓÃÀ´±íÊ¾²Ù×÷·ûÔÚ²Ù×÷ÊýÖ®
-Ç°µÄËãÊõÔËËã¡£
+ä¸ºäº†è¯•ç”¨ *mpc* æˆ‘ä»¬å°†å®žçŽ°ä¸€ä¸ªç®€å•çš„è¯­æ³•ï¼Œç±»ä¼¼æˆ‘ä»¬Lispçš„ä¸€ä¸ªæ•°å­¦å­é›†ã€‚
+å®ƒå°†æ³¢å…°è¡¨ç¤ºæ³•(/Polish Notation/)ï¼Œè¿™ç§è¡¨ç¤ºæ³•ç”¨æ¥è¡¨ç¤ºæ“ä½œç¬¦åœ¨æ“ä½œæ•°ä¹‹
+å‰çš„ç®—æœ¯è¿ç®—ã€‚
 
-ÀýÈç£º
+ä¾‹å¦‚ï¼š
 | 1+2+6          | + 1 2 6            |
 | 6+(2*9)        | + 6 (* 2 9)        |
 | (10*2)/(4 + 2) | / (* 10 2) (+ 4 2) |
 
-ÎÒÃÇÐèÒªÖÆ¶¨³öÓÃÀ´ÃèÊöÕâÖÖ±íÊ¾·¨µÄÓï·¨¡£
+æˆ‘ä»¬éœ€è¦åˆ¶å®šå‡ºç”¨æ¥æè¿°è¿™ç§è¡¨ç¤ºæ³•çš„è¯­æ³•ã€‚
 
-ÎÒÃÇ¹Û²ìµ½ÔÚ²¨À¼±íÊ¾·¨ÖÐ£¬²Ù×÷·û×ÜÊÇ±íÊ¾Ê½ÖÐµÄµÚÒ»Î»£¬½ÓÏÂÀ´ÊÇÊý×Ö»òÕß
-ÆäËüÔÚÀ¨ºÅÖÐµÄ±í´ïÊ½¡£ÕâÒâÎ¶ÎÒÃÇ¿ÉÒÔËµ¡°Ò»¸ö³ÌÐòÊÇÒ»¸ö²Ù×÷·ûºóÃæ¸ú×ÅÒ»
-¸ö»ò¶à¸ö±í´ïÊ½£¬±í´ïÊ½¼È¿ÉÒÔÊÇÒ»¸öÊý×Ö£¬»òÕßÊÇÔÚÀ¨ºÅÖÐµÄÒ»¸ö²Ù×÷·û¸ú×Å
-Ò»¸ö»ò¶à¸ö±í´ïÊ½¡±¡£
+æˆ‘ä»¬è§‚å¯Ÿåˆ°åœ¨æ³¢å…°è¡¨ç¤ºæ³•ä¸­ï¼Œæ“ä½œç¬¦æ€»æ˜¯è¡¨ç¤ºå¼ä¸­çš„ç¬¬ä¸€ä½ï¼ŒæŽ¥ä¸‹æ¥æ˜¯æ•°å­—æˆ–è€…
+å…¶å®ƒåœ¨æ‹¬å·ä¸­çš„è¡¨è¾¾å¼ã€‚è¿™æ„å‘³æˆ‘ä»¬å¯ä»¥è¯´â€œä¸€ä¸ªç¨‹åºæ˜¯ä¸€ä¸ªæ“ä½œç¬¦åŽé¢è·Ÿç€ä¸€
+ä¸ªæˆ–å¤šä¸ªè¡¨è¾¾å¼ï¼Œè¡¨è¾¾å¼æ—¢å¯ä»¥æ˜¯ä¸€ä¸ªæ•°å­—ï¼Œæˆ–è€…æ˜¯åœ¨æ‹¬å·ä¸­çš„ä¸€ä¸ªæ“ä½œç¬¦è·Ÿç€
+ä¸€ä¸ªæˆ–å¤šä¸ªè¡¨è¾¾å¼â€ã€‚
 
-¸üÕý¹æ£º
-| ³ÌÐò   | ÊäÈë¿ªÊ¼£¬²Ù×÷·û£¬Ò»¸ö»ò¶à¸ö±í´ïÊ½£¬ÊäÈë½áÊø |
-| ±í´ïÊ½ | Êý×Ö»ò(Ò»¸ö²Ù×÷·û£¬Ò»¸ö»ò¶à¸ö±í´ïÊ½)         |
-| ²Ù×÷·û | +£¬ -£¬*£¬/                                  |
-| Êý×Ö   | ¿ÉÑ¡µÄ'-'£¬Ò»¸ö»ò¶à¸ö0µ½9Ö®¼ä×Ö·û            |
+æ›´æ­£è§„ï¼š
+| ç¨‹åº   | è¾“å…¥å¼€å§‹ï¼Œæ“ä½œç¬¦ï¼Œä¸€ä¸ªæˆ–å¤šä¸ªè¡¨è¾¾å¼ï¼Œè¾“å…¥ç»“æŸ |
+| è¡¨è¾¾å¼ | æ•°å­—æˆ–(ä¸€ä¸ªæ“ä½œç¬¦ï¼Œä¸€ä¸ªæˆ–å¤šä¸ªè¡¨è¾¾å¼)         |
+| æ“ä½œç¬¦ | +ï¼Œ -ï¼Œ*ï¼Œ/                                  |
+| æ•°å­—   | å¯é€‰çš„'-'ï¼Œä¸€ä¸ªæˆ–å¤šä¸ª0åˆ°9ä¹‹é—´å­—ç¬¦            |
 
-** ÕýÔò±í´ïÊ½
+** æ­£åˆ™è¡¨è¾¾å¼
 
-ÎÒÓ¦¸ÃÄÜ¹»Ê¹ÓÃÎÒÃÇÒÑÖªµÄÖªÊ¶À´¶ÔÉÏÃæ¹æÔò½øÐÐ±àÂë£¬µ« *Êý×Ö* ºÍ *³ÌÐò*
-¿ÉÄÜ»áÔì³ÉÒ»Ð©Âé·³¡£ËüÃÇ°üº¬ÁË¼¸¸öÎÒÃÇÈÔ²»ÖªµÀÈçºÎ±íÊ¾µÄ½á¹¹¡£ÎÒÃÇ²»Öª
-µÀÈçºÎ±íÊ¾ÊäÈëµÄ¿ªÊ¼ºÍ½á¹¹£¬¿ÉÑ¡×Ö·û£¬»ò×Ö·ûÇø¼ä¡£
+æˆ‘åº”è¯¥èƒ½å¤Ÿä½¿ç”¨æˆ‘ä»¬å·²çŸ¥çš„çŸ¥è¯†æ¥å¯¹ä¸Šé¢è§„åˆ™è¿›è¡Œç¼–ç ï¼Œä½† *æ•°å­—* å’Œ *ç¨‹åº*
+å¯èƒ½ä¼šé€ æˆä¸€äº›éº»çƒ¦ã€‚å®ƒä»¬åŒ…å«äº†å‡ ä¸ªæˆ‘ä»¬ä»ä¸çŸ¥é“å¦‚ä½•è¡¨ç¤ºçš„ç»“æž„ã€‚æˆ‘ä»¬ä¸çŸ¥
+é“å¦‚ä½•è¡¨ç¤ºè¾“å…¥çš„å¼€å§‹å’Œç»“æž„ï¼Œå¯é€‰å­—ç¬¦ï¼Œæˆ–å­—ç¬¦åŒºé—´ã€‚
 
-ËüÃÇ¿ÉÒÔ±íÊ¾£¬µ«ËüÃÇÐèÒªÒ»¸ö³ÆÎªÕýÔò±í´ïÊ½(/Regular Expression/)µÄ¶«Î÷¡£
-ÕýÔò±í´ïÊ½ÊÇÒ»ÖÖÎªÒ»Ð¡¶ÎÎÄ±¾Èçµ¥´Ê»òÊý×Ö±àÐ´Óï·¨µÄ·½Ê½¡£ÓÃÕýÔò±í´ïÊ½±à
-Ð´Óï·¨²»ÊÇÓÉ¶à¸ö¹æÔò×éºÏ£¬¶øÊÇËüÃÇÄÜ¹»¸ø³ö¾«È·ºÍ¼ò½àµÄ¿ØÖÆÄÄÐ©ÄÜÆ¥ÅäÄÄ
-Ð©²»ÄÜÆ¥Åä¡£ÕâÀïÓÐ±àÐ´ÕýÔò±í´ïÊ½µÄ»ù´¡¹æÔò£º
-| .        | ÈÎÒâÒ»¸ö×Ö·û                 |
-| a        | ×Ö·ûa                        |
-| [abcdef] | ÈÎÒâÒ»¸öÔÚ¼¯ºÏabcdefÖÐµÄ×Ö·û |
-| [a-f]    | ÈÎÒâÒ»¸öÔÚ·¶Î§aµ½fÖ®¼äµÄ×Ö·û |
-| a?       | ×Ö·ûaÊÇ¿ÉÑ¡µÄ                |
-| a*       | 0¸ö»ò¶à¸öa×Ö·û               |
-| a+       | 1¸ö»ò¶à¸öa×Ö·û               |
-| \^     | ÊäÈëµÄ¿ªÊ¼                   |
-| $        | ÊäÈëµÄ½áÊø                   |
+å®ƒä»¬å¯ä»¥è¡¨ç¤ºï¼Œä½†å®ƒä»¬éœ€è¦ä¸€ä¸ªç§°ä¸ºæ­£åˆ™è¡¨è¾¾å¼(/Regular Expression/)çš„ä¸œè¥¿ã€‚
+æ­£åˆ™è¡¨è¾¾å¼æ˜¯ä¸€ç§ä¸ºä¸€å°æ®µæ–‡æœ¬å¦‚å•è¯æˆ–æ•°å­—ç¼–å†™è¯­æ³•çš„æ–¹å¼ã€‚ç”¨æ­£åˆ™è¡¨è¾¾å¼ç¼–
+å†™è¯­æ³•ä¸æ˜¯ç”±å¤šä¸ªè§„åˆ™ç»„åˆï¼Œè€Œæ˜¯å®ƒä»¬èƒ½å¤Ÿç»™å‡ºç²¾ç¡®å’Œç®€æ´çš„æŽ§åˆ¶å“ªäº›èƒ½åŒ¹é…å“ª
+äº›ä¸èƒ½åŒ¹é…ã€‚è¿™é‡Œæœ‰ç¼–å†™æ­£åˆ™è¡¨è¾¾å¼çš„åŸºç¡€è§„åˆ™ï¼š
+| .        | ä»»æ„ä¸€ä¸ªå­—ç¬¦                 |
+| a        | å­—ç¬¦a                        |
+| [abcdef] | ä»»æ„ä¸€ä¸ªåœ¨é›†åˆabcdefä¸­çš„å­—ç¬¦ |
+| [a-f]    | ä»»æ„ä¸€ä¸ªåœ¨èŒƒå›´aåˆ°fä¹‹é—´çš„å­—ç¬¦ |
+| a?       | å­—ç¬¦aæ˜¯å¯é€‰çš„                |
+| a*       | 0ä¸ªæˆ–å¤šä¸ªaå­—ç¬¦               |
+| a+       | 1ä¸ªæˆ–å¤šä¸ªaå­—ç¬¦               |
+| \^     | è¾“å…¥çš„å¼€å§‹                   |
+| $        | è¾“å…¥çš„ç»“æŸ                   |
 
-ÕâÐ©ÊÇÎÒÃÇÏÖÔÚÐèÒªµÄËùÓÐÕýÔò±í´ïÊ½¹æÔò¡£
+è¿™äº›æ˜¯æˆ‘ä»¬çŽ°åœ¨éœ€è¦çš„æ‰€æœ‰æ­£åˆ™è¡¨è¾¾å¼è§„åˆ™ã€‚
 
-ÔÚ *mpc* Óï·¨ÖÐ£¬ÎÒÃÇ½«ÕýÔò±í´ïÊ½·ÅÔÚÁ½¸ö/Ö®¼ä¡£Ê¹ÓÃÉÏÃæµÄÖ¸ÄÏ£¬ÎÒÃÇµÄ
-Êý×Ö¹æÔò¿ÉÒÔÓÃÕýÔò±í´ïÊ½/-?[0-9]+/µÄ×Ö·û´®À´±í´ï¡£
+åœ¨ *mpc* è¯­æ³•ä¸­ï¼Œæˆ‘ä»¬å°†æ­£åˆ™è¡¨è¾¾å¼æ”¾åœ¨ä¸¤ä¸ª/ä¹‹é—´ã€‚ä½¿ç”¨ä¸Šé¢çš„æŒ‡å—ï¼Œæˆ‘ä»¬çš„
+æ•°å­—è§„åˆ™å¯ä»¥ç”¨æ­£åˆ™è¡¨è¾¾å¼/-?[0-9]+/çš„å­—ç¬¦ä¸²æ¥è¡¨è¾¾ã€‚
 
-** °²×°mpc
+** å®‰è£…mpc
 
-ÔÚÎÒÃÇ±àÐ´Óï·¨Ö®¼äÊ×ÏÈÒª°üº¬ *mpc* Í·ÎÄ¼þÈ»ºóÁ´½Óµ½ *mpc* ¿â¡£ ÎÒÃÇÏÂ
-ÔØ *mpc.c* ºÍ *mpc.h* ¡£°ÑËüÃÇ·Åµ½ÓëÔ´ÎÄ¼þµÄÍ¬Ò»¸öÄ¿Â¼ÏÂ¡£
+åœ¨æˆ‘ä»¬ç¼–å†™è¯­æ³•ä¹‹é—´é¦–å…ˆè¦åŒ…å« *mpc* å¤´æ–‡ä»¶ç„¶åŽé“¾æŽ¥åˆ° *mpc* åº“ã€‚ æˆ‘ä»¬ä¸‹
+è½½ *mpc.c* å’Œ *mpc.h* ã€‚æŠŠå®ƒä»¬æ”¾åˆ°ä¸Žæºæ–‡ä»¶çš„åŒä¸€ä¸ªç›®å½•ä¸‹ã€‚
 
-ÎªÁË°üº¬ *mpc* £¬½« #include "mpc.h" ·Åµ½ÎÄ¼þµÄ¶¥²¿¡£ ÎªÁËÁ´½Óµ½ *mpc*
-½« *mpc.c* Ö±µ½·Åµ½±àÒëÃüÁîÖÐ¡£ÔÚLinuxÉÏ£¬ÎÒÃÇÐèÒªÌí¼Ó *-lm* ±êÖ¾À´Á´
-½Óµ½ÊýÑ§¿â¡£
+ä¸ºäº†åŒ…å« *mpc* ï¼Œå°† #include "mpc.h" æ”¾åˆ°æ–‡ä»¶çš„é¡¶éƒ¨ã€‚ ä¸ºäº†é“¾æŽ¥åˆ° *mpc*
+å°† *mpc.c* ç›´åˆ°æ”¾åˆ°ç¼–è¯‘å‘½ä»¤ä¸­ã€‚åœ¨Linuxä¸Šï¼Œæˆ‘ä»¬éœ€è¦æ·»åŠ  *-lm* æ ‡å¿—æ¥é“¾
+æŽ¥åˆ°æ•°å­¦åº“ã€‚
 
-ÔÚLinuxºÍMacÉÏ
+åœ¨Linuxå’ŒMacä¸Š
 
 #+BEGIN_SRC shell
 cc -std=c99 -Wall parsing.c mpc.c -ledit -lm -o parsing
 #+END_SRC
 
-** ²¨À¼±íÊ¾·¨Óï·¨
+** æ³¢å…°è¡¨ç¤ºæ³•è¯­æ³•
 
-¶ÔÉÏÃæµÄ¹æÔò½øÒ»²½Õý¹æ»¯¡£Ê¹ÓÃÕýÔò±í´ïÊ½£¬ÎÒÃÇ¿ÉÒÔÎª²¨À¼±íÊ¾·¨±àÐ´³öÈç
-ÏÂµÄ×îÖÕÓï·¨¡£
+å¯¹ä¸Šé¢çš„è§„åˆ™è¿›ä¸€æ­¥æ­£è§„åŒ–ã€‚ä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼ï¼Œæˆ‘ä»¬å¯ä»¥ä¸ºæ³¢å…°è¡¨ç¤ºæ³•ç¼–å†™å‡ºå¦‚
+ä¸‹çš„æœ€ç»ˆè¯­æ³•ã€‚
 
 #+BEGIN_SRC C
 /* Create Some Parsers */
@@ -844,19 +844,19 @@ mpca_lang(MPC_LANG_DEFAULT,
   Number, Operator, Expr, Lispy);
 #+END_SRC
 
-ÎÒÃÇ½«ÈÃÃæµÄ´úÂëÌí¼Óµ½µÚ4ÕÂµÄ½»»¥Ê½ÌáÊ¾·û´úÂëÖÐ¡£°ÑÕâ¸ö´úÂëÌí¼Ó
-ÔÚ *main* º¯ÊýÖÐ£¬·ÅÔÚ´òÓ¡VersionºÍExitÐÅÏ¢Ö®Ç°¡£ÔÚ *main* Î²²¿ÐèÒªÌí
-¼ÓÉ¾³ý½âÎöÆ÷µÄÇåÀíº¯Êý¡£
+æˆ‘ä»¬å°†è®©é¢çš„ä»£ç æ·»åŠ åˆ°ç¬¬4ç« çš„äº¤äº’å¼æç¤ºç¬¦ä»£ç ä¸­ã€‚æŠŠè¿™ä¸ªä»£ç æ·»åŠ 
+åœ¨ *main* å‡½æ•°ä¸­ï¼Œæ”¾åœ¨æ‰“å°Versionå’ŒExitä¿¡æ¯ä¹‹å‰ã€‚åœ¨ *main* å°¾éƒ¨éœ€è¦æ·»
+åŠ åˆ é™¤è§£æžå™¨çš„æ¸…ç†å‡½æ•°ã€‚
 
 #+BEGIN_SRC C
 /* Undefine and Delete our Parsers */
 mpc_cleanup(4, Number, Operator, Expr, Lispy);
 #+END_SRC
 
-** ½âÎöÓÃ»§ÊäÈë
+** è§£æžç”¨æˆ·è¾“å…¥
 
-ÎÒÃÇÎª²¨À¼±íÊ¾·¨ÓïÑÔ´´½¨Ò»¸ö *mpc* ½âÎöÆ÷£¬ÎÒÃÇÐèÒª½«Æä×÷ÓÃÓÃ»§ÊäÈëÉÏ¡£
-ÎÒÃÇÐèÒªÐÞ¸Ä *while* Ñ­»·¡£½« *printf* ´òÓ¡´úÂëÌæ»»³ÉÏÂÃæµÄ *mpc* ´úÂë¡£
+æˆ‘ä»¬ä¸ºæ³¢å…°è¡¨ç¤ºæ³•è¯­è¨€åˆ›å»ºä¸€ä¸ª *mpc* è§£æžå™¨ï¼Œæˆ‘ä»¬éœ€è¦å°†å…¶ä½œç”¨ç”¨æˆ·è¾“å…¥ä¸Šã€‚
+æˆ‘ä»¬éœ€è¦ä¿®æ”¹ *while* å¾ªçŽ¯ã€‚å°† *printf* æ‰“å°ä»£ç æ›¿æ¢æˆä¸‹é¢çš„ *mpc* ä»£ç ã€‚
 
 #+BEGIN_SRC C
 /* Attempt to Parse the user Input */
@@ -872,12 +872,12 @@ if (mpc_parse("<stdin>", input, Lispy, &r)) {
 }
 #+END_SRC
 
-Õâ¶Î´úÂëµ÷ÓÃÁË *mpc\_parse* º¯Êý£¬¸Ãº¯ÊýÊ¹ÓÃ *Lispy* ½âÎöÆ÷ºÍ *input*
-ÊäÈë×Ö·û´®¡£Ëü½«½âÎöµÄ½á¹û¸´ÖÆµ½ *r* ÖÐ£¬Èç¹û³É¹¦·µ»Ø1£¬·ñÔò·µ»Ø0¡£
+è¿™æ®µä»£ç è°ƒç”¨äº† *mpc\_parse* å‡½æ•°ï¼Œè¯¥å‡½æ•°ä½¿ç”¨ *Lispy* è§£æžå™¨å’Œ *input*
+è¾“å…¥å­—ç¬¦ä¸²ã€‚å®ƒå°†è§£æžçš„ç»“æžœå¤åˆ¶åˆ° *r* ä¸­ï¼Œå¦‚æžœæˆåŠŸè¿”å›ž1ï¼Œå¦åˆ™è¿”å›ž0ã€‚
 
-Èç¹û³É¹¦£¬Ò»¸öÄÚ²¿½á¹¹Ìå¸´ÖÆµ½ *r* µÄ *output* ÖÐ¡£ÎÒÃÇ¿ÉÒÔÊ¹
-ÓÃ *mpc\_ast\_print* À´´òÓ¡Õâ¸ö½á¹¹Ìå£¬Ê¹ÓÃ *mpc\_ast\_delete* À´É¾³ý½á¹¹
-Ìå¡£
+å¦‚æžœæˆåŠŸï¼Œä¸€ä¸ªå†…éƒ¨ç»“æž„ä½“å¤åˆ¶åˆ° *r* çš„ *output* ä¸­ã€‚æˆ‘ä»¬å¯ä»¥ä½¿
+ç”¨ *mpc\_ast\_print* æ¥æ‰“å°è¿™ä¸ªç»“æž„ä½“ï¼Œä½¿ç”¨ *mpc\_ast\_delete* æ¥åˆ é™¤ç»“æž„
+ä½“ã€‚
 
 #+BEGIN_SRC C
 Lispy Version 0.0.0.0.2
@@ -902,19 +902,19 @@ lispy> / 1dog
 lispy>
 #+END_SRC
 
-* ¼ÆËãÇóÖµ(Evaluation)
-** Ê÷
+* è®¡ç®—æ±‚å€¼(Evaluation)
+** æ ‘
 
-ÏÖÔÚÎÒÃÇÄÜ¹»¶ÁÈ¡ÊäÈë£¬»ñÈ¡ÄÚ²¿½á¹¹£¬µ«ÈÔÈ»²»ÄÜ¶ÔÆäÇóÖµ¡£ÔÚÕâÕÂÖÐÎÒÃÇ½«
-ÏÖÔÚÈçºÎÇóÖµ¡£
+çŽ°åœ¨æˆ‘ä»¬èƒ½å¤Ÿè¯»å–è¾“å…¥ï¼ŒèŽ·å–å†…éƒ¨ç»“æž„ï¼Œä½†ä»ç„¶ä¸èƒ½å¯¹å…¶æ±‚å€¼ã€‚åœ¨è¿™ç« ä¸­æˆ‘ä»¬å°†
+çŽ°åœ¨å¦‚ä½•æ±‚å€¼ã€‚
 
-ÉÏÒ»ÕÂÎÒÃÇ¿´µ½´òÓ¡À´µÄÄÚ²¿½á¹¹Ìå¡£Ëü±»³ÆÎª³éÏóÓï·¨Ê÷(/Abstract Syntax
-Tree/)£¬Ëü±íÊ¾ÁË»ùÓÚÓÃ»§ÊäÈëµÄ½á¹¹Ìå¡£Ê÷µÄÃ¿¸öÒ¶×Ó¶¼ÊÇÊýºÍ²Ù×÷·û£¨ÊµÏÖ
-±»´¦ÀíµÄÊý¾Ý£©¡£Ê÷µÄ·ÖÖ§¾ÍÊÇÓÃÓÚ²úÉúÊ÷µÄÕâ²¿·ÖµÄ¹æÔò£¨»ùÓÚ¶ÔÊ÷ÈçºÎ±éÀúºÍÇó
-ÖµµÄÐÅÏ¢£©¡£
+ä¸Šä¸€ç« æˆ‘ä»¬çœ‹åˆ°æ‰“å°æ¥çš„å†…éƒ¨ç»“æž„ä½“ã€‚å®ƒè¢«ç§°ä¸ºæŠ½è±¡è¯­æ³•æ ‘(/Abstract Syntax
+Tree/)ï¼Œå®ƒè¡¨ç¤ºäº†åŸºäºŽç”¨æˆ·è¾“å…¥çš„ç»“æž„ä½“ã€‚æ ‘çš„æ¯ä¸ªå¶å­éƒ½æ˜¯æ•°å’Œæ“ä½œç¬¦ï¼ˆå®žçŽ°
+è¢«å¤„ç†çš„æ•°æ®ï¼‰ã€‚æ ‘çš„åˆ†æ”¯å°±æ˜¯ç”¨äºŽäº§ç”Ÿæ ‘çš„è¿™éƒ¨åˆ†çš„è§„åˆ™ï¼ˆåŸºäºŽå¯¹æ ‘å¦‚ä½•éåŽ†å’Œæ±‚
+å€¼çš„ä¿¡æ¯ï¼‰ã€‚
 
-ÔÚ¿¼ÂÇÈçºÎ×ö±éÀúÖ®Ç°£¬ÎÒÃÇÏÈ¿´ÏÂ¶¨ÒåÔÚÄÚ²¿µÄ½á¹¹Ìå¡£ÔÚ *mpc.h* ÕÒµ½½á
-¹¹Ìå *mpc\_ast\_t* µÄ¶¨Òå¡£
+åœ¨è€ƒè™‘å¦‚ä½•åšéåŽ†ä¹‹å‰ï¼Œæˆ‘ä»¬å…ˆçœ‹ä¸‹å®šä¹‰åœ¨å†…éƒ¨çš„ç»“æž„ä½“ã€‚åœ¨ *mpc.h* æ‰¾åˆ°ç»“
+æž„ä½“ *mpc\_ast\_t* çš„å®šä¹‰ã€‚
 
 #+BEGIN_SRC C
 typedef struct mpc_ast_t {
@@ -926,17 +926,17 @@ typedef struct mpc_ast_t {
 } mpc_ast_t;
 #+END_SRC
 
-*tag* - °üº¬ÁËÒ»¸ö¹æÔòÁÐ±íµÄ×Ö·û´®£¬Èçexpr|number|regex¡£¸Ã×Ö¶Î¿ÉÒÔÈÃ
-ÎÒÃÇ¿´µ½ÄÄÐ©½âÎö¹æÔò¿ÉÓÃÓÚ½Úµã¡£
+*tag* - åŒ…å«äº†ä¸€ä¸ªè§„åˆ™åˆ—è¡¨çš„å­—ç¬¦ä¸²ï¼Œå¦‚expr|number|regexã€‚è¯¥å­—æ®µå¯ä»¥è®©
+æˆ‘ä»¬çœ‹åˆ°å“ªäº›è§£æžè§„åˆ™å¯ç”¨äºŽèŠ‚ç‚¹ã€‚
 
-*contents* - °üº¬ÁË½ÚµãµÄÊµ¼ÊÄÚÈÝ£¬Èç'*','('»ò'5'¡£·ÖÖ§ÖÐÕâ¸ö¶ÎÊÇ¿Õ£¬
-Ò¶×ÓÉÏ²Ù×÷·û»òÊý×Ö¡£
+*contents* - åŒ…å«äº†èŠ‚ç‚¹çš„å®žé™…å†…å®¹ï¼Œå¦‚'*','('æˆ–'5'ã€‚åˆ†æ”¯ä¸­è¿™ä¸ªæ®µæ˜¯ç©ºï¼Œ
+å¶å­ä¸Šæ“ä½œç¬¦æˆ–æ•°å­—ã€‚
 
-*state* - °üº¬ÁË½ÚµãµÄ×´Ì¬ÐÅÏ¢£¬ÈçÐÐÁÐ±àºÅ¡£
+*state* - åŒ…å«äº†èŠ‚ç‚¹çš„çŠ¶æ€ä¿¡æ¯ï¼Œå¦‚è¡Œåˆ—ç¼–å·ã€‚
 
-*children\_num* - ½ÚµãÓµÓÐº¢×ÓµÄ¸öÊý¡£
+*children\_num* - èŠ‚ç‚¹æ‹¥æœ‰å­©å­çš„ä¸ªæ•°ã€‚
 
-*children* - Êý×éÖ¸Õë¡£
+*children* - æ•°ç»„æŒ‡é’ˆã€‚
 
 #+BEGIN_SRC C
 /* Load AST from output */
@@ -953,18 +953,18 @@ printf("First Child Number of children: %i\n",
   c0->children_num);
 #+END_SRC
 
-** µÝ¹é
+** é€’å½’
 
-Õâ¸öÊ÷µÄ½á¹¹ÌåÓÐµãÆæ¹Ö¡£ËüÒýÓÃ×ÔÉí¡£Ê÷µÄÃ¿¸öº¢×Ó¶¼ÊÇÊ÷£¬º¢×ÓµÄº¢×ÓÍ¬Ñù
-Ò²ÊÇÊ÷¡£
+è¿™ä¸ªæ ‘çš„ç»“æž„ä½“æœ‰ç‚¹å¥‡æ€ªã€‚å®ƒå¼•ç”¨è‡ªèº«ã€‚æ ‘çš„æ¯ä¸ªå­©å­éƒ½æ˜¯æ ‘ï¼Œå­©å­çš„å­©å­åŒæ ·
+ä¹Ÿæ˜¯æ ‘ã€‚
 
-Ã÷È·µÄÊÇÈç¹ûÎÒÃÇÏëÈÃÒ»¸öº¯Êý¹¤×÷ÓÚÈÎºÎÊ÷£¬ÎÒÃÇ²»Í¬Ö»ÄÜ¼¸¸ö½Úµã£¬ÎÒÃÇ±Ø
-Ðë½«Æä¶¨Òå³ÉÎªÔÚÈÎºÎÉî¶ÈµÄÊ÷¶¼¿ÉÒÔ¹¤×÷¡£
+æ˜Žç¡®çš„æ˜¯å¦‚æžœæˆ‘ä»¬æƒ³è®©ä¸€ä¸ªå‡½æ•°å·¥ä½œäºŽä»»ä½•æ ‘ï¼Œæˆ‘ä»¬ä¸åŒåªèƒ½å‡ ä¸ªèŠ‚ç‚¹ï¼Œæˆ‘ä»¬å¿…
+é¡»å°†å…¶å®šä¹‰æˆä¸ºåœ¨ä»»ä½•æ·±åº¦çš„æ ‘éƒ½å¯ä»¥å·¥ä½œã€‚
 
-ÐÒÔËµØÊÇÎÒÃÇÄÜ¹»×öÕâµã£¬Í¨¹ý½á¹¹ÌåµÄÖØ¸´ÐÔÖÊ£¬Ê¹ÓÃÒ»ÖÖ³ÆÎªµÝ¹é
-(/recursion/)µÄ¼¼Êõ¡£
+å¹¸è¿åœ°æ˜¯æˆ‘ä»¬èƒ½å¤Ÿåšè¿™ç‚¹ï¼Œé€šè¿‡ç»“æž„ä½“çš„é‡å¤æ€§è´¨ï¼Œä½¿ç”¨ä¸€ç§ç§°ä¸ºé€’å½’
+(/recursion/)çš„æŠ€æœ¯ã€‚
 
-µÝ¹éº¯Êý×÷ÎªÆä¼ÆËãµÄÒ»²¿·Öµ÷ÓÃ×ÔÉí¡£
+é€’å½’å‡½æ•°ä½œä¸ºå…¶è®¡ç®—çš„ä¸€éƒ¨åˆ†è°ƒç”¨è‡ªèº«ã€‚
 
 #+BEGIN_SRC C
 int number_of_nodes(mpc_ast_t* t) {
@@ -979,10 +979,10 @@ int number_of_nodes(mpc_ast_t* t) {
 }
 #+END_SRC
 
-** ÇóÖµ
+** æ±‚å€¼
 
-ÎªÁË¼ÆËãÓï·¨Ê÷ÎÒÃÇ½«±àÐ´Ò»¸öµÝ¹éº¯Êý¡£ÔÚ¿ªÊ¼ÈÃÎÒÃÇ¿´¿´´ÓÓÃ»§ÊäÈë»ñÈ¡Ê÷
-µÄ½á¹¹Ìå¡£
+ä¸ºäº†è®¡ç®—è¯­æ³•æ ‘æˆ‘ä»¬å°†ç¼–å†™ä¸€ä¸ªé€’å½’å‡½æ•°ã€‚åœ¨å¼€å§‹è®©æˆ‘ä»¬çœ‹çœ‹ä»Žç”¨æˆ·è¾“å…¥èŽ·å–æ ‘
+çš„ç»“æž„ä½“ã€‚
 #+BEGIN_SRC shell
 lispy> * 10 (+ 1 51)
 >
@@ -998,23 +998,23 @@ lispy> * 10 (+ 1 51)
   regex
 #+END_SRC
 
-Èç¹û½Úµã±»±ê¼ÇÎª *number* £¬ÔòËüÃ»ÓÐº¢×Ó£¬ÎÒÃÇ¿ÉÒÔ½ö½ö½«ÄÚÈÝ×ª»»³ÉÕûÐÍ¡£
+å¦‚æžœèŠ‚ç‚¹è¢«æ ‡è®°ä¸º *number* ï¼Œåˆ™å®ƒæ²¡æœ‰å­©å­ï¼Œæˆ‘ä»¬å¯ä»¥ä»…ä»…å°†å†…å®¹è½¬æ¢æˆæ•´åž‹ã€‚
 
-Èç¹û½Úµã±»±ê¼ÇÎª *expr* £¬¶ø·Ç *number* £¬ÎÒÃÇÐèÒª²é¿´ËüµÄµÚ¶þ¸öº¢×Ó
-£¨µÚÒ»¸öº¢×ÓÍ¨³£ÊÇ'('£©ÊÇÊ²Ã´²Ù×÷·û¡£È»ºóÎÒÃÇ½«Õâ¸ö²Ù×÷·ûÓ¦ÓÃÓÚÊ£Óà
-º¢×ÓµÄ¼ÆËã£¬³ýÁË×îºóÒ»¸öº¢×ÓÍ¨³£ÊÇ')'¡£
+å¦‚æžœèŠ‚ç‚¹è¢«æ ‡è®°ä¸º *expr* ï¼Œè€Œéž *number* ï¼Œæˆ‘ä»¬éœ€è¦æŸ¥çœ‹å®ƒçš„ç¬¬äºŒä¸ªå­©å­
+ï¼ˆç¬¬ä¸€ä¸ªå­©å­é€šå¸¸æ˜¯'('ï¼‰æ˜¯ä»€ä¹ˆæ“ä½œç¬¦ã€‚ç„¶åŽæˆ‘ä»¬å°†è¿™ä¸ªæ“ä½œç¬¦åº”ç”¨äºŽå‰©ä½™
+å­©å­çš„è®¡ç®—ï¼Œé™¤äº†æœ€åŽä¸€ä¸ªå­©å­é€šå¸¸æ˜¯')'ã€‚
 
-µ±ÎÒÃÇ¶ÔÊ÷ÇóÖµ£¬¾ÍÊÇ¶Ô½Úµã¼ÆÊý£¬ÎÒÃÇÐèÒªÀÛ»ý½á¹û¡£ÎªÁË±íÊ¾½á¹ûÎÒÃÇ½«Ê¹
-ÓÃCÀàÐÍ³¤ÕûÐÍ *long* ¡£
+å½“æˆ‘ä»¬å¯¹æ ‘æ±‚å€¼ï¼Œå°±æ˜¯å¯¹èŠ‚ç‚¹è®¡æ•°ï¼Œæˆ‘ä»¬éœ€è¦ç´¯ç§¯ç»“æžœã€‚ä¸ºäº†è¡¨ç¤ºç»“æžœæˆ‘ä»¬å°†ä½¿
+ç”¨Cç±»åž‹é•¿æ•´åž‹ *long* ã€‚
 
-ÎªÁË¼ì²â½ÚµãµÄ±êÇ©»òµÃµ½½ÚµãµÄÊý×Ö£¬ÎÒÃÇÐèÒªÊ¹ÓÃ *tag* ºÍ *contents*
-×Ö¶Î¡£Õâ¸ö×Ö¶ÎÊÇ×Ö·û´®ÀàÐÍ£¬ËùÒÔÎÒÃÇÏÈÑ§Ï°¼¸¸ö×Ö·û´®º¯Êý£º
-| atoi   | ½« char* ×ª»»³Élong                                                             |
-| strcmp | ±È½ÏÁ½¸ö char*£¬Èç¹ûÏàµÈ·µ»Ø0                                                   |
-| strstr | ×Ö·û´®²éÕÒ£¬·µ»ØµÚ¶þ¸ö×Ö·û´®ÔÚµÚÒ»¸ö×Ö·û´®ÖÐµÄÎ»ÖÃ¡£Èç¹ûÃ»ÓÐÕÒµ½£¬·µ»Ø0     |
+ä¸ºäº†æ£€æµ‹èŠ‚ç‚¹çš„æ ‡ç­¾æˆ–å¾—åˆ°èŠ‚ç‚¹çš„æ•°å­—ï¼Œæˆ‘ä»¬éœ€è¦ä½¿ç”¨ *tag* å’Œ *contents*
+å­—æ®µã€‚è¿™ä¸ªå­—æ®µæ˜¯å­—ç¬¦ä¸²ç±»åž‹ï¼Œæ‰€ä»¥æˆ‘ä»¬å…ˆå­¦ä¹ å‡ ä¸ªå­—ç¬¦ä¸²å‡½æ•°ï¼š
+| atoi   | å°† char* è½¬æ¢æˆlong                                                             |
+| strcmp | æ¯”è¾ƒä¸¤ä¸ª char*ï¼Œå¦‚æžœç›¸ç­‰è¿”å›ž0                                                   |
+| strstr | å­—ç¬¦ä¸²æŸ¥æ‰¾ï¼Œè¿”å›žç¬¬äºŒä¸ªå­—ç¬¦ä¸²åœ¨ç¬¬ä¸€ä¸ªå­—ç¬¦ä¸²ä¸­çš„ä½ç½®ã€‚å¦‚æžœæ²¡æœ‰æ‰¾åˆ°ï¼Œè¿”å›ž0     |
 
-ÎÒÃÇ¿ÉÒÔÊ¹ÓÃ *strcmp* À´¼ì²âÊ¹ÓÃ²Ù×÷·û£¬Ê¹ÓÃ *strstr* À´¼ì²â±êÇ©°üº¬Ä³
-¸ö×Ó´®¡£ÎÒÃÇµÄµÝ¹éÇóÖµº¯Êý¿´ÆðÀ´ÈçÏÂ£º
+æˆ‘ä»¬å¯ä»¥ä½¿ç”¨ *strcmp* æ¥æ£€æµ‹ä½¿ç”¨æ“ä½œç¬¦ï¼Œä½¿ç”¨ *strstr* æ¥æ£€æµ‹æ ‡ç­¾åŒ…å«æŸ
+ä¸ªå­ä¸²ã€‚æˆ‘ä»¬çš„é€’å½’æ±‚å€¼å‡½æ•°çœ‹èµ·æ¥å¦‚ä¸‹ï¼š
 #+BEGIN_SRC C
 long eval(mpc_ast_t* t) {
   
@@ -1040,7 +1040,7 @@ long eval(mpc_ast_t* t) {
 }
 #+END_SRC
 
-ÎÒÃÇ¶¨Òå *eval\_op* º¯ÊýÈçÏÂ¡£
+æˆ‘ä»¬å®šä¹‰ *eval\_op* å‡½æ•°å¦‚ä¸‹ã€‚
 #+BEGIN_SRC C
 /* Use operator string to see which operation to perform */
 long eval_op(long x, char* op, long y) {
@@ -1052,10 +1052,10 @@ long eval_op(long x, char* op, long y) {
 }
 #+END_SRC
 
-** ´òÓ¡
+** æ‰“å°
 
-ÏÖÔÚÎÒÃÇÏëÒª´òÓ¡¼ÆËã½á¹û¡£Òò´ËÎÒÃÇÐèÒª½«Ê÷×ªµÝ¸ø *eval* º¯Êý£¬È»ºóÊ¹
-ÓÃ *printf* ºÍÖ¸¶¨ *%li* À´´òÓ¡ÎÒÃÇµÃµ½µÄ½á¹û¡£
+çŽ°åœ¨æˆ‘ä»¬æƒ³è¦æ‰“å°è®¡ç®—ç»“æžœã€‚å› æ­¤æˆ‘ä»¬éœ€è¦å°†æ ‘è½¬é€’ç»™ *eval* å‡½æ•°ï¼Œç„¶åŽä½¿
+ç”¨ *printf* å’ŒæŒ‡å®š *%li* æ¥æ‰“å°æˆ‘ä»¬å¾—åˆ°çš„ç»“æžœã€‚
 #+BEGIN_SRC C
 long result = eval(r.output);
 printf("%li\n", result);
@@ -1072,10 +1072,10 @@ lispy> - (* 10 10) (+ 1 1 1)
 97
 #+END_SRC
 
-* ´íÎó´¦Àí(Error Handling)
-** ±ÀÀ£
+* é”™è¯¯å¤„ç†(Error Handling)
+** å´©æºƒ
 
-Äã¿ÉÒÔÒÑ¾­×¢Òâµ½ÉÏÒ»ÕÂ³ÌÐò´æÔÚÒ»Ð©ÎÊÌâ£¬³¢ÊÔÊäÈëÈçÏÂ¿´¿´»á·¢ÉúÊ²Ã´¡£
+ä½ å¯ä»¥å·²ç»æ³¨æ„åˆ°ä¸Šä¸€ç« ç¨‹åºå­˜åœ¨ä¸€äº›é—®é¢˜ï¼Œå°è¯•è¾“å…¥å¦‚ä¸‹çœ‹çœ‹ä¼šå‘ç”Ÿä»€ä¹ˆã€‚
 #+BEGIN_SRC SHELL
 Lispy Version 0.0.0.0.3
 Press Ctrl+c to Exit
@@ -1083,24 +1083,24 @@ Press Ctrl+c to Exit
 lispy> / 10 0
 #+END_SRC
 
-µ±ÊÔÍ¼³ýÒÔ0Ê±³ÌÐò±ÀÀ£¡£ÔÚ¿ª·¢Ö®¼äÈç¹û³ÌÐò±ÀÀ£Ã»ÓÐ¹ØÏµ£¬µ«ÎÒÃÇ×îÖÕ³ÌÐò
-Ï£Íû²»ÔÙ±ÀÀ££¬Ó¦¸Ã×ÜÊÇÏòÓÃ»§½âÊÍ³öÁËÊ²Ã´´íÎó¡£
+å½“è¯•å›¾é™¤ä»¥0æ—¶ç¨‹åºå´©æºƒã€‚åœ¨å¼€å‘ä¹‹é—´å¦‚æžœç¨‹åºå´©æºƒæ²¡æœ‰å…³ç³»ï¼Œä½†æˆ‘ä»¬æœ€ç»ˆç¨‹åº
+å¸Œæœ›ä¸å†å´©æºƒï¼Œåº”è¯¥æ€»æ˜¯å‘ç”¨æˆ·è§£é‡Šå‡ºäº†ä»€ä¹ˆé”™è¯¯ã€‚
 
-Ä¿Ç°ÎÒÃÇ³ÌÐò¿ÉÒÔ²úÉúÓï·¨´íÎó£¬µ«ÈÔÈ»²»ÄÜÔÚ¶Ô±í´ïÊ½ÇóÖµÊ±±¨¸æ´íÎó¡£ÎÒÃÇ
-ÐèÒª¹¹½¨Ä³ÖÖ´íÎó´¦Àí¡£ÕâÔÚCÖÐºÜ¼¬ÊÖ£¬µ«Èç¹ûÎÒÃÇ½øÈëÕý¹ì£¬µ±ÎÒÃÇÏµÍ³Ô½
-À´Ô½¸´ÔÓÊ±½«»áµÃµ½ºÃ½á¹û¡£
+ç›®å‰æˆ‘ä»¬ç¨‹åºå¯ä»¥äº§ç”Ÿè¯­æ³•é”™è¯¯ï¼Œä½†ä»ç„¶ä¸èƒ½åœ¨å¯¹è¡¨è¾¾å¼æ±‚å€¼æ—¶æŠ¥å‘Šé”™è¯¯ã€‚æˆ‘ä»¬
+éœ€è¦æž„å»ºæŸç§é”™è¯¯å¤„ç†ã€‚è¿™åœ¨Cä¸­å¾ˆæ£˜æ‰‹ï¼Œä½†å¦‚æžœæˆ‘ä»¬è¿›å…¥æ­£è½¨ï¼Œå½“æˆ‘ä»¬ç³»ç»Ÿè¶Š
+æ¥è¶Šå¤æ‚æ—¶å°†ä¼šå¾—åˆ°å¥½ç»“æžœã€‚
 
-C³ÌÐò±ÀÀ£ÊÇÎÞ·¨¸Ä±äµÄ¡£Èç¹ûÓÐÊ²Ã´´íÎó£¬²Ù×÷ÏµÍ³¾Í»á°ÑËüÃÇÉ±µô¡£³ÌÐò¿É
-ÄÜÓÐÒòÎªºÜ¶àÔ­Òò£¬ÒÔ¸÷ÖÖ·½Ê½±ÀÀ£¡£
+Cç¨‹åºå´©æºƒæ˜¯æ— æ³•æ”¹å˜çš„ã€‚å¦‚æžœæœ‰ä»€ä¹ˆé”™è¯¯ï¼Œæ“ä½œç³»ç»Ÿå°±ä¼šæŠŠå®ƒä»¬æ€æŽ‰ã€‚ç¨‹åºå¯
+èƒ½æœ‰å› ä¸ºå¾ˆå¤šåŽŸå› ï¼Œä»¥å„ç§æ–¹å¼å´©æºƒã€‚
 
-Ñ§»áÊ¹ÓÃ *gdb* ºÍ *valgrind* £¬¿ÉÒÔÔÚÅÅ´íÖÐ½ÚÔ¼´óÁ¿µÄÊ±¼äºÍ¼õÉÙÍ´¿à¡£
+å­¦ä¼šä½¿ç”¨ *gdb* å’Œ *valgrind* ï¼Œå¯ä»¥åœ¨æŽ’é”™ä¸­èŠ‚çº¦å¤§é‡çš„æ—¶é—´å’Œå‡å°‘ç—›è‹¦ã€‚
 
-** LispÖµ
+** Lispå€¼
 
-ÔÚCÖÐ´æÔÚ¼¸ÖÖ·½Ê½À´´¦Àí´íÎó¡£ÔÚLispyÖÐ£¬Ò»¸ö±í´ïÊ½µÄ¼ÆËã½á¹û²»
-ÊÇ *number* ¾ÍÊÇ *error* ¡£
+åœ¨Cä¸­å­˜åœ¨å‡ ç§æ–¹å¼æ¥å¤„ç†é”™è¯¯ã€‚åœ¨Lispyä¸­ï¼Œä¸€ä¸ªè¡¨è¾¾å¼çš„è®¡ç®—ç»“æžœä¸
+æ˜¯ *number* å°±æ˜¯ *error* ã€‚
 
-ÎÒÃÇ¶¨ÒåÒ»½á¹¹ÌåÀ´±íÊ¾¼ÆËã½á¹û¡£ÎÒÃÇ½«¶¨ÒåÒ»¸ö *lval* ½á¹¹Ìå´ú±íLispÖµ¡£
+æˆ‘ä»¬å®šä¹‰ä¸€ç»“æž„ä½“æ¥è¡¨ç¤ºè®¡ç®—ç»“æžœã€‚æˆ‘ä»¬å°†å®šä¹‰ä¸€ä¸ª *lval* ç»“æž„ä½“ä»£è¡¨Lispå€¼ã€‚
 #+BEGIN_SRC C
 /* Declare New lval Struct */
 typedef struct {
@@ -1110,37 +1110,37 @@ typedef struct {
 } lval;
 #+END_SRC
 
-*type* - ¸æËßÎÒÃÇÓ¦¸Ã·ÃÎÊÄÄ¸ö×Ö¶Î¡£
-*number* - ÔÚ²»³ö´íµÄÇé¿ö¼ÆËã½á¹û¡£
-*err* - ³ö´íÊ±·µ»ØµÄ´íÎó±àÂë¡£
+*type* - å‘Šè¯‰æˆ‘ä»¬åº”è¯¥è®¿é—®å“ªä¸ªå­—æ®µã€‚
+*number* - åœ¨ä¸å‡ºé”™çš„æƒ…å†µè®¡ç®—ç»“æžœã€‚
+*err* - å‡ºé”™æ—¶è¿”å›žçš„é”™è¯¯ç¼–ç ã€‚
 
-** Ã¶¾Ù
+** æžšä¸¾
 
-Äã½«×¢Òâµ½ *type* ºÍ *err* ×Ö¶Î¶¼ÊÇ *int* ÀàÐÍ£¬ÕâÒâÎ¶×ÅËüÃÇÐèÒªÊ¹ÓÃÊ¹
-ÓÃÕûÐÍÊý×ÖÀ´±íÊ¾¡£
+ä½ å°†æ³¨æ„åˆ° *type* å’Œ *err* å­—æ®µéƒ½æ˜¯ *int* ç±»åž‹ï¼Œè¿™æ„å‘³ç€å®ƒä»¬éœ€è¦ä½¿ç”¨ä½¿
+ç”¨æ•´åž‹æ•°å­—æ¥è¡¨ç¤ºã€‚
 
-ÎÒÃÇÑ¡Ôñ *int* µÄÀíÓÉÊÇÒòÎªÎÒÃÇ½«ÎªÃ¿¸öÕûÐÍÖµ¸³ÓèÒâÒå£¬¸ù¾ÝÎÒÃÇÐèÒª½ø
-ÐÐ±àÂë¡£ÀýÈç£¬ÎÒÃÇÖÆ¶¨¹æÔò£¬Èç¹û *type* Îª0£¬±íÊ¾½á¹¹ÌåÊÇÒ»¸ö *Number*
-£¬Èç¹ûÎª1£¬±íÊ¾½á¹¹ÌåÊÇÒ»¸ö *Error* ¡£
+æˆ‘ä»¬é€‰æ‹© *int* çš„ç†ç”±æ˜¯å› ä¸ºæˆ‘ä»¬å°†ä¸ºæ¯ä¸ªæ•´åž‹å€¼èµ‹äºˆæ„ä¹‰ï¼Œæ ¹æ®æˆ‘ä»¬éœ€è¦è¿›
+è¡Œç¼–ç ã€‚ä¾‹å¦‚ï¼Œæˆ‘ä»¬åˆ¶å®šè§„åˆ™ï¼Œå¦‚æžœ *type* ä¸º0ï¼Œè¡¨ç¤ºç»“æž„ä½“æ˜¯ä¸€ä¸ª *Number*
+ï¼Œå¦‚æžœä¸º1ï¼Œè¡¨ç¤ºç»“æž„ä½“æ˜¯ä¸€ä¸ª *Error* ã€‚
 
-Ïà±ÈÖ±½ÓÊ¹ÓÃ0»ò1£¬ÎÒÃÇ¿ÉÒÔÊ¹ÓÃ³£Á¿£¬ÕâÑù¸üÈÝÒ×ÔÄ¶ÁºÍÀí½â´úÂë¡£
+ç›¸æ¯”ç›´æŽ¥ä½¿ç”¨0æˆ–1ï¼Œæˆ‘ä»¬å¯ä»¥ä½¿ç”¨å¸¸é‡ï¼Œè¿™æ ·æ›´å®¹æ˜“é˜…è¯»å’Œç†è§£ä»£ç ã€‚
 
-ÔÚCÖÐ£¬Ê¹ÓÃ *enum* À´¶¨Òå³£Á¿¡£
+åœ¨Cä¸­ï¼Œä½¿ç”¨ *enum* æ¥å®šä¹‰å¸¸é‡ã€‚
 #+BEGIN_SRC C
 enum { LVAL_NUM, LVAL_ERR };
 #+END_SRC
 
-Ò»¸ö *enum* ¶¨ÒåÁËÒ»×é³£Á¿£¬ÕâÐ©³£Á¿»á±»ÏµÍ³×Ô¶¯¸³Öµ¡£
+ä¸€ä¸ª *enum* å®šä¹‰äº†ä¸€ç»„å¸¸é‡ï¼Œè¿™äº›å¸¸é‡ä¼šè¢«ç³»ç»Ÿè‡ªåŠ¨èµ‹å€¼ã€‚
 
-ÎÒÃÇÒ²¿ÉÒÔÎª /error/ ¶¨ÒåÎªÃ¶¾Ù¡£
+æˆ‘ä»¬ä¹Ÿå¯ä»¥ä¸º /error/ å®šä¹‰ä¸ºæžšä¸¾ã€‚
 #+BEGIN_SRC C
 /* Create Enumeration of Possible Error Types */
 enum { LERR_DIV_ZERO, LERR_BAD_OP, LERR_BAD_NUM };
 #+END_SRC
 
-** LispÖµº¯Êý
+** Lispå€¼å‡½æ•°
 
-ÎÒÃÇ¶¨Òå /error/ ÀàÐÍºÍ /number/ ÀàÐÍµÄ *lval* ¹¹Ôìº¯Êý¡£
+æˆ‘ä»¬å®šä¹‰ /error/ ç±»åž‹å’Œ /number/ ç±»åž‹çš„ *lval* æž„é€ å‡½æ•°ã€‚
 
 #+BEGIN_SRC C
 /* Create a new number type lval */
@@ -1186,13 +1186,13 @@ void lval_print(lval v) {
 void lval_println(lval v) { lval_print(v); putchar('\n'); }
 #+END_SRC
 
-** ÇóÖµ´íÎó
+** æ±‚å€¼é”™è¯¯
 
-ÏÖÔÚÎÒÃÇÒÑ¾­ÖªµÀÈçºÎ²Ù×÷ *lval* ÀàÐÍÁË£¬ÎÒÃÇÐèÒª¸Ä±äÇóÖµº¯Êý *eval\_op* ¡£
+çŽ°åœ¨æˆ‘ä»¬å·²ç»çŸ¥é“å¦‚ä½•æ“ä½œ *lval* ç±»åž‹äº†ï¼Œæˆ‘ä»¬éœ€è¦æ”¹å˜æ±‚å€¼å‡½æ•° *eval\_op* ã€‚
 
-ÔÚÎÒÃÇ *eval\_op* º¯ÊýÖÐ£¬Èç¹ûÎÒÃÇÓöµ½´íÎóÎÒÃÇÓ¦¸ÃÁ¢¼´·µ»Ø£¬½ö½öÖ»¶ÔÁ½
-¸ö²ÎÊý¶¼ÊÇÊý×Ö×ö¼ÆËã¡£ÎÒÃÇÓ¦¸ÃÐÞ¸ÄÎÒÃÇ´úÂëÔÚ³ýÒÔ0Ê±·µ»Ø´íÎó£¬ÕâÑù¿ÉÒÔ
-½â¾öÕâÒ»ÕÂ¿ªÍ·µÄ±ÀÀ£ÎÊÌâ¡£
+åœ¨æˆ‘ä»¬ *eval\_op* å‡½æ•°ä¸­ï¼Œå¦‚æžœæˆ‘ä»¬é‡åˆ°é”™è¯¯æˆ‘ä»¬åº”è¯¥ç«‹å³è¿”å›žï¼Œä»…ä»…åªå¯¹ä¸¤
+ä¸ªå‚æ•°éƒ½æ˜¯æ•°å­—åšè®¡ç®—ã€‚æˆ‘ä»¬åº”è¯¥ä¿®æ”¹æˆ‘ä»¬ä»£ç åœ¨é™¤ä»¥0æ—¶è¿”å›žé”™è¯¯ï¼Œè¿™æ ·å¯ä»¥
+è§£å†³è¿™ä¸€ç« å¼€å¤´çš„å´©æºƒé—®é¢˜ã€‚
 
 #+BEGIN_SRC C
 lval eval_op(lval x, char* op, lval y) {
@@ -1216,8 +1216,8 @@ lval eval_op(lval x, char* op, lval y) {
 }
 #+END_SRC
 
-ÎÒÃÇÊ¹ÓÃ *strtol* º¯Êý½« *string* ×ª»»³É *long* ¡£ËüÔÊÐíÎÒÃÇÈ¥¼ì²âÌØÊâ
-±äÁ¿ *errno* À´È·¶¨×ª»»ÊÇ·ñ³É¹¦¡£Õâ¸ö·½·¨±È *atoi* ¸ü½¡×³¡£
+æˆ‘ä»¬ä½¿ç”¨ *strtol* å‡½æ•°å°† *string* è½¬æ¢æˆ *long* ã€‚å®ƒå…è®¸æˆ‘ä»¬åŽ»æ£€æµ‹ç‰¹æ®Š
+å˜é‡ *errno* æ¥ç¡®å®šè½¬æ¢æ˜¯å¦æˆåŠŸã€‚è¿™ä¸ªæ–¹æ³•æ¯” *atoi* æ›´å¥å£®ã€‚
 
 #+BEGIN_SRC C
 lval eval(mpc_ast_t* t) {
@@ -1242,7 +1242,7 @@ lval eval(mpc_ast_t* t) {
 }
 #+END_SRC
 
-×îºóÒ»²½¾ÍÊÇ´òÓ¡ÎÒÃÇ¼ÆËã½á¹û¡£
+æœ€åŽä¸€æ­¥å°±æ˜¯æ‰“å°æˆ‘ä»¬è®¡ç®—ç»“æžœã€‚
 
 #+BEGIN_SRC C
 lval result = eval(r.output);
@@ -1250,7 +1250,7 @@ lval_println(result);
 mpc_ast_delete(r.output);
 #+END_SRC
 
-ÎÒÃÇ×öÍêÁË£¬ÖØÐÂÔËÐÐ³ÌÐò£¬È·¶¨ÔÚ³ýÒÔ0Ê±²»»á±ÀÀ£¡£
+æˆ‘ä»¬åšå®Œäº†ï¼Œé‡æ–°è¿è¡Œç¨‹åºï¼Œç¡®å®šåœ¨é™¤ä»¥0æ—¶ä¸ä¼šå´©æºƒã€‚
 #+BEGIN_SRC C
 lispy> / 10 0
 Error: Division By Zero!
@@ -1258,92 +1258,92 @@ lispy> / 10 2
 5
 #+END_SRC
 
-* S-±í´ïÊ½(S-Expressions)
-** ÁÐ±íÓëLisp
+* S-è¡¨è¾¾å¼(S-Expressions)
+** åˆ—è¡¨ä¸ŽLisp
 
-Lisp³öÃûµÄÆäÖÐÔ­ÒòÖ®Ò»¾ÍÊÇËüÓÃÏàÍ¬µÄ½á¹¹±íÊ¾Êý¾ÝºÍ´úÂë¡£ËüÄÜ×öºÜ¶àÆäËü
-ÓïÑÔ²»ÄÜ×öµÄÊÂ¡£Èç¹ûÄãÏëÒªÎÒÃÇÓïÑÔ¾ß±¸ÕâÖÖÄÜÁ¦£¬ÎÒÃÇÐèÒª½«¶ÁÈ¡ÊäÈëµÄ´¦
-ÀíºÍ¶ÔÊäÈëÇóÖµ·ÖÀë¿ªÀ´¡£
+Lispå‡ºåçš„å…¶ä¸­åŽŸå› ä¹‹ä¸€å°±æ˜¯å®ƒç”¨ç›¸åŒçš„ç»“æž„è¡¨ç¤ºæ•°æ®å’Œä»£ç ã€‚å®ƒèƒ½åšå¾ˆå¤šå…¶å®ƒ
+è¯­è¨€ä¸èƒ½åšçš„äº‹ã€‚å¦‚æžœä½ æƒ³è¦æˆ‘ä»¬è¯­è¨€å…·å¤‡è¿™ç§èƒ½åŠ›ï¼Œæˆ‘ä»¬éœ€è¦å°†è¯»å–è¾“å…¥çš„å¤„
+ç†å’Œå¯¹è¾“å…¥æ±‚å€¼åˆ†ç¦»å¼€æ¥ã€‚
 
-ÕâÕÂ×îºóµÄ½á¹ûÓëÉÏÒ»ÕÂÖ»ÓÐÏ¸Ð¡µÄÇø±ð¡£ÕâÊÇÒòÎªÎÒÃÇ½«»¨Ê±¼äÐÞ¸ÄÄÚ²¿¹¤×÷
-·½Ê½¡£Õâ³ÆÎªÖØ¹¹£¬Ëü»áÈÃÎÒÃÇµÄÉú»î¸üÈÝÒ×¡£Ïñ×¼±¸Ò»¶Ù·¹£¬ÎÒÃÇÃ»ÓÐ½«Ê³Îï
-·ÅÔÚÅÌ×ÓÀï²¢²»ÊÇÒâÎ¶×ÅÎÒÃÇÔÚÀË·ÑÊ±¼ä¡£
+è¿™ç« æœ€åŽçš„ç»“æžœä¸Žä¸Šä¸€ç« åªæœ‰ç»†å°çš„åŒºåˆ«ã€‚è¿™æ˜¯å› ä¸ºæˆ‘ä»¬å°†èŠ±æ—¶é—´ä¿®æ”¹å†…éƒ¨å·¥ä½œ
+æ–¹å¼ã€‚è¿™ç§°ä¸ºé‡æž„ï¼Œå®ƒä¼šè®©æˆ‘ä»¬çš„ç”Ÿæ´»æ›´å®¹æ˜“ã€‚åƒå‡†å¤‡ä¸€é¡¿é¥­ï¼Œæˆ‘ä»¬æ²¡æœ‰å°†é£Ÿç‰©
+æ”¾åœ¨ç›˜å­é‡Œå¹¶ä¸æ˜¯æ„å‘³ç€æˆ‘ä»¬åœ¨æµªè´¹æ—¶é—´ã€‚
 
-ÎÒÃÇ½«´´½¨Ò»¸öÄÚ²¿ÁÐ±í½á¹¹Ìå£¬ÓÃÓÚ½¨Á¢Êý×Ö£¬·ûºÅºÍÆäËüÁÐ±íµÄµÝ¹é¡£ÔÚ
-LispÖÐ£¬Õâ¸ö½á¹¹Í¨³£³ÆÎªS-Expression£¬ÎÒÃÇ½«À©Õ¹ *lval* ½á¹¹ÌåÀ´±íÊ¾Ëü¡£
-S-ExpressionµÄÇóÖµ¼ÆËãÊÇLispµÄÐÐÎª¡£ÎªÁË¼ÆËãS-Expression£¬ÎÒÃÇ¿´ÏÂÁÐ±í
-µÄµÚÒ»Ïî£¬ËüÊÇÒ»¸ö²Ù×÷·û¡£È»ºóÎÒÃÇÔÙ¿´ÏÂÁÐ±íµÄÊ£ÓàÆäËüÏî£¬ËüÃÇÊÇ²Ù×÷Êý¡£
+æˆ‘ä»¬å°†åˆ›å»ºä¸€ä¸ªå†…éƒ¨åˆ—è¡¨ç»“æž„ä½“ï¼Œç”¨äºŽå»ºç«‹æ•°å­—ï¼Œç¬¦å·å’Œå…¶å®ƒåˆ—è¡¨çš„é€’å½’ã€‚åœ¨
+Lispä¸­ï¼Œè¿™ä¸ªç»“æž„é€šå¸¸ç§°ä¸ºS-Expressionï¼Œæˆ‘ä»¬å°†æ‰©å±• *lval* ç»“æž„ä½“æ¥è¡¨ç¤ºå®ƒã€‚
+S-Expressionçš„æ±‚å€¼è®¡ç®—æ˜¯Lispçš„è¡Œä¸ºã€‚ä¸ºäº†è®¡ç®—S-Expressionï¼Œæˆ‘ä»¬çœ‹ä¸‹åˆ—è¡¨
+çš„ç¬¬ä¸€é¡¹ï¼Œå®ƒæ˜¯ä¸€ä¸ªæ“ä½œç¬¦ã€‚ç„¶åŽæˆ‘ä»¬å†çœ‹ä¸‹åˆ—è¡¨çš„å‰©ä½™å…¶å®ƒé¡¹ï¼Œå®ƒä»¬æ˜¯æ“ä½œæ•°ã€‚
 
-Í¨¹ý½éÉÜS-Expression£¬ÎÒÃÇ½«×îÖÕ½øÈëLispµÄÊÀ½ç¡£
+é€šè¿‡ä»‹ç»S-Expressionï¼Œæˆ‘ä»¬å°†æœ€ç»ˆè¿›å…¥Lispçš„ä¸–ç•Œã€‚
 
-** Ö¸Õë
+** æŒ‡é’ˆ
 
-ÎÒÃÇÐèÒªÖ¸¶¨ÊÇÒòÎªº¯Êýµ÷ÓÃµÄ¹¤×÷·½Ê½¡£µ±ÎÒÃÇµ÷ÓÃÒ»¸öº¯ÊýÊ±£¬²ÎÊý×ÜÊÇ´«
-Öµ¡£ÕâÒâÎ¶×Å²ÎÊýµÄ¸±±¾´«µÝ¸øÁËµ÷ÓÃµÄº¯Êý¡£´ó¶àÊ±¼äËü·Ç³£ºÃ£¬µ«Å¼¶ûÒ²»á
-ÒýÆðÂé·³¡£
+æˆ‘ä»¬éœ€è¦æŒ‡å®šæ˜¯å› ä¸ºå‡½æ•°è°ƒç”¨çš„å·¥ä½œæ–¹å¼ã€‚å½“æˆ‘ä»¬è°ƒç”¨ä¸€ä¸ªå‡½æ•°æ—¶ï¼Œå‚æ•°æ€»æ˜¯ä¼ 
+å€¼ã€‚è¿™æ„å‘³ç€å‚æ•°çš„å‰¯æœ¬ä¼ é€’ç»™äº†è°ƒç”¨çš„å‡½æ•°ã€‚å¤§å¤šæ—¶é—´å®ƒéžå¸¸å¥½ï¼Œä½†å¶å°”ä¹Ÿä¼š
+å¼•èµ·éº»çƒ¦ã€‚
 
-Ò»¸ö³£¼ûÎÊÌâÊÇµ±ÎÒÃÇÓÐÒ»¸ö°üº¬ÁËÐí¶àÆäËü×Ó½á¹¹µÄ´ó½á¹¹Ìå£¬ÎÒÃÇÏ£Íû½«Æä
-´«µÝ´«µÝ¸øº¯Êý¡£µ±ÎÒÃÇÃ¿´Îµ÷ÓÃº¯ÊýÊ±ÎÒÃÇ±ØÐë¶Ô½á¹¹Ìå½øÐÐ¸´ÖÆ¡£½ö½öµ÷ÓÃ
-Ò»¸öº¯Êý¶ø¸´ÖÆ´óÁ¿µÄÊý¾Ý½«»áÒýÆð´óÁ¿µÄ×ÊÔ´ÏûºÄ¡£
+ä¸€ä¸ªå¸¸è§é—®é¢˜æ˜¯å½“æˆ‘ä»¬æœ‰ä¸€ä¸ªåŒ…å«äº†è®¸å¤šå…¶å®ƒå­ç»“æž„çš„å¤§ç»“æž„ä½“ï¼Œæˆ‘ä»¬å¸Œæœ›å°†å…¶
+ä¼ é€’ä¼ é€’ç»™å‡½æ•°ã€‚å½“æˆ‘ä»¬æ¯æ¬¡è°ƒç”¨å‡½æ•°æ—¶æˆ‘ä»¬å¿…é¡»å¯¹ç»“æž„ä½“è¿›è¡Œå¤åˆ¶ã€‚ä»…ä»…è°ƒç”¨
+ä¸€ä¸ªå‡½æ•°è€Œå¤åˆ¶å¤§é‡çš„æ•°æ®å°†ä¼šå¼•èµ·å¤§é‡çš„èµ„æºæ¶ˆè€—ã€‚
 
-ÎªÁË½â¾öCµÄ¿ª·¢ÎÊÌâÏë³öÁËÒ»¸ö´ÏÃ÷µÄÖ÷Òâ¡£ËûÃÇ¼ÙÏë¼ÆËã»úÄÚ´æÊÇÒ»¸ö¾Þ´ó
-µÄ×Ö½ÚÁÐ±í¡£ÁÐ±íÖÐµÄÃ¿¸ö×Ö½Ú¶¼ÊÇ¶ÔÓ¦µÄË÷Òý»òÎ»ÖÃ¡£ÓÐµãÏñÃÅÅÆºÅ¡£µÚÒ»¸ö
-×Ö½ÚµÄË÷ÒýÊÇ0£¬µÚ¶þ¸ö1£¬ÒÀ´ËÀàÍÆ¡£
+ä¸ºäº†è§£å†³Cçš„å¼€å‘é—®é¢˜æƒ³å‡ºäº†ä¸€ä¸ªèªæ˜Žçš„ä¸»æ„ã€‚ä»–ä»¬å‡æƒ³è®¡ç®—æœºå†…å­˜æ˜¯ä¸€ä¸ªå·¨å¤§
+çš„å­—èŠ‚åˆ—è¡¨ã€‚åˆ—è¡¨ä¸­çš„æ¯ä¸ªå­—èŠ‚éƒ½æ˜¯å¯¹åº”çš„ç´¢å¼•æˆ–ä½ç½®ã€‚æœ‰ç‚¹åƒé—¨ç‰Œå·ã€‚ç¬¬ä¸€ä¸ª
+å­—èŠ‚çš„ç´¢å¼•æ˜¯0ï¼Œç¬¬äºŒä¸ª1ï¼Œä¾æ­¤ç±»æŽ¨ã€‚
 
-ÔÚÕâÖÖÇé¿öÏÂ£¬¼ÆËã»úÖÐËùÓÐµÄÊý¾Ý£¬°üÀ¨µ±Ç°³ÌÐòÊ¹ÓÃµÄ½á¹¹ÌåºÍ±äÁ¿£¬ÔÚÕâ
-¸ö¾Þ´óÁÐ±íÖÐ´ÓÄ³¸öË÷ÒýÎªÆðÊ¼¡£Èç¹ûÎÒÃÇ²»ÊÇ½«Ò»¸öº¯Êý¸´ÖÆÊý¾Ý£¬¶øÊÇ¸´ÖÆ
-Êý¾ÝÆðÊ¼Ë÷Òý£¬µ÷ÓÃº¯ÊýÊ±¾Í¿ÉÒÔÏòÆä´«µÝËüÏëÒªµÄÈÎÒâÊýÁ¿µÄÊý¾ÝÁË¡£
+åœ¨è¿™ç§æƒ…å†µä¸‹ï¼Œè®¡ç®—æœºä¸­æ‰€æœ‰çš„æ•°æ®ï¼ŒåŒ…æ‹¬å½“å‰ç¨‹åºä½¿ç”¨çš„ç»“æž„ä½“å’Œå˜é‡ï¼Œåœ¨è¿™
+ä¸ªå·¨å¤§åˆ—è¡¨ä¸­ä»ŽæŸä¸ªç´¢å¼•ä¸ºèµ·å§‹ã€‚å¦‚æžœæˆ‘ä»¬ä¸æ˜¯å°†ä¸€ä¸ªå‡½æ•°å¤åˆ¶æ•°æ®ï¼Œè€Œæ˜¯å¤åˆ¶
+æ•°æ®èµ·å§‹ç´¢å¼•ï¼Œè°ƒç”¨å‡½æ•°æ—¶å°±å¯ä»¥å‘å…¶ä¼ é€’å®ƒæƒ³è¦çš„ä»»æ„æ•°é‡çš„æ•°æ®äº†ã€‚
 
-Í¨¹ýÊ¹ÓÃµØÖ·¶ø²»ÊÇÕæÊµÊý¾Ý£¬ÎÒÃÇ¿ÉÒÔÔÊÐíº¯Êý·ÃÎÊºÍÐÞ¸ÄÄÚ´æÖÐµÄÒ»Ð©Î»ÖÃ
-¶ø²»ÐèÒªÈÎºÎµÄÊý¾Ý¸´ÖÆ¡£
+é€šè¿‡ä½¿ç”¨åœ°å€è€Œä¸æ˜¯çœŸå®žæ•°æ®ï¼Œæˆ‘ä»¬å¯ä»¥å…è®¸å‡½æ•°è®¿é—®å’Œä¿®æ”¹å†…å­˜ä¸­çš„ä¸€äº›ä½ç½®
+è€Œä¸éœ€è¦ä»»ä½•çš„æ•°æ®å¤åˆ¶ã€‚
 
-Ö¸ÕëÖ»ÊÇÒ»¸öÊý×Ö¡£Õâ¸öÊý×Ö±íÊ¾Êý¾ÝÔÚÄÚ´æÖÐµÄÆðÊ¼Î»Î»ÖÃ¡£Ö¸ÕëµÄÀàÐÍÌáÊ¾
-ÎÒÃÇºÍ±àÒëÆ÷£¬¶ÔÓ¦Î»ÖÃµÄÄÜ¹»·ÃÎÊµÄÊý¾ÝÊÇÊ²Ã´ÀàÐÍ¡£
+æŒ‡é’ˆåªæ˜¯ä¸€ä¸ªæ•°å­—ã€‚è¿™ä¸ªæ•°å­—è¡¨ç¤ºæ•°æ®åœ¨å†…å­˜ä¸­çš„èµ·å§‹ä½ä½ç½®ã€‚æŒ‡é’ˆçš„ç±»åž‹æç¤º
+æˆ‘ä»¬å’Œç¼–è¯‘å™¨ï¼Œå¯¹åº”ä½ç½®çš„èƒ½å¤Ÿè®¿é—®çš„æ•°æ®æ˜¯ä»€ä¹ˆç±»åž‹ã€‚
 
-ÎÒÃÇ¿ÉÒÔÍ¨¹ýÀàÐÍºÍ * ºó×ºÀ´ÉùÃ÷Ò»¸öÖ¸Õë¡£ÎÒÃÇÒÑ¾­¿´µ½ÁËÒ»Ð©ÊµÀýÈç
-mpc\_parser\_t *, mpc\_ast\_t*, »ò char*¡£
+æˆ‘ä»¬å¯ä»¥é€šè¿‡ç±»åž‹å’Œ * åŽç¼€æ¥å£°æ˜Žä¸€ä¸ªæŒ‡é’ˆã€‚æˆ‘ä»¬å·²ç»çœ‹åˆ°äº†ä¸€äº›å®žä¾‹å¦‚
+mpc\_parser\_t *, mpc\_ast\_t*, æˆ– char*ã€‚
 
-ÎªÁË´´½¨Ä³Êý¾ÝµÄÖ¸Õë£¬ÎÒÃÇÐèÒªÈ¡¸ÃÊý¾ÝµÄµØÖ·»òË÷Òý¡£ÎªÁË»ñÈ¡Êý¾ÝµÄµØÖ·
-ÎÒÃÇÊ¹ÓÃµØÖ·²Ù×÷·û &¡£
+ä¸ºäº†åˆ›å»ºæŸæ•°æ®çš„æŒ‡é’ˆï¼Œæˆ‘ä»¬éœ€è¦å–è¯¥æ•°æ®çš„åœ°å€æˆ–ç´¢å¼•ã€‚ä¸ºäº†èŽ·å–æ•°æ®çš„åœ°å€
+æˆ‘ä»¬ä½¿ç”¨åœ°å€æ“ä½œç¬¦ &ã€‚
 
-×îºó»ñÈ¡Ä³¸öµØÖ·ÉÏµÄÊý¾Ý£¬³ÆÎª·Ç¹ØÁª»¯(/dereferencing/)£¬ÎÒÃÇÔÚ±äÁ¿µÄ
-×ó±ßÊ¹ÓÃ*²Ù×÷·û¡£ÎªÁË»ñÈ¡½á¹¹ÌåÖ¸ÕëÖÐ³ÉÔ±µÄÊý¾Ý£¬ÎÒÃÇÊ¹ÓÃ¼ýÍ· =->= ¡£
+æœ€åŽèŽ·å–æŸä¸ªåœ°å€ä¸Šçš„æ•°æ®ï¼Œç§°ä¸ºéžå…³è”åŒ–(/dereferencing/)ï¼Œæˆ‘ä»¬åœ¨å˜é‡çš„
+å·¦è¾¹ä½¿ç”¨*æ“ä½œç¬¦ã€‚ä¸ºäº†èŽ·å–ç»“æž„ä½“æŒ‡é’ˆä¸­æˆå‘˜çš„æ•°æ®ï¼Œæˆ‘ä»¬ä½¿ç”¨ç®­å¤´ =->= ã€‚
 
-** Õ»Óë¶Ñ
+** æ ˆä¸Žå †
 
-ÎÒËµ¹ýÄÚ´æ¾ÍÏñÒ»¸ö³¤µÄ×Ö½ÚÁÐ±í¡£Êµ¼Ê×îºÃ°ÑËüÏëÏñ³ÉÁ½¸ö²¿·Ö¡£ÕâÁ½²¿·Ö·Ö
-±ðÎªÕ»(/Stack/)ºÍ¶Ñ(/Heap/)¡£
+æˆ‘è¯´è¿‡å†…å­˜å°±åƒä¸€ä¸ªé•¿çš„å­—èŠ‚åˆ—è¡¨ã€‚å®žé™…æœ€å¥½æŠŠå®ƒæƒ³åƒæˆä¸¤ä¸ªéƒ¨åˆ†ã€‚è¿™ä¸¤éƒ¨åˆ†åˆ†
+åˆ«ä¸ºæ ˆ(/Stack/)å’Œå †(/Heap/)ã€‚
 
-ÄãÃÇÄ³Ð©ÈË¿ÉÄÜÌý¹ýÒ»Ð©¹ØÓÚÕâ¸öÉñÃØÎ»ÖÃµÄ¹ÊÊÂ£¬±ÈÈç¡°Õ»ÊÇÏòÏÂÔö³¤£¬¶ÑÊÇ
-ÏòÉÏÔö³¤¡±£¬»ò¡°¿ÉÒÔÓÐÐí¶àÕ»£¬µ«Ö»ÄÜÓÐÒ»¸ö¶Ñ¡±¡£ÔÚCÖÐ´¦ÀíÕ»ºÍ¶Ñ¿ÉÄÜºÜ
-¸´ÔÓ£¬µ«ËüÃÇ²»ÊÇÒ»¸öÃÔ¡£±¾ÖÊÉÏ£¬ËüÃÇ·ÖÎªÄÚ´æÁ½²¿·ÖÓÃÓÚ²»Í¬µÄÈÎÎñ¡£
+ä½ ä»¬æŸäº›äººå¯èƒ½å¬è¿‡ä¸€äº›å…³äºŽè¿™ä¸ªç¥žç§˜ä½ç½®çš„æ•…äº‹ï¼Œæ¯”å¦‚â€œæ ˆæ˜¯å‘ä¸‹å¢žé•¿ï¼Œå †æ˜¯
+å‘ä¸Šå¢žé•¿â€ï¼Œæˆ–â€œå¯ä»¥æœ‰è®¸å¤šæ ˆï¼Œä½†åªèƒ½æœ‰ä¸€ä¸ªå †â€ã€‚åœ¨Cä¸­å¤„ç†æ ˆå’Œå †å¯èƒ½å¾ˆ
+å¤æ‚ï¼Œä½†å®ƒä»¬ä¸æ˜¯ä¸€ä¸ªè¿·ã€‚æœ¬è´¨ä¸Šï¼Œå®ƒä»¬åˆ†ä¸ºå†…å­˜ä¸¤éƒ¨åˆ†ç”¨äºŽä¸åŒçš„ä»»åŠ¡ã€‚
 
-*** Õ»
+*** æ ˆ
 
-Õ»ÊÇ³ÌÐò¾Ó×¡µÄµØ·½¡£ËùÓÐÄãÎ¬»¤ºÍ±à¼­µÄÁÙÊ±±äÁ¿ºÍÊý¾Ý½á¹¹Ìå¶¼ÔÚÕâÀï¡£Ã¿
-´Îµ÷ÓÃº¯ÊýÊ±Õ»µÄÒ»¸öÐÂÇøÓòÒÔ±¸Ê¹ÓÃ¡£Õâ¸öÇøÓò·ÅÖÃÁË±¾µØ±äÁ¿£¬²ÎÊý¸±±¾ÒÔ
-¼°µ÷ÓÃÕß¼ÇÂ¼ºÍÍê³Éºó×öÊ²Ã´¡£µ±º¯ÊýÍê³Éºó£¬Ê¹ÓÃµÄÇøÓò±»ÊÍ·Å£¬ÒÔ±¸ÔÙ´Î±»
-ÆäËü³ÌÐòÊ¹ÓÃ¡£
+æ ˆæ˜¯ç¨‹åºå±…ä½çš„åœ°æ–¹ã€‚æ‰€æœ‰ä½ ç»´æŠ¤å’Œç¼–è¾‘çš„ä¸´æ—¶å˜é‡å’Œæ•°æ®ç»“æž„ä½“éƒ½åœ¨è¿™é‡Œã€‚æ¯
+æ¬¡è°ƒç”¨å‡½æ•°æ—¶æ ˆçš„ä¸€ä¸ªæ–°åŒºåŸŸä»¥å¤‡ä½¿ç”¨ã€‚è¿™ä¸ªåŒºåŸŸæ”¾ç½®äº†æœ¬åœ°å˜é‡ï¼Œå‚æ•°å‰¯æœ¬ä»¥
+åŠè°ƒç”¨è€…è®°å½•å’Œå®ŒæˆåŽåšä»€ä¹ˆã€‚å½“å‡½æ•°å®ŒæˆåŽï¼Œä½¿ç”¨çš„åŒºåŸŸè¢«é‡Šæ”¾ï¼Œä»¥å¤‡å†æ¬¡è¢«
+å…¶å®ƒç¨‹åºä½¿ç”¨ã€‚
 
-ÎÒÏ²»¶°ÑÕ»±È×÷½¨Öþ¹¤µØ¡£Ã¿´ÎÎÒÃÇÐèÒª×öÒ»Ð©ÐÂÊÂÇéÊ±£¬ÎÒÃÇÐèÒªÎªÎÒÃÇµÄ¹¤
-×÷£¬²ÄÁÏ×¼±¸×ã¹»µÄ¿Õ¼ä¡£Ò»µ©ÎÒÃÇÍê³É¹¤×÷£¬ÎÒÃÇ½«ÇåÀíÎÒÃÇÖ®Ç°´´½¨µÄ¿Õ¼ä¡£
+æˆ‘å–œæ¬¢æŠŠæ ˆæ¯”ä½œå»ºç­‘å·¥åœ°ã€‚æ¯æ¬¡æˆ‘ä»¬éœ€è¦åšä¸€äº›æ–°äº‹æƒ…æ—¶ï¼Œæˆ‘ä»¬éœ€è¦ä¸ºæˆ‘ä»¬çš„å·¥
+ä½œï¼Œææ–™å‡†å¤‡è¶³å¤Ÿçš„ç©ºé—´ã€‚ä¸€æ—¦æˆ‘ä»¬å®Œæˆå·¥ä½œï¼Œæˆ‘ä»¬å°†æ¸…ç†æˆ‘ä»¬ä¹‹å‰åˆ›å»ºçš„ç©ºé—´ã€‚
 
-*** ¶Ñ
+*** å †
 
-¶ÑÓÃÓÚ´æ´¢¶ÔÏó£¬ÕâÐ©¶ÔÏóÓµÓÐ¸ü³¤µÄÉúÃüÖÜÆÚ¡£¶Ñ±ØÐèÊÖ¶¯ÉêÇëºÍÊÍ·Å¡£ÎªÁË
-ÉêÇëÐÂÄÚ´æÎÒÃÇÊ¹ÓÃ *malloc* º¯Êý¡£Õâ¸öº¯Êý½ÓÊÕÒ»¸ö×Ö½Ú´óÐ¡×÷ÎªÊäÈë£¬²¢
-ÇÒ·µ»ØÒ»¸öÖ¸ÏòÐÂÄÚ´æ¿éµÄÖ¸Õë¡£µ±Íê³É¸ÃÄÚ´æ¿éµÄÊ¹ÓÃºó£¬Ê¹ÓÃ *free* º¯Êý
-½«¸ÃÄÚ´æ¿éÊÍ·Å¡£
+å †ç”¨äºŽå­˜å‚¨å¯¹è±¡ï¼Œè¿™äº›å¯¹è±¡æ‹¥æœ‰æ›´é•¿çš„ç”Ÿå‘½å‘¨æœŸã€‚å †å¿…éœ€æ‰‹åŠ¨ç”³è¯·å’Œé‡Šæ”¾ã€‚ä¸ºäº†
+ç”³è¯·æ–°å†…å­˜æˆ‘ä»¬ä½¿ç”¨ *malloc* å‡½æ•°ã€‚è¿™ä¸ªå‡½æ•°æŽ¥æ”¶ä¸€ä¸ªå­—èŠ‚å¤§å°ä½œä¸ºè¾“å…¥ï¼Œå¹¶
+ä¸”è¿”å›žä¸€ä¸ªæŒ‡å‘æ–°å†…å­˜å—çš„æŒ‡é’ˆã€‚å½“å®Œæˆè¯¥å†…å­˜å—çš„ä½¿ç”¨åŽï¼Œä½¿ç”¨ *free* å‡½æ•°
+å°†è¯¥å†…å­˜å—é‡Šæ”¾ã€‚
 
-Ê¹ÓÃ¶Ñ±È½ÏÕ»¸ü¼¬ÊÖÊÇÒòÎªËüÒªÇó³ÌÐòÔ±¼Ç×¡ÕýÈ·µØµ÷ÓÃ *free* º¯Êý¡£Èç¹ûÍü
-¼ÇÁËµ÷ÓÃ *free* £¬Ô½À´Ô½¶àµÄÄÚ´æ³ÖÐø·ÖÅä¡£Õâ³ÆÎªÄÚ´æÐ¹Â©(/memory
-leak/)¡£±ÜÃâÕâ¸öÎÊÌâµÄÒ»¸ö¼òµ¥¹æÔò¾ÍÊÇÈ·±£Ã¿¸ömalloc¶¼¶ÔÓ¦Ò»¸öfree¡£
+ä½¿ç”¨å †æ¯”è¾ƒæ ˆæ›´æ£˜æ‰‹æ˜¯å› ä¸ºå®ƒè¦æ±‚ç¨‹åºå‘˜è®°ä½æ­£ç¡®åœ°è°ƒç”¨ *free* å‡½æ•°ã€‚å¦‚æžœå¿˜
+è®°äº†è°ƒç”¨ *free* ï¼Œè¶Šæ¥è¶Šå¤šçš„å†…å­˜æŒç»­åˆ†é…ã€‚è¿™ç§°ä¸ºå†…å­˜æ³„æ¼(/memory
+leak/)ã€‚é¿å…è¿™ä¸ªé—®é¢˜çš„ä¸€ä¸ªç®€å•è§„åˆ™å°±æ˜¯ç¡®ä¿æ¯ä¸ªmallocéƒ½å¯¹åº”ä¸€ä¸ªfreeã€‚
 
-** ½âÎö±í´ïÊ½
+** è§£æžè¡¨è¾¾å¼
 
-ÒòÎªÎÒÃÇÏÖÔÚË¼¿¼S-Expression¶ø·Ç²¨À¼±í´ïÊ¾£¬ËùÒÔÎÒÃÇÐèÒªÐÞ¸ÄÎÒÃÇ½âÎöÆ÷¡£
-S-ExpressionµÄÓï·¨ÊÇ¼òµ¥µÄ¡£ÕâÖ»ÊÇÈô¸ÉÔÚÀ¨ºÅµÄ±í´ïÊ½£¬±í´ïÊ½¿ÉÒÔÊÇ
-Number, Operator,»òÆäËüµÄS-Expression¡£
+å› ä¸ºæˆ‘ä»¬çŽ°åœ¨æ€è€ƒS-Expressionè€Œéžæ³¢å…°è¡¨è¾¾ç¤ºï¼Œæ‰€ä»¥æˆ‘ä»¬éœ€è¦ä¿®æ”¹æˆ‘ä»¬è§£æžå™¨ã€‚
+S-Expressionçš„è¯­æ³•æ˜¯ç®€å•çš„ã€‚è¿™åªæ˜¯è‹¥å¹²åœ¨æ‹¬å·çš„è¡¨è¾¾å¼ï¼Œè¡¨è¾¾å¼å¯ä»¥æ˜¯
+Number, Operator,æˆ–å…¶å®ƒçš„S-Expressionã€‚
 
 #+BEGIN_SRC C
 mpc_parser_t* Number = mpc_new("number");
@@ -1363,24 +1363,24 @@ mpca_lang(MPCA_LANG_DEFAULT,
   Number, Symbol, Sexpr, Expr, Lispy);
 #+END_SRC
 
-ÎÒÃÇÓ¦¸Ã¼Ç×¡ÍË³öÖ®Ç°ÇåÀíÕâÐ©¹æÔò¡£
+æˆ‘ä»¬åº”è¯¥è®°ä½é€€å‡ºä¹‹å‰æ¸…ç†è¿™äº›è§„åˆ™ã€‚
 
 #+BEGIN_SRC C
 mpc_cleanup(5, Number, Symbol, Sexpr, Expr, Lispy);
 #+END_SRC
 
-** ±í´ïÊ½½á¹¹
+** è¡¨è¾¾å¼ç»“æž„
 
-ÎÒÃÇÐèÒªÒ»ÖÖ´æ´¢S-ExpressionÎª *lval* µÄ·½Ê½¡£ÕâÒâÎ¶×ÅÎÒÃÇÐèÒª´æ´¢
-/Symbols/ ºÍ /Numbers/ ¡£ÎÒÃÇ½«ÔÚ *enum* ÖÐÌí¼ÓÁ½¸öÐÂ³ÉÔ±¡£ *LVAL\_SYM*
-ÓÃÓÚ±íÊ¾²Ù×÷·û£¬Èç+¡£ *LVAL\_SEXPR* ÓÃÓÚ±íÊ¾S-Expression¡£
+æˆ‘ä»¬éœ€è¦ä¸€ç§å­˜å‚¨S-Expressionä¸º *lval* çš„æ–¹å¼ã€‚è¿™æ„å‘³ç€æˆ‘ä»¬éœ€è¦å­˜å‚¨
+/Symbols/ å’Œ /Numbers/ ã€‚æˆ‘ä»¬å°†åœ¨ *enum* ä¸­æ·»åŠ ä¸¤ä¸ªæ–°æˆå‘˜ã€‚ *LVAL\_SYM*
+ç”¨äºŽè¡¨ç¤ºæ“ä½œç¬¦ï¼Œå¦‚+ã€‚ *LVAL\_SEXPR* ç”¨äºŽè¡¨ç¤ºS-Expressionã€‚
 
 #+BEGIN_SRC C
 enum { LVAL_ERR, LVAL_NUM, LVAL_SYM, LVAL_SEXPR };
 #+END_SRC
 
-S_ExpressionÊÇÒ»¸ö¿É±ä³¤ÁÐ±í¡£ÎÒÃÇ½«´´½¨Ò»¸öÖ¸Õë³ÉÔ±£¬Ö¸Ïò *lval** ÁÐ
-±í¡£
+S_Expressionæ˜¯ä¸€ä¸ªå¯å˜é•¿åˆ—è¡¨ã€‚æˆ‘ä»¬å°†åˆ›å»ºä¸€ä¸ªæŒ‡é’ˆæˆå‘˜ï¼ŒæŒ‡å‘ *lval** åˆ—
+è¡¨ã€‚
 
 #+BEGIN_SRC C
 typedef struct lval {
@@ -1395,9 +1395,9 @@ typedef struct lval {
 } lval;
 #+END_SRC
 
-** ¹¹ÔìÓëÎö¹¹
+** æž„é€ ä¸Žæžæž„
 
-ÎÒÃÇ¿ÉÒÔÐÞ¸ÄÎÒÃÇµÄ *lval* ¹¹Ôìº¯ÊýÊ¹Æä·µ»ØÖ¸Ïò *lval* µÄÖ¸Õë¡£
+æˆ‘ä»¬å¯ä»¥ä¿®æ”¹æˆ‘ä»¬çš„ *lval* æž„é€ å‡½æ•°ä½¿å…¶è¿”å›žæŒ‡å‘ *lval* çš„æŒ‡é’ˆã€‚
 
 #+BEGIN_SRC C
 /* Construct a pointer to a new Number lval */ 
@@ -1440,9 +1440,9 @@ lval* lval_sexpr(void) {
 
 #+END_SRC
 
-ÎÒÃÇÐèÔÚÐèÒªÒ»¸öÌØÊâº¯ÊýÓÃÀ´É¾³ý *lval** ¡£ËüÓ¦¸Ãµ÷ÓÃ *free* À´ÊÍ
-·Å´Ó *malloc* »ñÈ¡µ½µÄÄÚ´æ¡£¸üÖØÒªµØÊÇÎÒÃÇÓ¦¸Ã¼ì²â *lval* £¬ÊÍ·ÅÈÎºÎÓÉ
-ÆäÖ¸Õë×Ö¶ÎÖ¸ÏòµÄÄÚ´æ£¬È·±£²»»áÄÚ´æÐ¹Â©¡£  
+æˆ‘ä»¬éœ€åœ¨éœ€è¦ä¸€ä¸ªç‰¹æ®Šå‡½æ•°ç”¨æ¥åˆ é™¤ *lval** ã€‚å®ƒåº”è¯¥è°ƒç”¨ *free* æ¥é‡Š
+æ”¾ä»Ž *malloc* èŽ·å–åˆ°çš„å†…å­˜ã€‚æ›´é‡è¦åœ°æ˜¯æˆ‘ä»¬åº”è¯¥æ£€æµ‹ *lval* ï¼Œé‡Šæ”¾ä»»ä½•ç”±
+å…¶æŒ‡é’ˆå­—æ®µæŒ‡å‘çš„å†…å­˜ï¼Œç¡®ä¿ä¸ä¼šå†…å­˜æ³„æ¼ã€‚  
 
 #+BEGIN_SRC C
 void lval_del(lval* v) {
@@ -1470,22 +1470,22 @@ void lval_del(lval* v) {
 }
 #+END_SRC
 
-** ¶ÁÈ¡±í´ïÊ½
+** è¯»å–è¡¨è¾¾å¼
 
-Ê×ÏÈÎÒÃÇÔÚ³ÌÐò¶ÁÈ¡ÓÃ»§ÊäÈë²¢¹¹½¨ *lval** À´±íÊ¾Ëü¡£È»ºóÎÒÃÇ¶Ô *lval**
-ÇóÖµ²¢»ñÈ¡½á¹û¡£µÚÒ»²½½«³éÏóÓï·¨Ê÷×ª»»³ÉS-Expression£¬µÚ¶þ²½Ê¹ÓÃÎÒÃÇ
-Lisp¹æÔòÀ´¶ÔS-ExpressionÇóÖµ¡£
+é¦–å…ˆæˆ‘ä»¬åœ¨ç¨‹åºè¯»å–ç”¨æˆ·è¾“å…¥å¹¶æž„å»º *lval** æ¥è¡¨ç¤ºå®ƒã€‚ç„¶åŽæˆ‘ä»¬å¯¹ *lval**
+æ±‚å€¼å¹¶èŽ·å–ç»“æžœã€‚ç¬¬ä¸€æ­¥å°†æŠ½è±¡è¯­æ³•æ ‘è½¬æ¢æˆS-Expressionï¼Œç¬¬äºŒæ­¥ä½¿ç”¨æˆ‘ä»¬
+Lispè§„åˆ™æ¥å¯¹S-Expressionæ±‚å€¼ã€‚
 
-ÎªÁËÍê³ÉµÚÒ»²½£¬ÎÒÃÇÐèÒªµÝ¹é±éÀúÊ÷ÖÐµÄÃ¿¸ö½Úµã£¬¸ù¾Ý ½ÚµãµÄ *tag*
-ºÍ *contents* ×Ö¶Î¹¹½¨²»Í¬ *lval** ÀàÐÍ¡£
+ä¸ºäº†å®Œæˆç¬¬ä¸€æ­¥ï¼Œæˆ‘ä»¬éœ€è¦é€’å½’éåŽ†æ ‘ä¸­çš„æ¯ä¸ªèŠ‚ç‚¹ï¼Œæ ¹æ® èŠ‚ç‚¹çš„ *tag*
+å’Œ *contents* å­—æ®µæž„å»ºä¸åŒ *lval** ç±»åž‹ã€‚
 
-Èç¹ûËù¸øµÄ½ÚµãµÄ±êÇ©ÊÇ *number* »ò *symbol* £¬ÎÒÃÇÊ¹ÓÃÎÒÃÇµÄ¹¹Ôìº¯Êý²¢
-Ö±½Ó·µ»Ø *lval** ¡£ Èç¹ûËù¸øµÄ½ÚµãÊÇ *root* »ò *sexpr* ¡£ÎÒÃÇ´´½¨Ò»¸ö
-¿ÕµÄS-Expression *lval* £¬È»ºó½«Ê÷ÖÐÃ¿Ò»¸öÓÐÐ§µÄ×Ó±í´ïÊ½Ìí¼ÓÆäÖÐ¡£
+å¦‚æžœæ‰€ç»™çš„èŠ‚ç‚¹çš„æ ‡ç­¾æ˜¯ *number* æˆ– *symbol* ï¼Œæˆ‘ä»¬ä½¿ç”¨æˆ‘ä»¬çš„æž„é€ å‡½æ•°å¹¶
+ç›´æŽ¥è¿”å›ž *lval** ã€‚ å¦‚æžœæ‰€ç»™çš„èŠ‚ç‚¹æ˜¯ *root* æˆ– *sexpr* ã€‚æˆ‘ä»¬åˆ›å»ºä¸€ä¸ª
+ç©ºçš„S-Expression *lval* ï¼Œç„¶åŽå°†æ ‘ä¸­æ¯ä¸€ä¸ªæœ‰æ•ˆçš„å­è¡¨è¾¾å¼æ·»åŠ å…¶ä¸­ã€‚
 
-ÎªÁËÏòÒ»¸öS-ExpressionÌí¼ÓÒ»¸öÔªËØ£¬ÎÒÃÇ´´½¨Ò»¸ö *lval\_add* º¯Êý¡£Õâ¸ö
-º¯Êý¸ø±í´ïÊ½ÁÐ±íµÄÊýÁ¿¼Ó1¡£ÎÒÃÇÊ¹ÓÃ *realloc* º¯ÊýÖØÐÂ·ÖÅä *v->cell* Ëù
-ÐèÒªµÄ¿Õ¼ä¡£ÐÂ¿Õ¼äÓÃÓÚ´æ´¢¶îÍâµÄ *lval** ¡£
+ä¸ºäº†å‘ä¸€ä¸ªS-Expressionæ·»åŠ ä¸€ä¸ªå…ƒç´ ï¼Œæˆ‘ä»¬åˆ›å»ºä¸€ä¸ª *lval\_add* å‡½æ•°ã€‚è¿™ä¸ª
+å‡½æ•°ç»™è¡¨è¾¾å¼åˆ—è¡¨çš„æ•°é‡åŠ 1ã€‚æˆ‘ä»¬ä½¿ç”¨ *realloc* å‡½æ•°é‡æ–°åˆ†é… *v->cell* æ‰€
+éœ€è¦çš„ç©ºé—´ã€‚æ–°ç©ºé—´ç”¨äºŽå­˜å‚¨é¢å¤–çš„ *lval** ã€‚
 
 #+BEGIN_SRC C
 lval* lval_read_num(mpc_ast_t* t) {
@@ -1527,9 +1527,9 @@ lval* lval_add(lval* v, lval* x) {
 }
 #+END_SRC
 
-** ´òÓ¡±í´ïÊ½
+** æ‰“å°è¡¨è¾¾å¼
 
-ÎÒÃÇÐèÒªÐÞ¸ÄÎÒÃÇ´òÓ¡º¯Êý£¬ÒÔ±ãÄÜ´òÓ¡S-Expression¡£
+æˆ‘ä»¬éœ€è¦ä¿®æ”¹æˆ‘ä»¬æ‰“å°å‡½æ•°ï¼Œä»¥ä¾¿èƒ½æ‰“å°S-Expressionã€‚
 
 #+BEGIN_SRC C
 void lval_expr_print(lval* v, char open, char close) {
@@ -1560,14 +1560,14 @@ void lval_print(lval* v) {
 void lval_println(lval* v) { lval_print(v); putchar('\n'); }
 #+END_SRC
 
-ÔÚÎÒÃÇÖ÷Ñ­»·ÖÐ£¬ÎÒÃÇ¿ÉÒÔ´òÓ¡½á¹û£¬×îºó½« *lval** ½á¹¹ÒÆ³ý¡£
+åœ¨æˆ‘ä»¬ä¸»å¾ªçŽ¯ä¸­ï¼Œæˆ‘ä»¬å¯ä»¥æ‰“å°ç»“æžœï¼Œæœ€åŽå°† *lval** ç»“æž„ç§»é™¤ã€‚
 #+BEGIN_SRC C
 lval* x = lval_read(r.output);
 lval_println(x);
 lval_del(x);
 #+END_SRC
 
-Èç¹û³É¹¦£¬ÔËÐÐ³ÌÐò£¬Äã¿ÉÒÔ¿´µ½ÈçÏÂËùÊ¾¡£
+å¦‚æžœæˆåŠŸï¼Œè¿è¡Œç¨‹åºï¼Œä½ å¯ä»¥çœ‹åˆ°å¦‚ä¸‹æ‰€ç¤ºã€‚
 #+BEGIN_SRC C
 lispy> + 2 2
 (+ 2 2)
@@ -1578,19 +1578,19 @@ lispy> *     55     101  (+ 0 0 0)
 lispy>
 #+END_SRC
 
-** ¼ÆËã±í´ïÊ½
+** è®¡ç®—è¡¨è¾¾å¼
 
-ÎÒÃÇµÄÇóÖµº¯ÊýÔÚºÜ´ó³Ì¶ÈÉÏÓëÒÔÇ°ÏàÍ¬¡£ÎÒÃÇÐèÒª½«ÆäÐÞ¸ÄÄÜ¹»´¦Àí *lval**
-ºÍ¹¹³É±í´ïÊ½µÄ½á¹¹Ìå¡£ÎÒÃÇ¿ÉÒÔ½«ÎÒÃÇµÄÇóÖµº¯ÊýÏëÏó³ÉÒ»¸ö×ª»»Æ÷¡£Ëü½«Ä³
-¸ö *lval** ×ª»»³ÉÁíÒ»¸öÐÂµÄ *lval** ¡£Èç¹ûÎÒÃÇ·µ»ØÒ»¸öÐÂµÄ *lval** £¬
-ÎÒÃÇ±ØÐë×ÜÊÇ¼ÇµÃÉ¾³ý×÷ÎªÊäÈëµÄ *lval** ¡£
+æˆ‘ä»¬çš„æ±‚å€¼å‡½æ•°åœ¨å¾ˆå¤§ç¨‹åº¦ä¸Šä¸Žä»¥å‰ç›¸åŒã€‚æˆ‘ä»¬éœ€è¦å°†å…¶ä¿®æ”¹èƒ½å¤Ÿå¤„ç† *lval**
+å’Œæž„æˆè¡¨è¾¾å¼çš„ç»“æž„ä½“ã€‚æˆ‘ä»¬å¯ä»¥å°†æˆ‘ä»¬çš„æ±‚å€¼å‡½æ•°æƒ³è±¡æˆä¸€ä¸ªè½¬æ¢å™¨ã€‚å®ƒå°†æŸ
+ä¸ª *lval** è½¬æ¢æˆå¦ä¸€ä¸ªæ–°çš„ *lval** ã€‚å¦‚æžœæˆ‘ä»¬è¿”å›žä¸€ä¸ªæ–°çš„ *lval** ï¼Œ
+æˆ‘ä»¬å¿…é¡»æ€»æ˜¯è®°å¾—åˆ é™¤ä½œä¸ºè¾“å…¥çš„ *lval** ã€‚
 
-Ê×ÏÈÎÒÃÇ¼ÆËãS-ExpressionµÄËùÓÐº¢×Ó¡£Èç¹ûÈÎºÎÒ»¸öº¢×Ó³ö´í£¬ÎÒÃÇ½«Ê¹
-ÓÃ *lval_take* ·µ»ØÎÒÃÇÓöµ½µÄµÚÒ»¸ö´íÎó¡£
+é¦–å…ˆæˆ‘ä»¬è®¡ç®—S-Expressionçš„æ‰€æœ‰å­©å­ã€‚å¦‚æžœä»»ä½•ä¸€ä¸ªå­©å­å‡ºé”™ï¼Œæˆ‘ä»¬å°†ä½¿
+ç”¨ *lval_take* è¿”å›žæˆ‘ä»¬é‡åˆ°çš„ç¬¬ä¸€ä¸ªé”™è¯¯ã€‚
 
-Èç¹ûS-ExpressionÃ»ÓÐº¢×Ó£¬ÎÒÃÇÖ»ÐèÖ±½Ó·µ»Ø¡£¶ÔÓÚ¿Õ±í´ïÊ½£¬ÓÃ *()* ±íÊ¾¡£
-ÎÒÃÇÒ²Òª¼ì²éµ¥¸ö±í´ïÊ½¡£ÕâÐ©±í´ïÊ½½öÓÐÒ»¸öº¢×Ó£¬Èç *(5)* ¡£ÕâÖÖÇé¿öÏÂ
-ÎÒÃÇÔÚÀ¨ºÅµÄ±í´ïÊ½¡£
+å¦‚æžœS-Expressionæ²¡æœ‰å­©å­ï¼Œæˆ‘ä»¬åªéœ€ç›´æŽ¥è¿”å›žã€‚å¯¹äºŽç©ºè¡¨è¾¾å¼ï¼Œç”¨ *()* è¡¨ç¤ºã€‚
+æˆ‘ä»¬ä¹Ÿè¦æ£€æŸ¥å•ä¸ªè¡¨è¾¾å¼ã€‚è¿™äº›è¡¨è¾¾å¼ä»…æœ‰ä¸€ä¸ªå­©å­ï¼Œå¦‚ *(5)* ã€‚è¿™ç§æƒ…å†µä¸‹
+æˆ‘ä»¬åœ¨æ‹¬å·çš„è¡¨è¾¾å¼ã€‚
 
 #+BEGIN_SRC C
 lval* lval_eval_sexpr(lval* v) {
@@ -1654,14 +1654,14 @@ lval* lval_take(lval* v, int i) {
 }
 #+END_SRC
 
-*lval\_pop* º¯Êý´ÓS-ExpressionÖÐÌáÈ¡Ë÷ÒýÎªiµÄµ¥¸öÔªËØ£¬Ïò»ØÒÆ¶¯Ê£ÓàµÄ
-ÁÐ±íÔªËØ£¬ÕâÑùÁÐ±íÖÐ¾Í²»ÔÙ°üº¬ÄÇ¸ö±»ÌáÈ¡µÄÔªËØ¡£È»ºóËü·µ»ØÌáÈ¡µÄÖµ¡£¼Ç
-×¡Ëü²¢Ã»ÓÐÉ¾³ýÊäÈëÁÐ±í¡£Ëü¾ÍÏñ°ÑÔªËØ´ÓÁÐ±íÖÐµ¯³ö£¬ÁôÏÂÊ£ÓàµÄÔªËØ¡£
+*lval\_pop* å‡½æ•°ä»ŽS-Expressionä¸­æå–ç´¢å¼•ä¸ºiçš„å•ä¸ªå…ƒç´ ï¼Œå‘å›žç§»åŠ¨å‰©ä½™çš„
+åˆ—è¡¨å…ƒç´ ï¼Œè¿™æ ·åˆ—è¡¨ä¸­å°±ä¸å†åŒ…å«é‚£ä¸ªè¢«æå–çš„å…ƒç´ ã€‚ç„¶åŽå®ƒè¿”å›žæå–çš„å€¼ã€‚è®°
+ä½å®ƒå¹¶æ²¡æœ‰åˆ é™¤è¾“å…¥åˆ—è¡¨ã€‚å®ƒå°±åƒæŠŠå…ƒç´ ä»Žåˆ—è¡¨ä¸­å¼¹å‡ºï¼Œç•™ä¸‹å‰©ä½™çš„å…ƒç´ ã€‚
 
-*lval\_take* º¯ÊýÓë *lval\_pop* ÀàËÆ£¬Ö»²»¹ýÉ¾³ýÁËÁÐ±í¡£Õâ¾ÍÏñ°ÑÔªËØ´Ó
-ÁÐ±íÖÐÈ¡³öÈ»ºóÉ¾³ýÆäÓàµÄÔªËØ¡£
+*lval\_take* å‡½æ•°ä¸Ž *lval\_pop* ç±»ä¼¼ï¼Œåªä¸è¿‡åˆ é™¤äº†åˆ—è¡¨ã€‚è¿™å°±åƒæŠŠå…ƒç´ ä»Ž
+åˆ—è¡¨ä¸­å–å‡ºç„¶åŽåˆ é™¤å…¶ä½™çš„å…ƒç´ ã€‚
 
-ÎÒÃÇÒ²ÐèÒª¶¨ÒåÒ»¸öÇóÖµº¯Êý *builtin\_op* ¡£
+æˆ‘ä»¬ä¹Ÿéœ€è¦å®šä¹‰ä¸€ä¸ªæ±‚å€¼å‡½æ•° *builtin\_op* ã€‚
 
 #+BEGIN_SRC C
 lval* builtin_op(lval* a, char* op) {
@@ -1706,14 +1706,14 @@ lval* builtin_op(lval* a, char* op) {
 }
 #+END_SRC
 
-Íê³ÉÇóÖµº¯Êýºó£¬ÎÒÃÇÖ»ÐèÒªÐÞ¸Ä *main* º¯Êý¡£
+å®Œæˆæ±‚å€¼å‡½æ•°åŽï¼Œæˆ‘ä»¬åªéœ€è¦ä¿®æ”¹ *main* å‡½æ•°ã€‚
 #+BEGIN_SRC C
 lval* x = lval_eval(lval_read(r.output));
 lval_println(x);
 lval_del(x);
 #+END_SRC
 
-ÏÖÔÚÄãÓ¦¸ÃÄÜ¹»ÏñÉÏÒ»ÕÂÒ»ÑùÕýÈ·µØ¶Ô±í´ïÊ½ÇóÖµÁË¡£
+çŽ°åœ¨ä½ åº”è¯¥èƒ½å¤Ÿåƒä¸Šä¸€ç« ä¸€æ ·æ­£ç¡®åœ°å¯¹è¡¨è¾¾å¼æ±‚å€¼äº†ã€‚
 
 #+BEGIN_SRC shell
 lispy> + 1 (* 7 5) 3
@@ -1729,19 +1729,19 @@ Error: Cannot operate on non-number!
 lispy>
 #+END_SRC
 
-* Q-±í´ïÊ½(Q-Expressions)
-* ±äÁ¿(Variables)
-* º¯Êý(Functions)
-* Ìõ¼þ(Conditionals)
-* ×Ö·û´®(Strings)
-* ±ê×¼¿â(Standard Library)
-* ½±ÀøÏîÄ¿(Bonus Projects)
+* Q-è¡¨è¾¾å¼(Q-Expressions)
+* å˜é‡(Variables)
+* å‡½æ•°(Functions)
+* æ¡ä»¶(Conditionals)
+* å­—ç¬¦ä¸²(Strings)
+* æ ‡å‡†åº“(Standard Library)
+* å¥–åŠ±é¡¹ç›®(Bonus Projects)
 
-* Q-±í´ïÊ½(Q-Expressions)
-* ±äÁ¿(Variables)
-* º¯Êý(Functions)
-* Ìõ¼þ(Conditionals)
-* ×Ö·û´®(Strings)
-* ±ê×¼¿â(Standard Library)
-* ½±ÀøÏîÄ¿(Bonus Projects)
+* Q-è¡¨è¾¾å¼(Q-Expressions)
+* å˜é‡(Variables)
+* å‡½æ•°(Functions)
+* æ¡ä»¶(Conditionals)
+* å­—ç¬¦ä¸²(Strings)
+* æ ‡å‡†åº“(Standard Library)
+* å¥–åŠ±é¡¹ç›®(Bonus Projects)
  
