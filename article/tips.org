@@ -1,0 +1,15 @@
+常用技巧
+
+* Ubuntu 14.04映射Caps Lock为Ctrl
+
+指令：$sudo vim /etc/default/keyboard
+
+将这一行改为如下所示：
+
+XKBOPTIONS="ctrl:nocaps"
+
+指令：$sudo dpkg-reconfigure keyboard-configuration
+
+一路下来按Enter 键默认就可以了。最后reboot.
+这样就将大写键改为Ctrl 键。
+
