@@ -1,0 +1,47 @@
+* install
+Debian(Ubuntu, Linuxmint, ...)
+
+$ sudo apt install git
+
+* ssh key
+
+$ ssh-keygen -t rsa -c "your-email-address"
+
+copy the content of `.ssh/id_rsa.pub` to github `SSH Keys` settings.
+
+$ ssh -T git@github.com
+
+* Settings
+
+$ git config --global user.name "your name"
+
+$ git config --global user.email "your email"
+
+$ git config --list
+
+* Git command
+
+** clone a repository(project) from github
+
+$ git clone git@git.com:xxx/xx.git
+
+** set a local repository
+
+$ cd your-repository
+
+$ git init
+
+** check local project status
+$ git status
+
+** add file to local project
+
+$ git add your-file
+
+** commit update
+
+$ git commit -m "your comment"
+
+** upload to remote reponsitory(project)
+
+$ git push origin master
