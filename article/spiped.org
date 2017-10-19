@@ -1,0 +1,32 @@
+* Spiped简介
+Spiped是一个用于创建套接字地址之间的对称加密和认证管道的工具，
+以便连接到一个地址的源端（例如，在本地主机上一个UNIX套接字），
+可以透明地建立连接到另一个地址（例如，一个不同系统上的UNIX套接字）
+
+www.tarsnap.com/spiped.html
+
+* Spiped原理
+Spiped相当于本地代理。代理客户端将数据发送给服务端。
+客户端将数据发送本地spiped代理端口，由spiped将数据发送到服务端的spiped代理，
+服务端spiped代理将数据转发真实的服务端端口
+client -> spiped proxy(client) -> INTERNET -> spiped proxy(server) -> server
+
+* Spiped安装
+ tar zxvf spiped-1.6.0.tgz
+ cd spiped-1.6.0
+ make && make install
+
+* Spiped使用
+** 在服务端生成好密钥文件，将该文件复制到客户端
+   dd if=/dev/urandom bs=32 count=1 of=keyfile
+** 在服务端创建代理
+   spiped -d -s '[0.0.0.0]:8025' -t '[127.0.0.1]:25' -k keyfile
+   8025是spiped的代理端口，25是真实服务端端口
+   作用：将8025端口的数据转发到本地25端口
+** 在客户端创建代理
+   spiped -e -s '[127.0.0.1]:25' -t $SERVERNAME:8025 -k keyfile
+   25是spiped代理端口, 8025是服务端spiped的代理端口
+   $SERVERNAME是服务端的ip或域名
+   作用:将本地25端口的数据转发到服务端8025端口
+
+** 服务端程序不需要做任何调整，客户端程序需要将数据发送到本地代理端口
