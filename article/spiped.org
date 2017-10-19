@@ -1,3 +1,11 @@
+#+OPTIONS: ^:nil
+#+OPTIONS: \n:t
+#+OPTIONS: f:nil
+#+OPTIONS: -:nil
+#+OPTIONS: author:nil
+#+OPTIONS: email:nil
+#+OPTIONS: timestamp:nil
+
 * Spiped简介
 Spiped是一个用于创建套接字地址之间的对称加密和认证管道的工具，
 以便连接到一个地址的源端（例如，在本地主机上一个UNIX套接字），
